@@ -1,0 +1,25 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.single-intro {
+  margin-top: 10px;
+  padding: 10px;
+  height: 200px;
+  background-color: $white-color;
+  cursor: pointer;
+
+  .img-wrapper {
+    @include cover-img();
+    height: 85%;
+    text-align: center;
+
+    p {
+      padding-top: 75%;
+      font-size: 14px;
+      color: $grey;
+      letter-spacing: 5px;
+      
+    }
+  }
+}

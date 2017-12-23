@@ -2,7 +2,7 @@
   <div class="nav-wrapper">
     <div class="container">
       <div class="left-wrapper">
-        <img src="../../assets/img/job.png" width="30">
+        <img src="../../assets/img/icon.png" width="30">
       </div>
 
       <div class="right-wrapper">
@@ -16,7 +16,7 @@
 
         <div class="input-wrapper">
           <el-input class="search-input"
-                    placeholder="搜索图片、作者"
+                    placeholder=""
                     suffix-icon="el-icon-search"
                     v-model="input2"
                     >

@@ -1,10 +1,10 @@
 <template>
   <div class="footer-wrapper">
     <div class="icon-wrapper">
-      <img src="../../assets/img/job.png" width="40"/>
+      <img src="../../assets/img/icon.png" width="40"/>
     </div>
     <div class="name-wrapper">
-      <span>Photour</span>
+      <span>CHeeSS</span>
     </div>
 
     <div class="info-wrapper">

@@ -1,0 +1,42 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.single-intro {
+  margin-top: 10px;
+  padding: 10px;
+  height: 200px;
+  background-color: #ffffff;
+  cursor: pointer; }
+  .single-intro .img-wrapper {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 85%;
+    text-align: center; }
+    .single-intro .img-wrapper p {
+      padding-top: 75%;
+      font-size: 14px;
+      color: #595959;
+      letter-spacing: 5px; }
+
+/*# sourceMappingURL=IndexCard.css.map */

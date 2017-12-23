@@ -2,6 +2,20 @@
   <div class="body-wrapper">
     <layout>
 
+      <banner></banner>
+
+      <div class="container">
+
+        <div class="brief-intro-wrapper">
+          <el-row :gutter="20">
+            <index-card v-for="item in 4"
+                        :photoName="photoNames[item - 1]"
+                        :intro="intros[item - 1]"></index-card>
+          </el-row>
+        </div>
+
+      </div>
+
     </layout>
   </div>
 
@@ -9,14 +23,24 @@
 
 <script>
   import Layout from '../components/Layout/Layout.vue'
+  import Banner from '../components/Banner/Banner.vue'
+  import IndexCard from '../components/Card/IndexCard.vue'
+  import { Row } from 'element-ui'
 
   export default {
     name: 'index-page',
     components: {
-      Layout
+      Layout,
+      Banner,
+      IndexCard,
+      elRow: Row,
     },
     data () {
-      return {}
+      let reward = 'reward.jpg'
+      return {
+        photoNames: ['company.jpg', 'job.jpg', 'reward.jpg', 'skill.jpg'],
+        intros: ['公司', '职位', '待遇', '技能']
+      }
     },
     methods: {}
   }
