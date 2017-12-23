@@ -19,21 +19,26 @@
                     placeholder=""
                     suffix-icon="el-icon-search"
                     v-model="input2"
-                    >
+          >
           </el-input>
         </div>
 
+
         <div class="button-wrapper">
-          <el-dropdown placement="bottom-start" @command="">
-            <span class="el-dropdown-link">
-              用户<i class="el-icon-caret-bottom el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="UserHomePage">个人主页</el-dropdown-item>
-              <el-dropdown-item command="AccountPage">修改资料</el-dropdown-item>
-              <el-dropdown-item command="signOut">退出账号</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+
+          <el-button type="text" @click="goToLoginPage">登录</el-button>
+          <el-button type="text" @click="goToRegisterPage">注册</el-button>
+
+          <!--<el-dropdown placement="bottom-start" @command="">-->
+          <!--<span class="el-dropdown-link">-->
+          <!--用户<i class="el-icon-caret-bottom el-icon&#45;&#45;right"></i>-->
+          <!--</span>-->
+          <!--<el-dropdown-menu slot="dropdown">-->
+          <!--<el-dropdown-item command="UserHomePage">个人主页</el-dropdown-item>-->
+          <!--<el-dropdown-item command="AccountPage">修改资料</el-dropdown-item>-->
+          <!--<el-dropdown-item command="signOut">退出账号</el-dropdown-item>-->
+          <!--</el-dropdown-menu>-->
+          <!--</el-dropdown>-->
         </div>
       </div>
 
@@ -66,7 +71,14 @@
       }
     },
     computed: {},
-    methods: {}
+    methods: {
+      goToLoginPage () {
+        router.push({name: 'LoginPage'})
+      },
+      goToRegisterPage () {
+        router.push({name: 'RegisterPage'})
+      }
+    }
   }
 </script>
 
