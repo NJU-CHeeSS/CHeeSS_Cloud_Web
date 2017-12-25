@@ -1,7 +1,7 @@
 <template>
   <div class="nav-wrapper">
     <div class="container">
-      <div class="left-wrapper">
+      <div class="left-wrapper" @click="goToIndexPage">
         <img src="../../assets/img/icon.png" width="30">
       </div>
 
@@ -72,6 +72,9 @@
     },
     computed: {},
     methods: {
+      goToIndexPage () {
+        router.push({name: 'IndexPage'})
+      },
       goToLoginPage () {
         router.push({name: 'LoginPage'})
       },

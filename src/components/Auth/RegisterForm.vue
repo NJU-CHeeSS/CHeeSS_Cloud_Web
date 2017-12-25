@@ -1,8 +1,10 @@
 <template>
   <div class="auth-wrapper">
 
+    <h1>注&nbsp;&nbsp;册</h1>
+
     <div class="left-form-wrapper">
-      <h1>注&nbsp;&nbsp;册</h1>
+
 
       <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
 
@@ -22,6 +24,63 @@
           <el-input type="password" v-model="registerForm.confirmPassword" auto-complete="off"></el-input>
         </el-form-item>
 
+        <el-form-item label="性别" prop="gender">
+          <el-radio v-model="registerForm.gender" label="男">男</el-radio>
+          <el-radio v-model="registerForm.gender" label="女">女</el-radio>
+        </el-form-item>
+
+      </el-form>
+
+    </div>
+
+
+    <div class="right-wrapper">
+
+      <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
+        <el-form-item label="年龄（1至70岁之间）" prop="age">
+          <el-input-number v-model="registerForm.age" @change="" :min="1" :max="70"
+                           label="年龄"></el-input-number>
+        </el-form-item>
+
+        <el-form-item label="城市" prop="options">
+          <el-select v-model="registerForm.city" placeholder="请选择">
+            <el-option
+              v-for="item in registerForm.options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="工作经验（年）" prop="age">
+          <el-input-number v-model="registerForm.experience" @change="" :min="1" :max="50" :step="0.5"
+                           label="经验"></el-input-number>
+        </el-form-item>
+
+        <el-form-item label="技能" prop="age" class="tags-wrapper">
+          <el-tag
+            :key="tag"
+            v-for="tag in registerForm.skillTags"
+            closable
+            :disable-transitions="false"
+            @close="handleClose(tag)">
+            {{tag}}
+          </el-tag>
+          <el-input
+            class="input-new-tag"
+            v-if="inputVisible"
+            v-model="inputValue"
+            ref="saveTagInput"
+            size="small"
+            @keyup.enter.native="handleInputConfirm"
+            @blur="handleInputConfirm"
+          >
+          </el-input>
+          <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 新增</el-button>
+
+        </el-form-item>
+
         <el-form-item>
           <div class="go-sign-in">
             <span>已有账号？</span>
@@ -38,6 +97,7 @@
           <!--<el-button @click="resetForm('signInForm')">重置</el-button>-->
         </el-form-item>
 
+
       </el-form>
 
     </div>
@@ -46,7 +106,7 @@
 </template>
 
 <script>
-  import { Button, Input, Form, FormItem, Message } from 'element-ui'
+  import { Button, Input, Form, FormItem, Radio, InputNumber, Select, Option, Tag, Message } from 'element-ui'
   import { router } from '../../main'
 
   export default {
@@ -56,6 +116,11 @@
       elInput: Input,
       elForm: Form,
       elFormItem: FormItem,
+      elRadio: Radio,
+      elInputNumber: InputNumber,
+      elSelect: Select,
+      elOption: Option,
+      elTag: Tag
     },
     data () {
       let checkUsername = (rule, value, callback) => {
@@ -98,7 +163,30 @@
           email: '',
           password: '',
           confirmPassword: '',
+          gender: '男',
+          age: 20,
+          experience: 0,
+          city: '北京',
+          options: [{
+            value: '选项1',
+            label: '北京'
+          }, {
+            value: '选项2',
+            label: '上海'
+          }, {
+            value: '选项3',
+            label: '广州'
+          }, {
+            value: '选项4',
+            label: '南京'
+          }, {
+            value: '选项5',
+            label: '西安'
+          }],
+          skillTags: ['标签一', '标签二', '标签三'],
         },
+        inputVisible: false,
+        inputValue: '',
         rules: {
           password: [
             {validator: validatePassword, trigger: 'blur'}
@@ -121,6 +209,25 @@
       },
       submitForm () {
 
+      },
+      handleClose (tag) {
+        this.registerForm.skillTags.splice(this.registerForm.skillTags.indexOf(tag), 1)
+      },
+
+      showInput () {
+        this.inputVisible = true
+        this.$nextTick(_ => {
+          this.$refs.saveTagInput.$refs.input.focus()
+        })
+      },
+
+      handleInputConfirm () {
+        let inputValue = this.inputValue
+        if (inputValue) {
+          this.registerForm.skillTags.push(inputValue)
+        }
+        this.inputVisible = false
+        this.inputValue = ''
       }
     }
   }

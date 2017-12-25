@@ -29,7 +29,8 @@ button {
   .nav-wrapper .left-wrapper {
     display: inline-block;
     padding-top: 12px;
-    border-radius: 3px; }
+    border-radius: 3px;
+    cursor: pointer; }
   .nav-wrapper .right-wrapper {
     display: inline-block;
     padding-top: 11px;
