@@ -50,6 +50,16 @@
         font-size: 12px;
       }
     }
+
+    .profession-selection {
+      /deep/ .el-input--suffix .el-input__inner {
+        width: 200px;
+      }
+
+      /deep/ .el-input__suffix {
+        right: -35px;
+      }
+    }
   }
 
   .sign-in-button-wrapper {
@@ -94,5 +104,10 @@
     margin-right: 35px;
     background: none;
     border: none;
+  }
+
+  /deep/ .el-cascader__label {
+    font-size: 12px;
+    font-weight: 400;
   }
 }

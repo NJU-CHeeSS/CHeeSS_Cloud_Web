@@ -16,17 +16,16 @@
           <el-input v-model="registerForm.email"></el-input>
         </el-form-item>
 
+        <el-form-item label="手机号" prop="email">
+          <el-input v-model="registerForm.phone"></el-input>
+        </el-form-item>
+
         <el-form-item label="密码" prop="password">
           <el-input type="password" v-model="registerForm.password" auto-complete="off"></el-input>
         </el-form-item>
 
         <el-form-item label="确认密码" prop="confirmPassword">
           <el-input type="password" v-model="registerForm.confirmPassword" auto-complete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="性别" prop="gender">
-          <el-radio v-model="registerForm.gender" label="男">男</el-radio>
-          <el-radio v-model="registerForm.gender" label="女">女</el-radio>
         </el-form-item>
 
       </el-form>
@@ -37,6 +36,12 @@
     <div class="right-wrapper">
 
       <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
+
+        <el-form-item label="性别" prop="gender">
+          <el-radio v-model="registerForm.gender" label="男">男</el-radio>
+          <el-radio v-model="registerForm.gender" label="女">女</el-radio>
+        </el-form-item>
+
         <el-form-item label="年龄（1至70岁之间）" prop="age">
           <el-input-number v-model="registerForm.age" @change="" :min="1" :max="70"
                            label="年龄"></el-input-number>
@@ -45,7 +50,27 @@
         <el-form-item label="城市" prop="options">
           <el-select v-model="registerForm.city" placeholder="请选择">
             <el-option
-              v-for="item in registerForm.options"
+              v-for="item in cities"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item class="profession-selection" label="专业" prop="options">
+          <el-cascader
+            expand-trigger="hover"
+            :options="registerForm.professions"
+            v-model="registerForm.selectOption"
+            @change="">
+          </el-cascader>
+        </el-form-item>
+
+        <el-form-item label="学历" prop="options">
+          <el-select v-model="registerForm.degree" placeholder="请选择">
+            <el-option
+              v-for="item in degrees"
               :key="item.value"
               :label="item.label"
               :value="item.value">
@@ -106,7 +131,7 @@
 </template>
 
 <script>
-  import { Button, Input, Form, FormItem, Radio, InputNumber, Select, Option, Tag, Message } from 'element-ui'
+  import { Button, Input, Form, FormItem, Radio, InputNumber, Select, Option, Tag, Cascader, Message } from 'element-ui'
   import { router } from '../../main'
 
   export default {
@@ -120,7 +145,8 @@
       elInputNumber: InputNumber,
       elSelect: Select,
       elOption: Option,
-      elTag: Tag
+      elTag: Tag,
+      elCascader: Cascader
     },
     data () {
       let checkUsername = (rule, value, callback) => {
@@ -135,6 +161,15 @@
           return callback(new Error('请输入邮箱账号'))
         } else if (!/^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i.test(value)) {
           return callback(new Error('请输入正确的邮箱格式'))
+        } else {
+          callback()
+        }
+      }
+      let checkPhone = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('请输入手机号'))
+        } else if (!/^1[34578]\d{9}$/.test(value)) {
+          return callback(new Error('请输入正确的手机号'))
         } else {
           callback()
         }
@@ -161,44 +196,260 @@
         registerForm: {
           username: '',
           email: '',
+          phone: '',
           password: '',
           confirmPassword: '',
           gender: '男',
           age: 20,
           experience: 0,
           city: '北京',
-          options: [{
-            value: '选项1',
-            label: '北京'
+          degree: '本科',
+          professions: [{
+            value: 'zhinan',
+            label: '指南',
+            children: [{
+              value: 'shejiyuanze',
+              label: '设计原则',
+              children: [{
+                value: 'yizhi',
+                label: '一致'
+              }, {
+                value: 'fankui',
+                label: '反馈'
+              }, {
+                value: 'xiaolv',
+                label: '效率'
+              }, {
+                value: 'kekong',
+                label: '可控'
+              }]
+            }, {
+              value: 'daohang',
+              label: '导航',
+              children: [{
+                value: 'cexiangdaohang',
+                label: '侧向导航'
+              }, {
+                value: 'dingbudaohang',
+                label: '顶部导航'
+              }]
+            }]
           }, {
-            value: '选项2',
-            label: '上海'
+            value: 'zujian',
+            label: '组件',
+            children: [{
+              value: 'basic',
+              label: 'Basic',
+              children: [{
+                value: 'layout',
+                label: 'Layout 布局'
+              }, {
+                value: 'color',
+                label: 'Color 色彩'
+              }, {
+                value: 'typography',
+                label: 'Typography 字体'
+              }, {
+                value: 'icon',
+                label: 'Icon 图标'
+              }, {
+                value: 'button',
+                label: 'Button 按钮'
+              }]
+            }, {
+              value: 'form',
+              label: 'Form',
+              children: [{
+                value: 'radio',
+                label: 'Radio 单选框'
+              }, {
+                value: 'checkbox',
+                label: 'Checkbox 多选框'
+              }, {
+                value: 'input',
+                label: 'Input 输入框'
+              }, {
+                value: 'input-number',
+                label: 'InputNumber 计数器'
+              }, {
+                value: 'select',
+                label: 'Select 选择器'
+              }, {
+                value: 'cascader',
+                label: 'Cascader 级联选择器'
+              }, {
+                value: 'switch',
+                label: 'Switch 开关'
+              }, {
+                value: 'slider',
+                label: 'Slider 滑块'
+              }, {
+                value: 'time-picker',
+                label: 'TimePicker 时间选择器'
+              }, {
+                value: 'date-picker',
+                label: 'DatePicker 日期选择器'
+              }, {
+                value: 'datetime-picker',
+                label: 'DateTimePicker 日期时间选择器'
+              }, {
+                value: 'upload',
+                label: 'Upload 上传'
+              }, {
+                value: 'rate',
+                label: 'Rate 评分'
+              }, {
+                value: 'form',
+                label: 'Form 表单'
+              }]
+            }, {
+              value: 'data',
+              label: 'Data',
+              children: [{
+                value: 'table',
+                label: 'Table 表格'
+              }, {
+                value: 'tag',
+                label: 'Tag 标签'
+              }, {
+                value: 'progress',
+                label: 'Progress 进度条'
+              }, {
+                value: 'tree',
+                label: 'Tree 树形控件'
+              }, {
+                value: 'pagination',
+                label: 'Pagination 分页'
+              }, {
+                value: 'badge',
+                label: 'Badge 标记'
+              }]
+            }, {
+              value: 'notice',
+              label: 'Notice',
+              children: [{
+                value: 'alert',
+                label: 'Alert 警告'
+              }, {
+                value: 'loading',
+                label: 'Loading 加载'
+              }, {
+                value: 'message',
+                label: 'Message 消息提示'
+              }, {
+                value: 'message-box',
+                label: 'MessageBox 弹框'
+              }, {
+                value: 'notification',
+                label: 'Notification 通知'
+              }]
+            }, {
+              value: 'navigation',
+              label: 'Navigation',
+              children: [{
+                value: 'menu',
+                label: 'NavMenu 导航菜单'
+              }, {
+                value: 'tabs',
+                label: 'Tabs 标签页'
+              }, {
+                value: 'breadcrumb',
+                label: 'Breadcrumb 面包屑'
+              }, {
+                value: 'dropdown',
+                label: 'Dropdown 下拉菜单'
+              }, {
+                value: 'steps',
+                label: 'Steps 步骤条'
+              }]
+            }, {
+              value: 'others',
+              label: 'Others',
+              children: [{
+                value: 'dialog',
+                label: 'Dialog 对话框'
+              }, {
+                value: 'tooltip',
+                label: 'Tooltip 文字提示'
+              }, {
+                value: 'popover',
+                label: 'Popover 弹出框'
+              }, {
+                value: 'card',
+                label: 'Card 卡片'
+              }, {
+                value: 'carousel',
+                label: 'Carousel 走马灯'
+              }, {
+                value: 'collapse',
+                label: 'Collapse 折叠面板'
+              }]
+            }]
           }, {
-            value: '选项3',
-            label: '广州'
-          }, {
-            value: '选项4',
-            label: '南京'
-          }, {
-            value: '选项5',
-            label: '西安'
+            value: 'ziyuan',
+            label: '资源',
+            children: [{
+              value: 'axure',
+              label: 'Axure Components'
+            }, {
+              value: 'sketch',
+              label: 'Sketch Templates'
+            }, {
+              value: 'jiaohu',
+              label: '组件交互文档'
+            }]
           }],
           skillTags: ['标签一', '标签二', '标签三'],
         },
+        cities: [{
+          value: '选项1',
+          label: '北京'
+        }, {
+          value: '选项2',
+          label: '上海'
+        }, {
+          value: '选项3',
+          label: '广州'
+        }, {
+          value: '选项4',
+          label: '南京'
+        }, {
+          value: '选项5',
+          label: '西安'
+        }],
+        degrees: [
+          {
+            value: '选项1',
+            label: '专科'
+          }, {
+            value: '选项2',
+            label: '本科'
+          }, {
+            value: '选项3',
+            label: '硕士'
+          }, {
+            value: '选项4',
+            label: '博士'
+          }
+        ],
         inputVisible: false,
         inputValue: '',
+        selectedOption: [],
         rules: {
           password: [
-            {validator: validatePassword, trigger: 'blur'}
+            {required: true, validator: validatePassword, trigger: 'blur'}
+          ],
+          phone: [
+            {required: true, validator: checkPhone, trigger: 'blur'}
           ],
           username: [
-            {validator: checkUsername, trigger: 'blur'}
+            {required: true, validator: checkUsername, trigger: 'blur'}
           ],
           email: [
-            {validator: checkEmail, trigger: 'blur'}
+            {required: true, validator: checkEmail, trigger: 'blur'}
           ],
           confirmPassword: [
-            {validator: validateConfirmPassword, trigger: 'blur'}
+            {required: true, validator: validateConfirmPassword, trigger: 'blur'}
           ]
         }
       }
