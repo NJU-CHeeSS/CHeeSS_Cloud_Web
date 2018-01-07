@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import IndexPage from '@/pages/IndexPage'
 import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
+import JobFilterPage from '@/pages/JobFilterPage'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/register',
       name: 'RegisterPage',
       component: RegisterPage
+    },
+    {
+      path: '/jobs',
+      name: 'JobFilterPage',
+      component: JobFilterPage
     }
   ]
 })

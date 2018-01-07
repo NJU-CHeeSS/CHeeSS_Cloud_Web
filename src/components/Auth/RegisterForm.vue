@@ -79,7 +79,7 @@
         </el-form-item>
 
         <el-form-item label="工作经验（年）" prop="age">
-          <el-input-number v-model="registerForm.experience" @change="" :min="1" :max="50" :step="0.5"
+          <el-input-number v-model="registerForm.experience" @change="" :min="0" :max="50" :step="0.5"
                            label="经验"></el-input-number>
         </el-form-item>
 

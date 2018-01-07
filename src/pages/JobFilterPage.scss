@@ -1,0 +1,17 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/base";
+@import "../assets/scss/mixin";
+
+.left-wrapper {
+  display: inline-block;
+  width: 200px;
+  height: 500px;
+  background-color: red;
+
+}
+
+.right-wrapper {
+  display: inline-block;
+  width: 59%;
+  height: auto;
+}

@@ -8,7 +8,7 @@
       <div class="right-wrapper">
 
         <div class="button-wrapper">
-          <el-button type="text" @click="">职位</el-button>
+          <el-button type="text" @click="goToJobPage">职位</el-button>
           <el-button type="text" @click="">公司</el-button>
           <el-button type="text" @click="">待遇</el-button>
           <el-button type="text" @click="">技能</el-button>
@@ -80,6 +80,9 @@
       },
       goToRegisterPage () {
         router.push({name: 'RegisterPage'})
+      },
+      goToJobPage() {
+        router.push({name: 'JobFilterPage'})
       }
     }
   }
