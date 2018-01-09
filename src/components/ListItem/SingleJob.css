@@ -1,0 +1,54 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.single-job-wrapper {
+  padding: 20px;
+  border-top: solid 1px #e8e8e8; }
+  .single-job-wrapper .job-name {
+    padding-bottom: 10px; }
+    .single-job-wrapper .job-name p {
+      display: inline-block;
+      color: #595959;
+      font-weight: 400; }
+    .single-job-wrapper .job-name span {
+      float: right;
+      color: #bababa;
+      font-size: 12px; }
+  .single-job-wrapper .left-wrapper {
+    display: inline-block; }
+    .single-job-wrapper .left-wrapper .place {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #595959;
+      font-size: 14px; }
+    .single-job-wrapper .left-wrapper .info {
+      display: inline-block;
+      color: #595959;
+      font-size: 12px; }
+  .single-job-wrapper .right-wrapper {
+    display: inline-block;
+    float: right; }
+    .single-job-wrapper .right-wrapper .salary {
+      padding-right: 300px;
+      font-size: 24px;
+      font-weight: 500; }
+
+/*# sourceMappingURL=SingleJob.css.map */

@@ -19,14 +19,5 @@ button {
 /*
  * grid
  */
-.collapse-wrapper {
-  display: inline-block;
-  margin-top: 80px;
-  margin-right: 20px;
-  padding: 20px;
-  width: 250px;
-  height: auto;
-  vertical-align: top;
-  background-color: #ffffff; }
 
-/*# sourceMappingURL=JobFilter.css.map */
+/*# sourceMappingURL=JobListBody.css.map */

@@ -1,3 +1,68 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
 
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.job-list-header-wrapper {
+  padding-bottom: 20px;
+  width: 100%;
+  height: auto; }
+  .job-list-header-wrapper p {
+    display: inline-block;
+    color: #595959;
+    vertical-align: middle; }
+  .job-list-header-wrapper img {
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: middle; }
+  .job-list-header-wrapper button {
+    margin-left: 20px;
+    padding: 3px 16px;
+    border-radius: 100px;
+    background-color: #4e7ede;
+    color: #ffffff;
+    font-size: 14px;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s; }
+    .job-list-header-wrapper button:hover {
+      background-color: #5689f2;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+  .job-list-header-wrapper .right-wrapper {
+    display: inline-block;
+    float: right; }
+    .job-list-header-wrapper .right-wrapper span {
+      color: #595959;
+      font-size: 13px;
+      padding-right: 10px; }
+    .job-list-header-wrapper .right-wrapper /deep/ .el-input--suffix .el-input__inner {
+      width: 100px;
+      height: 25px; }
+    .job-list-header-wrapper .right-wrapper /deep/ .el-popper[x-placement^=bottom] .popper__arrow::after {
+      display: none; }
 
 /*# sourceMappingURL=JobListHeader.css.map */

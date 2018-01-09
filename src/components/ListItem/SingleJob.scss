@@ -1,0 +1,55 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.single-job-wrapper {
+  padding: 20px;
+  //margin-bottom: 20px;
+  border-top: solid 1px $border-color;
+
+  .job-name {
+    padding-bottom: 10px;
+    p {
+      display: inline-block;
+      color: $grey;
+      font-weight: 400;
+    }
+    span {
+      float: right;
+      color: $light-grey;
+      font-size: 12px;
+    }
+  }
+
+  .left-wrapper {
+    display: inline-block;
+
+    .place {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: $grey;
+      font-size: 14px;
+    }
+
+    .info {
+      display: inline-block;
+      color: $grey;
+      font-size: 12px;
+    }
+
+  }
+
+  .right-wrapper {
+    display: inline-block;
+    float: right;
+
+    .salary {
+      padding-right: 300px;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+  }
+
+
+}
