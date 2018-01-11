@@ -19,5 +19,7 @@ button {
 /*
  * grid
  */
+.pagination-wrapper {
+  text-align: center; }
 
 /*# sourceMappingURL=JobListBody.css.map */
