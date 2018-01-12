@@ -5,6 +5,7 @@ import IndexPage from '@/pages/IndexPage'
 import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
 import JobFilterPage from '@/pages/JobFilterPage'
+import JobRecommendPage from '@/pages/JobRecommendPage'
 
 Vue.use(Router)
 
@@ -26,9 +27,14 @@ export default new Router({
       component: RegisterPage
     },
     {
-      path: '/jobs',
+      path: '/jobs/filter',
       name: 'JobFilterPage',
       component: JobFilterPage
+    },
+    {
+      path: '/jobs/recommend',
+      name: 'JobRecommendPage',
+      component: JobRecommendPage
     }
   ]
 })

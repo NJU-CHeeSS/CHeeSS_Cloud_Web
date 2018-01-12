@@ -3,8 +3,8 @@
     <layout>
       <div class="container">
         <div class="left-wrapper">
-          <job-filter></job-filter>
-          <job-list :type="'filter'"></job-list>
+          <resume-sidebar></resume-sidebar>
+          <job-list :type="'recommend'"></job-list>
         </div>
         <div class="right-wrapper">
 
@@ -18,14 +18,14 @@
 
 <script>
   import Layout from '../components/Layout/Layout.vue'
-  import JobFilter from '../components/Filter/JobFilter.vue'
+  import ResumeSidebar from '../components/Resume/ResumeSidebar.vue'
   import JobList from '../components/JobList/JobList.vue'
 
   export default {
-    name: 'job-filter-page',
+    name: 'job-recommend-page',
     components: {
       Layout,
-      JobFilter,
+      ResumeSidebar,
       JobList
     },
     data () {
@@ -35,4 +35,4 @@
   }
 </script>
 
-<style scoped style="./JobFilterPage.css"></style>
+<style scoped style="./JobRecommendPage.css"></style>

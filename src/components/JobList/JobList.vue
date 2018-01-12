@@ -1,7 +1,7 @@
 <template>
 
   <div class="job-list-wrapper">
-    <job-list-header></job-list-header>
+    <job-list-header :type="type"></job-list-header>
     <job-list-body></job-list-body>
 
   </div>
@@ -21,6 +21,7 @@
     data () {
       return {}
     },
+    props: ['type'],
     methods: {}
   }
 </script>

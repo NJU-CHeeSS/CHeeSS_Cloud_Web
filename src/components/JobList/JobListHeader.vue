@@ -3,7 +3,8 @@
   <div class="job-list-header-wrapper">
     <p>1,234 个符合条件的职位</p>
     <img src="../../assets/img/right.png" width="25"/>
-    <button>推荐职位</button>
+    <button v-if="type==='filter'" @click="goToJobRecommendPage">推荐职位</button>
+    <button v-if="type==='recommend'" @click="goToJobFilterPage">筛选职位</button>
 
     <div class="right-wrapper">
       <span>排序方式</span>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+  import { router } from '../../main.js'
   import { Select, Option } from 'element-ui'
 
   export default {
@@ -48,7 +50,15 @@
         value: ''
       }
     },
-    methods: {}
+    props: ['type'],
+    methods: {
+      goToJobRecommendPage () {
+        router.push({name: 'JobRecommendPage'})
+      },
+      goToJobFilterPage() {
+        router.push({name: 'JobFilterPage'})
+      }
+    }
   }
 </script>
 
