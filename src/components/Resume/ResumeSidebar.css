@@ -28,5 +28,39 @@ button {
   height: auto;
   vertical-align: top;
   background-color: #ffffff; }
+  .sidebar-wrapper .resume-header {
+    padding-bottom: 10px; }
+    .sidebar-wrapper .resume-header p {
+      display: inline-block;
+      color: #595959;
+      font-weight: 400; }
+    .sidebar-wrapper .resume-header button {
+      float: right;
+      padding: 2px 10px;
+      border-radius: 100px;
+      background-color: #4e7ede;
+      color: #ffffff;
+      font-size: 14px;
+      vertical-align: middle;
+      cursor: pointer;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+      .sidebar-wrapper .resume-header button:hover {
+        background-color: #5689f2;
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s; }
+  .sidebar-wrapper .resume-body {
+    padding-top: 10px;
+    border-bottom: solid 1px #e8e8e8; }
+    .sidebar-wrapper .resume-body p {
+      padding-bottom: 10px;
+      color: #595959;
+      font-size: 14px; }
 
 /*# sourceMappingURL=ResumeSidebar.css.map */
