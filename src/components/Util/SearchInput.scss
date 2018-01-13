@@ -1,0 +1,12 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.input-wrapper {
+  /deep/ .el-input__inner {
+    width: 200px;
+  }
+  .search-input /deep/ .el-input__icon {
+    z-index: 1;
+  }
+}

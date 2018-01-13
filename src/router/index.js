@@ -6,6 +6,7 @@ import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
 import JobFilterPage from '@/pages/JobFilterPage'
 import JobRecommendPage from '@/pages/JobRecommendPage'
+import CompanyDisplayPage from '@/pages/CompanyDisplayPage'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/jobs/recommend',
       name: 'JobRecommendPage',
       component: JobRecommendPage
+    },
+    {
+      path: '/company/display',
+      name: 'CompanyDisplayPage',
+      component: CompanyDisplayPage
     }
   ]
 })

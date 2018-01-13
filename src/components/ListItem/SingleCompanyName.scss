@@ -1,0 +1,22 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+
+.el-col {
+  padding-bottom: 10px;
+}
+
+.name-span {
+  margin-bottom: 10px;
+  color: $grey;
+  cursor: pointer;
+  @include transition(all, 0.5s);
+
+  &:hover {
+    @include transition(all, 0.5s);
+    color: $main-color;
+    //font-weight: 500;
+  }
+
+}

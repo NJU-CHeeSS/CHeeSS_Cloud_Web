@@ -1,0 +1,41 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.list-wrapper {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 30px;
+  width: 100%;
+  height: auto;
+  background-color: $white-color;
+
+  .list-body {
+    width: 100%;
+    height: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .input-wrapper {
+      display: inline-block;
+    }
+
+    .letters-wrapper {
+      display: inline-block;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 100%;
+      border-bottom: solid 1px $border-color;
+    }
+
+    .company-names-wrapper {
+      padding-top: 20px;
+    }
+
+
+  }
+
+
+}

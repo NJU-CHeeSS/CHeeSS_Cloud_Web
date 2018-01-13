@@ -30,7 +30,7 @@
 <script>
 
   export default {
-    name: 'job-filter',
+    name: 'resume-sidebar',
     components: {},
     data () {
       return {}

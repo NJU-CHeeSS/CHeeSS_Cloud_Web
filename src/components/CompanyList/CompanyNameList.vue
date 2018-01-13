@@ -1,0 +1,58 @@
+<template>
+
+  <div class="list-wrapper">
+    <div-header :header="'公司列表'"></div-header>
+
+    <div class="list-body">
+      <div class="input-wrapper">
+        <search-input></search-input>
+      </div>
+      <div class="letters-wrapper">
+        <letter-filter v-for="item in letters" :letter="item"></letter-filter>
+      </div>
+
+      <div class="company-names-wrapper">
+        <el-row :gutter="10">
+          <single-company-name v-for="item in 50"></single-company-name>
+
+        </el-row>
+      </div>
+
+    </div>
+
+  </div>
+
+</template>
+
+<script>
+
+  import { Row } from 'element-ui'
+
+  import DivHeader from '../Util/DivHeader.vue'
+  import LetterFilter from '../Util/LetterFilter.vue'
+  import SearchInput from '../Util/SearchInput.vue'
+  import SingleCompanyCard from '../ListItem/SingleCompanyCard.vue'
+  import SingleCompanyName from '../ListItem/SingleCompanyName.vue'
+
+  export default {
+    name: 'company-name-list',
+    components: {
+      elRow: Row,
+      DivHeader,
+      LetterFilter,
+      SearchInput,
+      SingleCompanyCard,
+      SingleCompanyName
+    },
+    data () {
+      return {
+        letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'
+          , 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'
+          , 'V', 'W', 'X', 'Y', 'Z', '#']
+      }
+    },
+    methods: {}
+  }
+</script>
+
+<style scoped src="./CompanyNameList.css"></style>
