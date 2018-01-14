@@ -15,7 +15,7 @@
     &:hover {
       @include transition(all, 0.3s);
       font-size: 15px;
-      color: #000;
+      color: $main-color;
       font-weight: 500;
     }
   }

@@ -1,12 +1,15 @@
 <template>
 
   <div class="single-company-card-wrapper">
-    <div class="card-header">
-      <p>公司名称</p>
-    </div>
 
-    <div class="img-wrapper" :style="{ backgroundImage: 'url(' + photoUrl + ')' }">
+    <div class="company-info" @click="goToCompanyDetailsPage">
+      <div class="card-header">
+        <p>公司名称</p>
+      </div>
 
+      <div class="img-wrapper" :style="{ backgroundImage: 'url(' + photoUrl + ')' }">
+
+      </div>
     </div>
 
     <div class="follow-wrapper">
@@ -20,6 +23,7 @@
 </template>
 
 <script>
+  import { router } from '../../main.js'
 
   export default {
     name: 'single-company-card',
@@ -29,7 +33,12 @@
         photoUrl: 'https://images.unsplash.com/photo-1494707924465-e1426acb48cb?auto=format&fit=crop&w=1650&q=80'
       }
     },
-    methods: {}
+    methods: {
+      goToCompanyDetailsPage () {
+        router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
+      }
+
+    }
   }
 </script>
 

@@ -10,6 +10,10 @@
   height: 200px;
   background-color: $background-color;
 
+  .company-info {
+    cursor: pointer;
+  }
+
   .card-header {
     padding: 10px;
     p {

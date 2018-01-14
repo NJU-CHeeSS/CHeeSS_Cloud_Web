@@ -1,0 +1,94 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.header-wrapper {
+  display: inline-block;
+  width: 100%;
+  height: 120px;
+  top: -6px;
+  background-color: #ffffff; }
+  .header-wrapper .up-wrapper {
+    width: 100%;
+    height: auto;
+    display: inline-block; }
+  .header-wrapper .company-icon {
+    display: inline-block;
+    float: left;
+    margin-top: -60px; }
+    .header-wrapper .company-icon img {
+      width: 120px;
+      height: 120px; }
+  .header-wrapper .company-info {
+    display: inline-block;
+    padding-top: 9px;
+    padding-left: 20px; }
+    .header-wrapper .company-info p {
+      font-size: 24px;
+      font-weight: 400;
+      color: #595959; }
+    .header-wrapper .company-info span {
+      font-size: 12px;
+      color: #595959; }
+  .header-wrapper .follow-wrapper {
+    display: inline-block;
+    padding-top: 9px;
+    float: right; }
+    .header-wrapper .follow-wrapper button {
+      padding: 3px 24px;
+      float: right;
+      border-radius: 100px;
+      background-color: #4e7ede;
+      color: #ffffff;
+      font-size: 14px;
+      letter-spacing: 5px;
+      text-indent: 5px;
+      vertical-align: middle;
+      cursor: pointer;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+      .header-wrapper .follow-wrapper button:hover {
+        background-color: #5689f2;
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s; }
+  .header-wrapper .down-wrapper {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    padding-top: 20px; }
+    .header-wrapper .down-wrapper .tab-wrapper {
+      display: block;
+      text-align: left; }
+      .header-wrapper .down-wrapper .tab-wrapper button {
+        float: left;
+        margin-right: 50px;
+        background: none;
+        font-size: 14px;
+        font-weight: 400;
+        color: #595959;
+        cursor: pointer; }
+
+/*# sourceMappingURL=CompanyHeader.css.map */
