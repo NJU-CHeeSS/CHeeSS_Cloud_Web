@@ -45,7 +45,7 @@
 
   .follow-wrapper {
     display: inline-block;
-    padding-top: 9px;
+    padding-top: 10px;
     float: right;
 
     button {
@@ -92,6 +92,11 @@
           @include transition(all, 0.1s);
           color: $main-color;
         }
+      }
+
+      .active {
+        color: $main-color;
+        border-bottom: solid 2px $main-color;
       }
     }
 

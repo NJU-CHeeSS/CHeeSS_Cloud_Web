@@ -22,9 +22,9 @@
       <div class="down-wrapper">
 
         <div class="tab-wrapper">
-          <button @click="goToCompanyDetails">公司详情</button>
-          <button @click="goToCompanyLevel">公司水平</button>
-          <button @click="goToCompanyRelated">相关公司</button>
+          <button v-bind:class="{ active: currentShowing==='companyDetails' }" @click="goToCompanyDetails">公司详情</button>
+          <button v-bind:class="{ active: currentShowing==='companyLevel' }" @click="goToCompanyLevel">公司水平</button>
+          <button v-bind:class="{ active: currentShowing==='companyRelated' }" @click="goToCompanyRelated">相关公司</button>
         </div>
       </div>
     </div>
@@ -36,13 +36,18 @@
 
 <script>
 
-  import { mapMutations } from 'vuex'
+  import { mapMutations, mapState } from 'vuex'
 
   export default {
     name: 'company-header',
     components: {},
     data () {
       return {}
+    },
+    computed: {
+      ...mapState('company', {
+        currentShowing: state => state.currentShowing
+      })
     },
     methods: {
       ...mapMutations('company', [

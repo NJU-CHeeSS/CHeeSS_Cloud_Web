@@ -49,7 +49,7 @@ button {
       color: #595959; }
   .header-wrapper .follow-wrapper {
     display: inline-block;
-    padding-top: 9px;
+    padding-top: 10px;
     float: right; }
     .header-wrapper .follow-wrapper button {
       padding: 3px 24px;
@@ -102,5 +102,8 @@ button {
           -o-transition: all, 0.1s;
           transition: all, 0.1s;
           color: #4e7ede; }
+      .header-wrapper .down-wrapper .tab-wrapper .active {
+        color: #4e7ede;
+        border-bottom: solid 2px #4e7ede; }
 
 /*# sourceMappingURL=CompanyHeader.css.map */

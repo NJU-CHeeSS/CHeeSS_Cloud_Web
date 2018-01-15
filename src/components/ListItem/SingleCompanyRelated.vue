@@ -32,13 +32,13 @@
       return {}
     },
     methods: {
+      ...mapMutations('company', [
+        'saveCurrentShowing'
+      ]),
       goToCompanyDetails () {
         this.saveCurrentShowing('companyDetails')
         router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
-      },
-      ...mapMutations('company', [
-        'saveCurrentShowing'
-      ])
+      }
     }
   }
 </script>

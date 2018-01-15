@@ -10,6 +10,7 @@
 <script>
   import { Col } from 'element-ui'
   import { router } from '../../main.js'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'single-name-card',
@@ -20,7 +21,11 @@
       return {}
     },
     methods: {
+      ...mapMutations('company', [
+        'saveCurrentShowing'
+      ]),
       goToCompanyDetailsPage () {
+        this.saveCurrentShowing('companyDetails')
         router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
       }
     }

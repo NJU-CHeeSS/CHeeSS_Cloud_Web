@@ -24,6 +24,7 @@
 
 <script>
   import { router } from '../../main.js'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'single-company-card',
@@ -34,7 +35,11 @@
       }
     },
     methods: {
+      ...mapMutations('company', [
+        'saveCurrentShowing'
+      ]),
       goToCompanyDetailsPage () {
+        this.saveCurrentShowing('companyDetails')
         router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
       }
 
