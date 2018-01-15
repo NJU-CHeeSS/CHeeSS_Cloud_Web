@@ -86,9 +86,21 @@ button {
         float: left;
         margin-right: 50px;
         background: none;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         color: #595959;
-        cursor: pointer; }
+        cursor: pointer;
+        -webkit-transition: all, 0.1s;
+        -moz-transition: all, 0.1s;
+        -ms-transition: all, 0.1s;
+        -o-transition: all, 0.1s;
+        transition: all, 0.1s; }
+        .header-wrapper .down-wrapper .tab-wrapper button:hover {
+          -webkit-transition: all, 0.1s;
+          -moz-transition: all, 0.1s;
+          -ms-transition: all, 0.1s;
+          -o-transition: all, 0.1s;
+          transition: all, 0.1s;
+          color: #4e7ede; }
 
 /*# sourceMappingURL=CompanyHeader.css.map */

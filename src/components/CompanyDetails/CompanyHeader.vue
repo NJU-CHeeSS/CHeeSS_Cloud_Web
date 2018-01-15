@@ -22,9 +22,9 @@
       <div class="down-wrapper">
 
         <div class="tab-wrapper">
-          <button>公司详情</button>
-          <button>公司水平</button>
-          <button>相关公司</button>
+          <button @click="goToCompanyDetails">公司详情</button>
+          <button @click="goToCompanyLevel">公司水平</button>
+          <button @click="goToCompanyRelated">相关公司</button>
         </div>
       </div>
     </div>
@@ -36,13 +36,28 @@
 
 <script>
 
+  import { mapMutations } from 'vuex'
+
   export default {
     name: 'company-header',
     components: {},
     data () {
       return {}
     },
-    methods: {}
+    methods: {
+      ...mapMutations('company', [
+        'saveCurrentShowing'
+      ]),
+      goToCompanyDetails () {
+        this.saveCurrentShowing('companyDetails')
+      },
+      goToCompanyLevel () {
+        this.saveCurrentShowing('companyLevel')
+      },
+      goToCompanyRelated () {
+        this.saveCurrentShowing('companyRelated')
+      }
+    }
   }
 </script>
 
