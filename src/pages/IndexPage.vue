@@ -10,7 +10,8 @@
           <el-row :gutter="20">
             <index-card v-for="item in 4"
                         :photoName="photoNames[item - 1]"
-                        :intro="intros[item - 1]"></index-card>
+                        :intro="intros[item - 1]"
+                        :link="link[item - 1]"></index-card>
           </el-row>
         </div>
 
@@ -38,11 +39,16 @@
     data () {
       let reward = 'reward.jpg'
       return {
-        photoNames: ['company.jpg', 'job.jpg', 'reward.jpg', 'skill.jpg'],
-        intros: ['公司', '职位', '待遇', '技能']
+        photoNames: ['job.jpg', 'company.jpg', 'reward.jpg', 'skill.jpg'],
+        intros: ['职位', '公司', '待遇', '技能'],
+        link: ['JobFilterPage', 'CompanyDisplayPage', 'SalaryPage', 'SkillPage']
       }
     },
-    methods: {}
+    methods: {
+      goToDetailPage () {
+
+      }
+    }
   }
 </script>
 
