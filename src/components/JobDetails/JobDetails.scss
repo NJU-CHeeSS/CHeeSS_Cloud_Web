@@ -77,6 +77,81 @@
       height: auto;
       vertical-align: top;
       //background-color: black;
+
+      h3 {
+        font-weight: 400;
+      }
+
+      .time, .people-num {
+        vertical-align: middle;
+        font-size: 12px;
+        color: $light-grey;
+      }
+
+      .apply-button {
+        margin-top: 50px;
+        padding: 5px 20px;
+        border-radius: 100px;
+        background-color: $main-color;
+        color: $white-color;
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-indent: 3px;
+        vertical-align: middle;
+        cursor: pointer;
+        @include transition(all, 0.3s);
+
+        &:hover {
+          background-color: $sub-color;
+          @include transition(all, 0.3s);
+        }
+      }
+
+      .section-wrapper {
+        padding-top: 30px;
+      }
+
+      .section {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: solid 1px $border-color;
+      }
+
+      .introduction-head {
+        padding-bottom: 5px;
+        color: $grey;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .introduction {
+        color: $grey;
+        font-size: 14px;
+      }
+
+      .chart-button {
+        float: right;
+        margin-bottom: 5px;
+        padding: 3px 15px;
+        border-radius: 100px;
+        background-color: $light-grey;
+        color: $white-color;
+        font-size: 12px;
+        vertical-align: middle;
+        cursor: pointer;
+        @include transition(all, 0.3s);
+
+        &:hover {
+          background-color: $sub-color;
+          @include transition(all, 0.3s);
+        }
+      }
+
+      /deep/ .el-tree {
+        margin-top: 5px;
+      }
+
+
     }
 
   }
