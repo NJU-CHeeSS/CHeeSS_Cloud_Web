@@ -4,4 +4,34 @@
 
 .single-job-recommend-wrapper {
   display: inline-block;
+  padding: 10px;
+  border-bottom: solid 1px $border-color;
+
+  .name {
+    color: $grey;
+    font-size: 13px;
+  }
+
+  .address {
+    color: $light-grey;
+    font-size: 12px;
+  }
+
+  .compare-button {
+    padding: 1px 10px;
+    float: right;
+    border-radius: 100px;
+    background-color: $main-color;
+    color: $white-color;
+    font-size: 12px;
+    vertical-align: middle;
+    cursor: pointer;
+    @include transition(all, 0.3s);
+
+    &:hover {
+      background-color: $sub-color;
+      @include transition(all, 0.3s);
+    }
+  }
+
 }

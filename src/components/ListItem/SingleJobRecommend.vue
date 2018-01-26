@@ -2,7 +2,9 @@
 
   <div class="single-job-recommend-wrapper">
 
-    <span></span>
+    <p class="name">Manager, Manufacturing Engineering (Manager Operations)</p>
+    <p class="address">江苏 常州</p>
+    <button class="compare-button">+ 对比</button>
 
   </div>
 

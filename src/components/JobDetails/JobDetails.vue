@@ -11,7 +11,13 @@
     <div class="job-body">
 
       <div class="job-recommend">
-        
+
+        <div class="header">
+          <p>相关职位推荐</p>
+        </div>
+
+        <single-job-recommend v-for="item in 10"></single-job-recommend>
+
       </div>
 
       <div class="job-info"></div>
@@ -25,9 +31,13 @@
 
 <script>
 
+  import SingleJobRecommend from '../ListItem/SingleJobRecommend.vue'
+
   export default {
     name: 'job-details',
-    components: {},
+    components: {
+      SingleJobRecommend,
+    },
     data () {
       return {}
     },

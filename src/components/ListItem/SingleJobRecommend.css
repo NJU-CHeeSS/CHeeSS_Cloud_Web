@@ -20,6 +20,35 @@ button {
  * grid
  */
 .single-job-recommend-wrapper {
-  display: inline-block; }
+  display: inline-block;
+  padding: 10px;
+  border-bottom: solid 1px #e8e8e8; }
+  .single-job-recommend-wrapper .name {
+    color: #595959;
+    font-size: 13px; }
+  .single-job-recommend-wrapper .address {
+    color: #bababa;
+    font-size: 12px; }
+  .single-job-recommend-wrapper .compare-button {
+    padding: 1px 10px;
+    float: right;
+    border-radius: 100px;
+    background-color: #4e7ede;
+    color: #ffffff;
+    font-size: 12px;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s; }
+    .single-job-recommend-wrapper .compare-button:hover {
+      background-color: #5689f2;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
 
 /*# sourceMappingURL=SingleJobRecommend.css.map */
