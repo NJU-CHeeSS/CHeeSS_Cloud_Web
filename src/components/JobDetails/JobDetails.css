@@ -1,0 +1,73 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.details-wrapper {
+  display: inline-block;
+  margin-top: 80px;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff; }
+  .details-wrapper .job-header {
+    display: inline-block;
+    padding-bottom: 20px;
+    width: 100%;
+    border-bottom: solid 1px #e8e8e8; }
+    .details-wrapper .job-header .back {
+      font-size: 16px;
+      color: #bababa;
+      cursor: pointer;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+      .details-wrapper .job-header .back:hover {
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s;
+        color: #595959; }
+    .details-wrapper .job-header .company-name {
+      padding-left: 10px;
+      font-size: 18px;
+      font-weight: 400;
+      color: #595959;
+      vertical-align: middle; }
+    .details-wrapper .job-header img {
+      margin-left: 30px;
+      width: 30px;
+      height: 30px;
+      vertical-align: middle; }
+  .details-wrapper .job-body {
+    display: inline-block;
+    width: 100%; }
+    .details-wrapper .job-body .job-recommend {
+      display: inline-block;
+      width: 25%;
+      height: 300px; }
+    .details-wrapper .job-body .job-info {
+      display: inline-block;
+      width: 74%;
+      height: 300px; }
+
+/*# sourceMappingURL=JobDetails.css.map */

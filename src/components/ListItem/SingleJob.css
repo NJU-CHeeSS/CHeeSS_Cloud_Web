@@ -26,8 +26,21 @@ button {
     padding-bottom: 10px; }
     .single-job-wrapper .job-name p {
       display: inline-block;
-      color: #4e7ede;
-      font-weight: 400; }
+      color: #595959;
+      font-weight: 400;
+      cursor: pointer;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+      .single-job-wrapper .job-name p:hover {
+        -webkit-transition: all, 0.3s;
+        -moz-transition: all, 0.3s;
+        -ms-transition: all, 0.3s;
+        -o-transition: all, 0.3s;
+        transition: all, 0.3s;
+        color: #4e7ede; }
     .single-job-wrapper .job-name span {
       float: right;
       color: #bababa;

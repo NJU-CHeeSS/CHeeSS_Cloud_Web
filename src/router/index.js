@@ -6,6 +6,7 @@ import LoginPage from '@/pages/LoginPage'
 import RegisterPage from '@/pages/RegisterPage'
 import JobFilterPage from '@/pages/JobFilterPage'
 import JobRecommendPage from '@/pages/JobRecommendPage'
+import JobDetailsPage from '@/pages/JobDetailsPage'
 import CompanyDisplayPage from '@/pages/CompanyDisplayPage'
 import CompanyDetailsPage from '@/pages/CompanyDetailsPage'
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/company/:companyId',
       name: 'CompanyDetailsPage',
       component: CompanyDetailsPage
+    },
+    {
+      path: '/job/:jobId',
+      name: 'JobDetailsPage',
+      component: JobDetailsPage
     }
   ]
 })

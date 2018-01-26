@@ -1,0 +1,65 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.details-wrapper {
+  display: inline-block;
+  margin-top: 80px;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  background-color: $white-color;
+
+  .job-header {
+    display: inline-block;
+    padding-bottom: 20px;
+    width: 100%;
+    border-bottom: solid 1px $border-color;
+
+    .back {
+      font-size: 16px;
+      color: $light-grey;
+      cursor: pointer;
+      @include transition(all, 0.3s);
+
+      &:hover {
+        @include transition(all, 0.3s);
+        color: $grey;
+      }
+    }
+
+    .company-name {
+      padding-left: 10px;
+      font-size: 18px;
+      font-weight: 400;
+      color: $grey;
+      vertical-align: middle;
+    }
+
+    img {
+      margin-left: 30px;
+      width: 30px;
+      height: 30px;
+      vertical-align: middle;
+    }
+
+  }
+
+  .job-body {
+    display: inline-block;
+    width: 100%;
+
+    .job-recommend {
+      display: inline-block;
+      width: 25%;
+      height: 300px;
+    }
+
+    .job-info {
+      display: inline-block;
+      width: 74%;
+      height: 300px;
+    }
+
+  }
+}

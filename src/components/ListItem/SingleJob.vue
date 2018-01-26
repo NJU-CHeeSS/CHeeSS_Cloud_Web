@@ -2,7 +2,7 @@
 
   <div class="single-job-wrapper">
     <div class="job-name">
-      <p>GC - Project Manager 项目经理</p>
+      <p @click="goToJobDetailsPage">GC - Project Manager 项目经理</p>
       <span>2017-10-12</span>
     </div>
     <div class="left-wrapper">
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  import { router } from '../../main'
 
   export default {
     name: 'single-job',
@@ -30,7 +31,11 @@
     data () {
       return {}
     },
-    methods: {}
+    methods: {
+      goToJobDetailsPage () {
+        router.push({name: 'JobDetailsPage', params: {jobId: 1}})
+      }
+    }
   }
 </script>
 
