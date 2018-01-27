@@ -42,8 +42,9 @@
         </div>
       </div>
 
-
     </div>
+
+    <job-compare-modal></job-compare-modal>
 
   </div>
 </template>
@@ -53,6 +54,7 @@
   import { Input, Button, Dropdown, DropdownMenu, DropdownItem, Message } from 'element-ui'
   import { router } from '../../main'
   //  import { mapMutations, mapState, mapActions } from 'vuex'
+  import JobCompareModal from '../../components/JobCompareModal/JobCompareModal.vue'
 
   //  Vue.use(Input)
 
@@ -64,6 +66,7 @@
       elDropdown: Dropdown,
       elDropdownMenu: DropdownMenu,
       elDropdownItem: DropdownItem,
+      JobCompareModal
     },
     data () {
       return {

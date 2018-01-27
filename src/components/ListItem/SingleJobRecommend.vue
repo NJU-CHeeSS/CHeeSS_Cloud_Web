@@ -4,7 +4,7 @@
 
     <p class="name">Manager, Manufacturing Engineering (Manager Operations)</p>
     <p class="address">江苏 常州</p>
-    <button class="compare-button">+ 对比</button>
+    <button class="compare-button" @click="showJobCompareModal">+ 对比</button>
 
   </div>
 
@@ -22,6 +22,9 @@
       return {}
     },
     methods: {
+      showJobCompareModal () {
+        this.$modal.show('job-compare-modal');
+      }
     }
   }
 </script>

@@ -1,0 +1,23 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.job-compare-modal-wrapper {
+  width: 100%;
+  height: 650px;
+  padding: 15px;
+  background-color: $white-color;
+  border-radius: 3px;
+  overflow: auto;
+
+
+  .close-button {
+    padding: 0;
+    background: none;
+
+    /deep/ .el-icon-close {
+      color: $light-grey;
+      font-size: 18px;
+    }
+  }
+}

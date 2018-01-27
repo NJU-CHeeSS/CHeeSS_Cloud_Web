@@ -3,7 +3,7 @@
   <div class="details-wrapper">
 
     <div class="job-header">
-      <span class="back"> << </span>
+      <span class="back" @click="backToPreviousPage"> << </span>
       <img src="../../assets/img/companyIcon.png"/>
       <span class="company-name">Facebook</span>
     </div>
@@ -70,6 +70,7 @@
 <script>
   import { Tree } from 'element-ui'
   import SingleJobRecommend from '../ListItem/SingleJobRecommend.vue'
+  import { router } from '../../main'
 
   export default {
     name: 'job-details',
@@ -120,7 +121,11 @@
         }
       }
     },
-    methods: {}
+    methods: {
+      backToPreviousPage () {
+        router.go(-1)
+      }
+    }
   }
 </script>
 
