@@ -21,7 +21,7 @@
     data () {
       let name = this.photoName
       return {
-        photoUrl: require('/Users/st/code/CHeeSS_Cloud_Web/src/assets/img/' + name),
+        photoUrl: require('../../assets/img/' + name),
       }
     },
     methods: {

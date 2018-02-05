@@ -1,0 +1,12 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.affection-wrapper {
+  height: auto;
+  background-color: $white-color;
+  border-top: solid 1px $border-color;
+  padding: 20px 0;
+  display: inline-block;
+  width: 49%;
+}

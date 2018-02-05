@@ -16,7 +16,7 @@
           <p>相关职位推荐</p>
         </div>
 
-        <single-job-recommend v-for="item in 8"></single-job-recommend>
+        <single-job-recommend v-for="item in 8" :key="item"></single-job-recommend>
 
       </div>
 

@@ -1,0 +1,35 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/base";
+@import "../../assets/scss/mixin";
+
+.salary-average-wrapper {
+  display: inline-block;
+  background-color: $white-color;
+  padding-bottom: 20px;
+  width: 49%;
+}
+
+.average-wrapper {
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.average-bottom-wrapper {
+  text-align: center;
+}
+
+.min-wrapper, .max-wrapper {
+  display: inline-block;
+  text-align: center;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  color: $grey;
+  font-size: 14px;
+}
+
+.min-data-wrapper, .max-data-wrapper {
+  font-weight: 500;
+  font-size: 20px;
+}

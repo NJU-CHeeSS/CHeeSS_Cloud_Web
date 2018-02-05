@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <single-job v-for="item in 10"></single-job>
+    <single-job v-for="item in 10" :key="item"></single-job>
 
     <div class="pagination-wrapper">
       <el-pagination

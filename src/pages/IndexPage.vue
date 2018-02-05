@@ -9,6 +9,7 @@
         <div class="brief-intro-wrapper">
           <el-row :gutter="20">
             <index-card v-for="item in 4"
+                        :key="item"
                         :photoName="photoNames[item - 1]"
                         :intro="intros[item - 1]"
                         :link="link[item - 1]"></index-card>

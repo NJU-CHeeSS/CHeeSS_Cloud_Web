@@ -23,7 +23,7 @@
     },
     methods: {
       showJobCompareModal () {
-        this.$modal.show('job-compare-modal');
+        this.$modal.show('job-compare-modal')
       }
     }
   }

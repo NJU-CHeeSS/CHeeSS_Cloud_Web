@@ -8,12 +8,12 @@
         <search-input></search-input>
       </div>
       <div class="letters-wrapper">
-        <letter-filter v-for="item in letters" :letter="item"></letter-filter>
+        <letter-filter v-for="item in letters" :key="item" :letter="item"></letter-filter>
       </div>
 
       <div class="company-names-wrapper">
         <el-row :gutter="10">
-          <single-company-name v-for="item in 50"></single-company-name>
+          <single-company-name v-for="item in 50" :key="item"></single-company-name>
 
         </el-row>
       </div>

@@ -10,8 +10,8 @@
         <div class="button-wrapper">
           <el-button type="text" @click="goToJobPage">职位</el-button>
           <el-button type="text" @click="goToCompanyPage">公司</el-button>
-          <el-button type="text" @click="">待遇</el-button>
-          <el-button type="text" @click="">技能</el-button>
+          <el-button type="text" @click="goToSalaryPage">待遇</el-button>
+          <el-button type="text" @click="goToSkillPage">技能</el-button>
         </div>
 
         <div class="input-wrapper">
@@ -51,8 +51,8 @@
 
 
 <script>
-  import { Input, Button, Dropdown, DropdownMenu, DropdownItem, Message } from 'element-ui'
-  import { router } from '../../main'
+  import {Input, Button, Dropdown, DropdownMenu, DropdownItem, Message} from 'element-ui'
+  import {router} from '../../main'
   //  import { mapMutations, mapState, mapActions } from 'vuex'
   import JobCompareModal from '../../components/JobCompareModal/JobCompareModal.vue'
 
@@ -68,20 +68,20 @@
       elDropdownItem: DropdownItem,
       JobCompareModal
     },
-    data () {
+    data() {
       return {
         input2: ''
       }
     },
     computed: {},
     methods: {
-      goToIndexPage () {
+      goToIndexPage() {
         router.push({name: 'IndexPage'})
       },
-      goToLoginPage () {
+      goToLoginPage() {
         router.push({name: 'LoginPage'})
       },
-      goToRegisterPage () {
+      goToRegisterPage() {
         router.push({name: 'RegisterPage'})
       },
       goToJobPage() {
@@ -89,6 +89,12 @@
       },
       goToCompanyPage() {
         router.push({name: 'CompanyDisplayPage'})
+      },
+      goToSalaryPage() {
+        router.push({name: 'SalaryPage'})
+      },
+      goToSkillPage() {
+        router.push({name: 'SkillPage'})
       }
     }
   }

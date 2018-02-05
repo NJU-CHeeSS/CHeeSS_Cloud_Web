@@ -4,7 +4,7 @@
     <div-header :header="'关注度最高公司'"></div-header>
 
     <div class="list-body">
-      <single-company-card v-for="item in 8"></single-company-card>
+      <single-company-card v-for="item in 8" :key="item"></single-company-card>
     </div>
 
   </div>

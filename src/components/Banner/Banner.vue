@@ -23,7 +23,7 @@
     data () {
       let name = 'banner.jpeg'
       return {
-        bannerUrl: require('/Users/st/code/CHeeSS_Cloud_Web/src/assets/img/' + name),
+        bannerUrl: require('../../assets/img/' + name),
         input: ''
       }
     },

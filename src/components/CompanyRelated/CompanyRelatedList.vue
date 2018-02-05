@@ -3,7 +3,7 @@
   <div class="related-list-wrapper">
 
     <div-header :header="'相关公司推荐'"></div-header>
-    <single-company-related v-for="item in 10"></single-company-related>
+    <single-company-related v-for="item in 10" :key="item"></single-company-related>
 
   </div>
 
