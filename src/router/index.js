@@ -9,7 +9,7 @@ import JobRecommendPage from '@/pages/JobRecommendPage'
 import JobDetailsPage from '@/pages/JobDetailsPage'
 import CompanyDisplayPage from '@/pages/CompanyDisplayPage'
 import CompanyDetailsPage from '@/pages/CompanyDetailsPage'
-import SalaryPage from '@/pages/SalaryPage'
+import TreatmentPage from '@/pages/TreatmentPage'
 import SkillPage from '@/pages/SkillPage'
 
 Vue.use(Router)
@@ -58,8 +58,8 @@ export default new Router({
     },
     {
       path: '/salary',
-      name: 'SalaryPage',
-      component: SalaryPage
+      name: 'TreatmentPage',
+      component: TreatmentPage
     },
     {
       path: '/skill',

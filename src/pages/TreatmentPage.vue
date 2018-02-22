@@ -13,7 +13,7 @@
 <script>
   import Layout from '../components/Layout/Layout.vue'
   import SalaryFilter from '../components/Filter/SalaryFilter.vue'
-  import SalaryAnalyse from '../components/Salary/SalaryAnalyse.vue'
+  import SalaryAnalyse from '../components/Treatment/SalaryAnalyse.vue'
 
   export default {
     name: 'salary-page',

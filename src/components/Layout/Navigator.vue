@@ -10,7 +10,7 @@
         <div class="button-wrapper">
           <el-button type="text" @click="goToJobPage">职位</el-button>
           <el-button type="text" @click="goToCompanyPage">公司</el-button>
-          <el-button type="text" @click="goToSalaryPage">待遇</el-button>
+          <el-button type="text" @click="goToTreatmentPage">待遇</el-button>
           <el-button type="text" @click="goToSkillPage">技能</el-button>
         </div>
 
@@ -90,8 +90,8 @@
       goToCompanyPage() {
         router.push({name: 'CompanyDisplayPage'})
       },
-      goToSalaryPage() {
-        router.push({name: 'SalaryPage'})
+      goToTreatmentPage() {
+        router.push({name: 'TreatmentPage'})
       },
       goToSkillPage() {
         router.push({name: 'SkillPage'})

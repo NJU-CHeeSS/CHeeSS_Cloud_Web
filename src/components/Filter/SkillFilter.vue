@@ -5,7 +5,6 @@
       <el-collapse-item title="工作" name="1" prop="options">
         <el-cascader
           :options="professions"
-          v-model="selectOption"
           @change="">
         </el-cascader>
       </el-collapse-item>

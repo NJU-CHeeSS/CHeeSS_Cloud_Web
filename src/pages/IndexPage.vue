@@ -42,7 +42,7 @@
       return {
         photoNames: ['job.jpg', 'company.jpg', 'reward.jpg', 'skill.jpg'],
         intros: ['职位', '公司', '待遇', '技能'],
-        link: ['JobFilterPage', 'CompanyDisplayPage', 'SalaryPage', 'SkillPage']
+        link: ['JobFilterPage', 'CompanyDisplayPage', 'TreatmentPage', 'SkillPage']
       }
     },
     methods: {
