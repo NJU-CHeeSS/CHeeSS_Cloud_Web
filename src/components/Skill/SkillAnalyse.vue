@@ -1,6 +1,7 @@
 <template>
 
   <div class="skill-analyse-wrapper">
+
     <skill-keywords></skill-keywords>
     <skill-distribution></skill-distribution>
   </div>
