@@ -8,12 +8,12 @@
 
     <div class="right-wrapper">
       <span>排序方式</span>
-      <el-select v-model="value" placeholder="请选择">
+      <el-select v-model="order" placeholder="请选择" @change="handleChangeOrder">
         <el-option
           v-for="item in options"
           :key="item.value"
           :label="item.label"
-          :value="item.value">
+          :value="item.label">
         </el-option>
       </el-select>
 
@@ -25,6 +25,7 @@
 <script>
   import { router } from '../../main.js'
   import { Select, Option } from 'element-ui'
+  import { mapMutations, mapState } from 'vuex'
 
   export default {
     name: 'job-list-header',
@@ -47,16 +48,27 @@
           value: '选项4',
           label: '薪资'
         }],
-        value: ''
+        order: '发布日期'
       }
+    },
+    computed: {
+      ...mapState('job', {
+        filterOrder: state => state.filterOrder
+      }),
     },
     props: ['type'],
     methods: {
+      ...mapMutations('job', [
+        'saveFilterOrder'
+      ]),
       goToJobRecommendPage () {
         router.push({name: 'JobRecommendPage'})
       },
-      goToJobFilterPage() {
+      goToJobFilterPage () {
         router.push({name: 'JobFilterPage'})
+      },
+      handleChangeOrder () {
+        this.saveFilterOrder(this.order)
       }
     }
   }

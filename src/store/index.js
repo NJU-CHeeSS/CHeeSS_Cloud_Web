@@ -6,6 +6,7 @@ import auth from './modules/auth'
 import admin from './modules/admin'
 import company from './modules/company'
 import skill from './modules/skill'
+import job from './modules/job'
 import createLogger from 'vuex/dist/logger'
 
 Vue.use(Vuex)
@@ -19,7 +20,8 @@ export default new Vuex.Store({
     auth,
     admin,
     company,
-    skill
+    skill,
+    job
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

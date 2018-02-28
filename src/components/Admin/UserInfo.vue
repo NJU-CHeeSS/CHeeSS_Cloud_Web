@@ -1,54 +1,31 @@
 <template>
-  <div class="auth-wrapper">
+  <div class="info-wrapper">
 
-    <h1>注&nbsp;&nbsp;册</h1>
+
+    <h1>个人信息</h1>
 
     <div class="left-form-wrapper">
-
-
-      <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
+      <el-form :model="UserInfo" :rules="rules" ref="UserInfo" labelPosition="top">
 
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="registerForm.username"></el-input>
+          <el-input v-model="UserInfo.username"></el-input>
         </el-form-item>
 
         <el-form-item label="邮箱账号" prop="email">
-          <el-input v-model="registerForm.email"></el-input>
+          <el-input :disabled="true" v-model="UserInfo.email"></el-input>
         </el-form-item>
 
         <el-form-item label="手机号" prop="phone">
-          <el-input v-model="registerForm.phone"></el-input>
-        </el-form-item>
-
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="registerForm.password" auto-complete="off"></el-input>
-        </el-form-item>
-
-        <el-form-item label="确认密码" prop="confirmPassword">
-          <el-input type="password" v-model="registerForm.confirmPassword" auto-complete="off"></el-input>
-        </el-form-item>
-
-      </el-form>
-
-    </div>
-
-
-    <div class="right-wrapper">
-
-      <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
-
-        <el-form-item label="性别" prop="gender">
-          <el-radio v-model="registerForm.gender" label="男">男</el-radio>
-          <el-radio v-model="registerForm.gender" label="女">女</el-radio>
+          <el-input v-model="UserInfo.phone"></el-input>
         </el-form-item>
 
         <el-form-item label="年龄（1至70岁之间）" prop="age">
-          <el-input-number v-model="registerForm.age" @change="" :min="1" :max="70"
+          <el-input-number v-model="UserInfo.age" @change="" :min="1" :max="70"
                            label="年龄"></el-input-number>
         </el-form-item>
 
         <el-form-item label="城市" prop="options">
-          <el-select v-model="registerForm.city" placeholder="请选择">
+          <el-select v-model="UserInfo.city" placeholder="请选择">
             <el-option
               v-for="item in cities"
               :key="item.value"
@@ -58,17 +35,28 @@
           </el-select>
         </el-form-item>
 
+      </el-form>
+    </div>
+
+    <div class="right-form-wrapper">
+      <el-form :model="UserInfo" :rules="rules" ref="UserInfo" labelPosition="top">
+
+        <el-form-item label="性别" prop="gender">
+          <el-radio v-model="UserInfo.gender" label="男">男</el-radio>
+          <el-radio v-model="UserInfo.gender" label="女">女</el-radio>
+        </el-form-item>
+
         <el-form-item class="profession-selection" label="专业" prop="options">
           <el-cascader
             expand-trigger="hover"
-            :options="registerForm.professions"
-            v-model="registerForm.selectOption"
+            :options="UserInfo.professions"
+            v-model="UserInfo.selectOption"
             @change="">
           </el-cascader>
         </el-form-item>
 
         <el-form-item label="学历" prop="options">
-          <el-select v-model="registerForm.degree" placeholder="请选择">
+          <el-select v-model="UserInfo.degree" placeholder="请选择">
             <el-option
               v-for="item in degrees"
               :key="item.value"
@@ -78,15 +66,15 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="工作经验（年）" prop="age">
-          <el-input-number v-model="registerForm.experience" @change="" :min="0" :max="50" :step="0.5"
+        <el-form-item label="工作经验（年）" prop="experience">
+          <el-input-number v-model="UserInfo.experience" @change="" :min="0" :max="50" :step="0.5"
                            label="经验"></el-input-number>
         </el-form-item>
 
         <el-form-item label="技能" prop="age" class="tags-wrapper">
           <el-tag
             :key="tag"
-            v-for="tag in registerForm.skillTags"
+            v-for="tag in UserInfo.skillTags"
             closable
             :disable-transitions="false"
             @close="handleClose(tag)">
@@ -106,104 +94,59 @@
 
         </el-form-item>
 
-        <el-form-item>
-          <div class="go-sign-in">
-            <span>已有账号？</span>
-            <el-button
-              type="text"
-              @click="goToLoginPage"
-            >
-              去登录
-            </el-button>
-          </div>
-          <div class="sign-in-button-wrapper">
-            <el-button type="text" @click="submitForm('registerForm')">注册</el-button>
-          </div>
-          <!--<el-button @click="resetForm('signInForm')">重置</el-button>-->
-        </el-form-item>
-
-
       </el-form>
 
     </div>
 
   </div>
+
 </template>
 
 <script>
-  import { Button, Input, Form, FormItem, Radio, InputNumber, Select, Option, Tag, Cascader, Message } from 'element-ui'
-  import { router } from '../../main'
+  import { Button, Input, Form, FormItem, Message, InputNumber, Select, Option, Radio, Cascader, Tag } from 'element-ui'
 
   export default {
-    name: 'register-form-page',
+    name: 'user-info',
     components: {
       elButton: Button,
       elInput: Input,
       elForm: Form,
       elFormItem: FormItem,
-      elRadio: Radio,
       elInputNumber: InputNumber,
       elSelect: Select,
       elOption: Option,
-      elTag: Tag,
-      elCascader: Cascader
+      elRadio: Radio,
+      elCascader: Cascader,
+      elTag: Tag
     },
     data () {
       let checkUsername = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('请输入用户名'))
-        } else {
-          callback()
-        }
-      }
-      let checkEmail = (rule, value, callback) => {
-        if (!value) {
           return callback(new Error('请输入邮箱账号'))
-        } else if (!/^([\w-_]+(?:\.[\w-_]+)*)@((?:[a-z0-9]+(?:-[a-zA-Z0-9]+)*)+\.[a-z]{2,6})$/i.test(value)) {
-          return callback(new Error('请输入正确的邮箱格式'))
-        } else {
-          callback()
-        }
-      }
-      let checkPhone = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('请输入手机号'))
-        } else if (!/^1[34578]\d{9}$/.test(value)) {
-          return callback(new Error('请输入正确的手机号'))
         } else {
           callback()
         }
       }
       let validatePassword = (rule, value, callback) => {
-        if (!value) {
+        if (value === '') {
           callback(new Error('请输入密码'))
         } else {
           callback()
         }
       }
-      let validateConfirmPassword = (rule, value, callback) => {
-        if (!value) {
-          callback(new Error('请再次输入密码'))
-        } else if (value !== this.registerForm.password) {
-          callback(new Error('两次输入密码不一致!'))
-        } else {
-          callback()
-        }
-      }
-
       return {
         activeName: 'first',
-        registerForm: {
-          username: '',
-          email: '',
-          phone: '',
+        UserInfo: {
           password: '',
-          confirmPassword: '',
-          gender: '男',
+          username: '',
+          email: 'xxx@xxx.com',
+          phone: '',
           age: 20,
-          experience: 0,
           city: '北京',
+          gender: '男',
           degree: '本科',
+          experience: 0,
+          skillTags: ['标签一', '标签二', '标签三'],
           professions: [{
             value: 'zhinan',
             label: '指南',
@@ -399,7 +342,6 @@
               label: '组件交互文档'
             }]
           }],
-          skillTags: ['标签一', '标签二', '标签三'],
         },
         cities: [{
           value: '选项1',
@@ -437,45 +379,28 @@
         selectedOption: [],
         rules: {
           password: [
-            {required: true, validator: validatePassword, trigger: 'blur'}
-          ],
-          phone: [
-            {required: true, validator: checkPhone, trigger: 'blur'}
+            {validator: validatePassword, trigger: 'blur'}
           ],
           username: [
-            {required: true, validator: checkUsername, trigger: 'blur'}
-          ],
-          email: [
-            {required: true, validator: checkEmail, trigger: 'blur'}
-          ],
-          confirmPassword: [
-            {required: true, validator: validateConfirmPassword, trigger: 'blur'}
+            {validator: checkUsername, trigger: 'blur'}
           ]
         }
       }
     },
     methods: {
-      goToLoginPage () {
-        router.push({name: 'LoginPage'})
-      },
-      submitForm () {
-
-      },
-      handleClose (tag) {
-        this.registerForm.skillTags.splice(this.registerForm.skillTags.indexOf(tag), 1)
-      },
-
       showInput () {
         this.inputVisible = true
         this.$nextTick(_ => {
           this.$refs.saveTagInput.$refs.input.focus()
         })
       },
-
+      handleClose (tag) {
+        this.UserInfo.skillTags.splice(this.UserInfo.skillTags.indexOf(tag), 1)
+      },
       handleInputConfirm () {
         let inputValue = this.inputValue
         if (inputValue) {
-          this.registerForm.skillTags.push(inputValue)
+          this.UserInfo.skillTags.push(inputValue)
         }
         this.inputVisible = false
         this.inputValue = ''
@@ -484,4 +409,4 @@
   }
 </script>
 
-<style scoped src="./RegisterForm.css"></style>
+<style scoped src="./UserInfo.css"></style>

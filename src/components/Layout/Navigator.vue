@@ -29,16 +29,15 @@
           <el-button type="text" @click="goToLoginPage">登录</el-button>
           <el-button type="text" @click="goToRegisterPage">注册</el-button>
 
-          <!--<el-dropdown placement="bottom-start" @command="">-->
-          <!--<span class="el-dropdown-link">-->
-          <!--用户<i class="el-icon-caret-bottom el-icon&#45;&#45;right"></i>-->
-          <!--</span>-->
-          <!--<el-dropdown-menu slot="dropdown">-->
-          <!--<el-dropdown-item command="UserHomePage">个人主页</el-dropdown-item>-->
-          <!--<el-dropdown-item command="AccountPage">修改资料</el-dropdown-item>-->
-          <!--<el-dropdown-item command="signOut">退出账号</el-dropdown-item>-->
-          <!--</el-dropdown-menu>-->
-          <!--</el-dropdown>-->
+          <el-dropdown placement="bottom-start" @command="handleCommand">
+            <span class="el-dropdown-link">用户<i class="el-icon-caret-bottom el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="UserHomePage">个人主页</el-dropdown-item>
+              <el-dropdown-item command="AccountPage">修改资料</el-dropdown-item>
+              <el-dropdown-item command="signOut">退出账号</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
       </div>
 
@@ -51,8 +50,8 @@
 
 
 <script>
-  import {Input, Button, Dropdown, DropdownMenu, DropdownItem, Message} from 'element-ui'
-  import {router} from '../../main'
+  import { Input, Button, Dropdown, DropdownMenu, DropdownItem, Message } from 'element-ui'
+  import { router } from '../../main'
   //  import { mapMutations, mapState, mapActions } from 'vuex'
   import JobCompareModal from '../../components/JobCompareModal/JobCompareModal.vue'
 
@@ -68,33 +67,36 @@
       elDropdownItem: DropdownItem,
       JobCompareModal
     },
-    data() {
+    data () {
       return {
         input2: ''
       }
     },
     computed: {},
     methods: {
-      goToIndexPage() {
+      goToIndexPage () {
         router.push({name: 'IndexPage'})
       },
-      goToLoginPage() {
+      goToLoginPage () {
         router.push({name: 'LoginPage'})
       },
-      goToRegisterPage() {
+      goToRegisterPage () {
         router.push({name: 'RegisterPage'})
       },
-      goToJobPage() {
+      goToJobPage () {
         router.push({name: 'JobFilterPage'})
       },
-      goToCompanyPage() {
+      goToCompanyPage () {
         router.push({name: 'CompanyDisplayPage'})
       },
-      goToTreatmentPage() {
+      goToTreatmentPage () {
         router.push({name: 'TreatmentPage'})
       },
-      goToSkillPage() {
+      goToSkillPage () {
         router.push({name: 'SkillPage'})
+      },
+      handleCommand(command) {
+        router.push({name: command})
       }
     }
   }

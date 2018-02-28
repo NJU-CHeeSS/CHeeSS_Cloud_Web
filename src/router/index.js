@@ -11,6 +11,7 @@ import CompanyDisplayPage from '@/pages/CompanyDisplayPage'
 import CompanyDetailsPage from '@/pages/CompanyDetailsPage'
 import TreatmentPage from '@/pages/TreatmentPage'
 import SkillPage from '@/pages/SkillPage'
+import UserHomePage from '@/pages/UserHomePage'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ export default new Router({
       path: '/skill',
       name: 'SkillPage',
       component: SkillPage
+    },
+    {
+      path: '/user/home',
+      name: 'UserHomePage',
+      component: UserHomePage
     }
   ]
 })
