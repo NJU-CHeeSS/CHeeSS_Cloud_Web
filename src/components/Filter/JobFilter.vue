@@ -42,7 +42,7 @@
           label: '不限'
         }, {
           value: '选项2',
-          label: '近24小时'
+          label: '近12小时'
         }, {
           value: '选项3',
           label: '上周'
