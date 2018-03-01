@@ -251,6 +251,7 @@
           value: '选项5',
           label: '西安'
         }],
+        selectOption: []
       }
     },
     methods: {}

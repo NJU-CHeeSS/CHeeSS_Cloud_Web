@@ -24,5 +24,7 @@ button {
   background-color: #ffffff;
   border-top: solid 1px #e8e8e8;
   padding: 20px 0; }
+  .skill-wrapper .skill-keywords-wrapper {
+    margin-left: 50px; }
 
 /*# sourceMappingURL=Skill.css.map */

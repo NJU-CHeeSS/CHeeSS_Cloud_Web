@@ -1,0 +1,46 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.single-skill-keyword-wrapper {
+  display: inline-block;
+  margin-left: 10px; }
+  .single-skill-keyword-wrapper button {
+    padding: 1px 12px;
+    float: right;
+    border-radius: 100px;
+    background-color: #4e7ede;
+    color: #ffffff;
+    font-size: 14px;
+    vertical-align: middle;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s; }
+    .single-skill-keyword-wrapper button:hover {
+      background-color: #5689f2;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
+
+/*# sourceMappingURL=SingleSkillKeyword.css.map */

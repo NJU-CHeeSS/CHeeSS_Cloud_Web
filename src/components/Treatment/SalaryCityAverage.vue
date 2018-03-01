@@ -4,18 +4,18 @@
     <div-header :header="'城市平均薪资'"></div-header>
 
     <div class="average-wrapper">
-      ¥ 380,000
+      ¥ {{average}}
     </div>
 
     <div class="average-bottom-wrapper">
       <div class="min-wrapper">
         最低薪资
-        <div class="min-data-wrapper">¥ 100,000</div>
+        <div class="min-data-wrapper">¥ {{low}}/月</div>
       </div>
 
       <div class="max-wrapper">
         最高薪资
-        <div class="max-data-wrapper">¥ 800,000</div>
+        <div class="max-data-wrapper">¥ {{high}}/月</div>
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@
     components: {
       DivHeader
     },
+    props: ['average', 'low', 'high'],
     data() {
       return {}
     },
