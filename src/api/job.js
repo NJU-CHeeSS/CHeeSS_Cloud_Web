@@ -3,7 +3,7 @@ import axios from 'axios'
 export function fetchJobList(callback, searchInfo) {
   axios.get('/jobs/search', {
     params: {
-      keyword: searchInfo.keyword,
+      keyword: searchInfo.order,
       // order: searchInfo.order,
       // size: 10,
       // page: searchInfo.page

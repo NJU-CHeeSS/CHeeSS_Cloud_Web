@@ -8,7 +8,7 @@
     <div class="left-wrapper">
       <span class="place">{{singleJob.location}}</span>
       <br>
-      <span class="info">* 至少两年工作经验</span>
+      <span class="info">* 学历要求：{{singleJob.diploma}}，工作经验要求：{{singleJob.minExperience}} ~ {{singleJob.maxExperience}} 年</span>
 
     </div>
 

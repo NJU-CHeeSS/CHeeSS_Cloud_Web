@@ -22,6 +22,7 @@
   import JobList from '../components/JobList/JobList.vue'
   import {Message} from 'element-ui'
   import {router, store} from '../main'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'job-filter-page',

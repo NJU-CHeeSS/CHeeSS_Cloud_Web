@@ -33,7 +33,7 @@
 
 <script>
   import {Collapse, CollapseItem, Select, Option, Message} from 'element-ui'
-  import {mapActions, mapState} from 'vuex'
+  import {mapActions, mapState, mapMutations} from 'vuex'
   import {router, store} from '../../main'
 
   export default {
@@ -50,7 +50,7 @@
         activePanel: ['1'],
 
         chosenDate: '不限',
-        chosenPlace: '上海',
+        chosenPlace: '不限',
 
         places: [{
           value: '选项1',
@@ -83,7 +83,8 @@
     },
     computed: {
       ...mapState('job', {
-        filterOrder: state => state.filterOrder
+        filterOrder: state => state.filterOrder,
+        currentPage: state => state.currentPage
       })
     },
     created() {
@@ -92,12 +93,20 @@
       ...mapActions('job', [
         'fetchJobList'
       ]),
+      ...mapMutations('job', [
+        'saveFilterInfo'
+      ]),
       handleSearch() {
         console.log(this.chosenPlace)
+        let filterInfo = {
+          place: this.chosenPlace,
+          releaseDate: this.releaseDate
+        }
+        this.saveFilterInfo(filterInfo)
         let searchInfo = {
-          keyword: this.chosenPlace,
+          keyword: this.filterInfo,
           order: this.filterOrder,
-          page: 1,
+          page: this.currentPage,
         }
         this.fetchJobList({
           searchInfo: searchInfo,
