@@ -8,16 +8,16 @@ const state = {
 // actions 可异步
 const actions = {
   fetchJobList ({commit}, {searchInfo, onSuccess, onError}) {
-    jobApi.fetchJobList((data => {
+    jobApi.fetchJobList(data => {
       if (data.message === 'success') {
         if (onSuccess) {
           commit('saveJobList', data.jobList)
-          onSuccess('删除成功！')
+          onSuccess('')
         }
       } else {
         onError(data.message)
       }
-    }), searchInfo)
+    }, searchInfo)
   },
 }
 

@@ -32,8 +32,9 @@
 </template>
 
 <script>
-  import { Collapse, CollapseItem, Select, Option } from 'element-ui'
-  import { mapActions } from 'vuex'
+  import {Collapse, CollapseItem, Select, Option, Message} from 'element-ui'
+  import {mapActions, mapState} from 'vuex'
+  import {router, store} from '../../main'
 
   export default {
     name: 'job-filter',
@@ -41,14 +42,15 @@
       elCollapse: Collapse,
       elCollapseItem: CollapseItem,
       elSelect: Select,
-      elOption: Option
+      elOption: Option,
+      Message
     },
-    data () {
+    data() {
       return {
         activePanel: ['1'],
 
         chosenDate: '不限',
-        chosenPlace: '不限',
+        chosenPlace: '上海',
 
         places: [{
           value: '选项1',
@@ -79,15 +81,36 @@
 
       }
     },
+    computed: {
+      ...mapState('job', {
+        filterOrder: state => state.filterOrder
+      })
+    },
+    created() {
+    },
     methods: {
       ...mapActions('job', [
         'fetchJobList'
       ]),
-      handleSearch () {
+      handleSearch() {
         console.log(this.chosenPlace)
         let searchInfo = {
-          keyword: this.chosenPlace
+          keyword: this.chosenPlace,
+          order: this.filterOrder,
+          page: 1,
         }
+        this.fetchJobList({
+          searchInfo: searchInfo,
+          onSuccess: (success) => {
+            Message({
+              message: '成功获得招聘信息！',
+              type: 'success'
+            })
+          },
+          onError: (error) => {
+            Message.error(error)
+          }
+        })
       }
     }
   }

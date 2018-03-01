@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <single-job v-for="item in 10" :key="item"></single-job>
+    <single-job v-for="item in jobList" :key="item.jobId" :singleJob="item"></single-job>
 
     <div class="pagination-wrapper">
       <el-pagination
@@ -16,7 +16,8 @@
 <script>
 
   import SingleJob from '../ListItem/SingleJob.vue'
-  import { Pagination } from 'element-ui'
+  import {Pagination} from 'element-ui'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'job-list-body',
@@ -24,8 +25,13 @@
       SingleJob,
       elPagination: Pagination
     },
-    data () {
+    data() {
       return {}
+    },
+    computed: {
+      ...mapState('job', {
+        jobList: state => state.jobList
+      })
     },
     methods: {}
   }
