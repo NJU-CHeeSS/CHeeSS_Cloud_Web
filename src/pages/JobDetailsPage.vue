@@ -3,7 +3,7 @@
     <layout>
       <div class="container">
 
-        <job-details></job-details>
+        <job-details :currentJob="currentJob"></job-details>
 
 
       </div>
@@ -15,6 +15,8 @@
 <script>
   import Layout from '../components/Layout/Layout.vue'
   import JobDetails from '../components/JobDetails/JobDetails.vue'
+  import {store} from '../main'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'job-details-page',
@@ -22,10 +24,20 @@
       Layout,
       JobDetails
     },
-    data () {
+    data() {
       return {}
     },
-    methods: {}
+    computed: {
+      ...mapState('job', {
+        currentJob: state => state.currentJob
+      })
+    },
+    methods: {},
+    beforeRouteEnter(to, from, next) {
+      console.log(to.params.jobId)
+      store.dispatch('job/fetchJobInfo', to.params.jobId)
+      next(true)
+    }
   }
 </script>
 

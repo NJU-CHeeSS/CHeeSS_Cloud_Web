@@ -4,7 +4,7 @@
 
     <div class="resume-header">
       <p>我的简历</p>
-      <button>修改</button>
+      <button @click="goToUserHomePage">修改</button>
     </div>
 
     <div class="resume-body">
@@ -28,14 +28,19 @@
 </template>
 
 <script>
+  import {router} from '../../main'
 
   export default {
     name: 'resume-sidebar',
     components: {},
-    data () {
+    data() {
       return {}
     },
-    methods: {}
+    methods: {
+      goToUserHomePage() {
+        router.push({name: 'UserHomePage'})
+      }
+    }
   }
 </script>
 

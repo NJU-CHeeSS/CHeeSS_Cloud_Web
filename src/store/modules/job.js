@@ -1,6 +1,7 @@
 import * as jobApi from '../../api/job'
 
 const state = {
+  type: 'filter',
   jobList: [],
   filterOrder: '发布日期',
   filterInfo: {
@@ -8,6 +9,7 @@ const state = {
     releaseDate: '不限'
   },
   currentPage: 1,
+  currentJob: {}
 }
 
 // actions 可异步
@@ -24,10 +26,18 @@ const actions = {
       }
     }, searchInfo)
   },
+  fetchJobInfo({commit}, jobId) {
+    jobApi.fetchJobInfo(data => {
+      commit('saveCurrentJob', data)
+    }, jobId)
+  }
 }
 
 // mutations 必须同步
 const mutations = {
+  'saveType'(state, type) {
+    state.type = type
+  },
   'saveJobList'(state, jobList) {
     state.jobList = jobList
   },
@@ -39,6 +49,9 @@ const mutations = {
   },
   'saveFilterInfo'(state, filterInfo) {
     state.filterInfo = filterInfo
+  },
+  'saveCurrentJob'(state, currentJob) {
+    state.currentJob = currentJob
   }
 }
 

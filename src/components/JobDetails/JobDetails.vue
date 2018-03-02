@@ -5,7 +5,7 @@
     <div class="job-header">
       <span class="back" @click="backToPreviousPage"> << </span>
       <img src="../../assets/img/companyIcon.png"/>
-      <span class="company-name">Facebook</span>
+      <span class="company-name">{{currentJob.companyName}}</span>
     </div>
 
     <div class="job-body">
@@ -21,10 +21,10 @@
       </div>
 
       <div class="job-info">
-        <h2>Manager, Manufacturing Engineering (Manager Operations)</h2>
-        <p class="time">发布于 2017-10-11</p>
+        <h2>{{currentJob.jobName}}</h2>
+        <p class="time">发布于 {{currentJob.releaseDate}}</p>
 
-        <button class="apply-button">发送申请</button>
+        <button class="apply-button" @click="">发送申请</button>
         <p class="people-num">已有 2,030 人申请</p>
 
 
@@ -37,12 +37,12 @@
 
           <div class="section">
             <p class="introduction-head">职位地点</p>
-            <p class="introduction">江苏 南京</p>
+            <p class="introduction">{{currentJob.location}}</p>
           </div>
 
           <div class="section">
             <p class="introduction-head">职位薪资</p>
-            <p class="introduction">xxxxxxxxxxx</p>
+            <p class="introduction">{{currentJob.minSalary}} ~ {{currentJob.maxSalary}} / 年</p>
           </div>
 
           <div class="section">
@@ -68,9 +68,10 @@
 </template>
 
 <script>
-  import { Tree } from 'element-ui'
+  import {Tree} from 'element-ui'
   import SingleJobRecommend from '../ListItem/SingleJobRecommend.vue'
-  import { router } from '../../main'
+  import {router} from '../../main'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'job-details',
@@ -78,41 +79,17 @@
       SingleJobRecommend,
       elTree: Tree
     },
-    data () {
+    data() {
       return {
         data: [{
-          label: '一级 1',
+          label: '学位要求',
           children: [{
-            label: '二级 1-1',
-            children: [{
-              label: '三级 1-1-1'
-            }]
+            label: this.currentJob.diploma
           }]
         }, {
-          label: '一级 2',
+          label: '工作经历要求',
           children: [{
-            label: '二级 2-1',
-            children: [{
-              label: '三级 2-1-1'
-            }]
-          }, {
-            label: '二级 2-2',
-            children: [{
-              label: '三级 2-2-1'
-            }]
-          }]
-        }, {
-          label: '一级 3',
-          children: [{
-            label: '二级 3-1',
-            children: [{
-              label: '三级 3-1-1'
-            }]
-          }, {
-            label: '二级 3-2',
-            children: [{
-              label: '三级 3-2-1'
-            }]
+            label: this.currentJob.minExperience + '年～' + this.currentJob.maxExperience + '年'
           }]
         }],
         defaultProps: {
@@ -121,8 +98,14 @@
         }
       }
     },
+    props: ['currentJob'],
+//    computed: {
+//      ...mapState('job', {
+//        currentJob: state => state.currentJob
+//      })
+//    },
     methods: {
-      backToPreviousPage () {
+      backToPreviousPage() {
         router.go(-1)
       }
     }

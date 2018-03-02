@@ -53,6 +53,7 @@
           Message.error(error)
         }
       })
+      store.commit('job/saveType', 'filter')
       next(true)
     }
   }

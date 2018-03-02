@@ -23,17 +23,18 @@
 </template>
 
 <script>
-  import { router } from '../../main.js'
-  import { Select, Option } from 'element-ui'
-  import { mapMutations, mapState } from 'vuex'
+  import {router} from '../../main.js'
+  import {Select, Option, Message} from 'element-ui'
+  import {mapMutations, mapState, mapActions} from 'vuex'
 
   export default {
     name: 'job-list-header',
     components: {
       elSelect: Select,
-      elOption: Option
+      elOption: Option,
+      Message
     },
-    data () {
+    data() {
       return {
         options: [{
           value: '选项1',
@@ -53,22 +54,47 @@
     },
     computed: {
       ...mapState('job', {
-        filterOrder: state => state.filterOrder
+        filterOrder: state => state.filterOrder,
+        filterInfo: state => state.filterInfo,
+        currentPage: state => state.currentPage
       }),
     },
     props: ['type'],
     methods: {
       ...mapMutations('job', [
-        'saveFilterOrder'
+        'saveFilterOrder',
+        'saveType'
       ]),
-      goToJobRecommendPage () {
+      ...mapActions('job', [
+        'fetchJobList'
+      ]),
+      goToJobRecommendPage() {
+        this.saveType('recommend')
         router.push({name: 'JobRecommendPage'})
       },
-      goToJobFilterPage () {
+      goToJobFilterPage() {
+        this.saveType('filter')
         router.push({name: 'JobFilterPage'})
       },
-      handleChangeOrder () {
+      handleChangeOrder() {
         this.saveFilterOrder(this.order)
+        let searchInfo = {
+          keyword: this.filterInfo,
+          order: this.filterOrder,
+          page: this.currentPage,
+        }
+        this.fetchJobList({
+          searchInfo: searchInfo,
+          onSuccess: (success) => {
+            Message({
+              message: '成功获得招聘信息！',
+              type: 'success'
+            })
+          },
+          onError: (error) => {
+            Message.error(error)
+          }
+        })
       }
     }
   }
