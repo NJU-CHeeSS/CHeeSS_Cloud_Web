@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export function fetchSkillInfo(callback) {
+export function fetchTreatmentInfo(callback) {
 
-  axios.get('/jobs/skill')
+  axios.get('/jobs/analyzeTreatment')
     .then(function (response) {
       console.log(response.data)
       callback(response.data)

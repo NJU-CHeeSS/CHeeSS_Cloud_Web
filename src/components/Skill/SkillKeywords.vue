@@ -3,13 +3,11 @@
   <div class="skill-wrapper">
     <div-header :header="'技能关键词'"></div-header>
 
-    <div>
-      计算机&nbsp;&nbsp;&nbsp;
-      python&nbsp;&nbsp;&nbsp;
-      大数据&nbsp;&nbsp;&nbsp;
-      数据处理&nbsp;&nbsp;&nbsp;
-      Java&nbsp;&nbsp;&nbsp;
-      Hadoop&nbsp;&nbsp;&nbsp;
+    <div class="skill-keywords-wrapper">
+      <single-skill-keyword v-for="item in keywords"
+                            :key="item.keywords"
+                            :keyword="item.keywords">
+      </single-skill-keyword>
     </div>
   </div>
 
@@ -18,16 +16,32 @@
 <script>
 
   import DivHeader from '../Util/DivHeader.vue'
+  import SingleSkillKeyword from '../ListItem/SingleSkillKeyword.vue'
+  import {mapState, mapActions} from 'vuex'
+  import {store} from '../../main'
 
   export default {
     name: 'skill-keyword',
     components: {
-      DivHeader
+      DivHeader,
+      SingleSkillKeyword
     },
     data() {
       return {}
     },
-    methods: {}
+    computed: {
+      ...mapState('skill', {
+        keywords: state => state.keywords,
+      })
+    },
+    methods: {
+      ...mapActions('skill', [
+        'fetchSkillInfo'
+      ])
+    },
+    created() {
+      this.fetchSkillInfo()
+    }
   }
 </script>
 

@@ -16,9 +16,7 @@
       DivHeader
     },
     data() {
-      return {
-        header: ''
-      }
+      return {}
     },
     props: ['header'],
     methods: {}

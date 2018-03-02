@@ -1,24 +1,30 @@
 import * as skillApi from '../../api/skill'
 
 const state = {
-  skillInfo: {
-    'industry': '',
-    'job': '',
-    'keywords': [],
-    'figure': []
-  }
+  job: '',
+  keywords: []
 }
 
 // actions
 const actions = {
-  fetchSkillInfo ({commit}) {
-    skillApi.fetchSkillInfo((data) => {
-      commit('fetchSkillInfo', {skillInfo: data})
+  fetchSkillInfo({commit}) {
+    skillApi.fetchSkillInfo(data => {
+      commit('saveSkillInfo', data.keywords)
+      console.log(data.keywords)
     })
   }
 }
 
+// mutations 必须同步
+const mutations = {
+  'saveSkillInfo'(state, keywords) {
+    state.keywords = keywords
+  }
+}
+
 export default {
+  namespaced: true,
   state,
-  actions
+  actions,
+  mutations
 }
