@@ -14,6 +14,7 @@
   import Layout from '../components/Layout/Layout.vue'
   import CompanyCardList from '../components/CompanyList/CompanyCardList.vue'
   import CompanyNameList from '../components/CompanyList/CompanyNameList.vue'
+  import {store} from '../main'
 
   export default {
     name: 'company-display-page',
@@ -22,10 +23,14 @@
       CompanyCardList,
       CompanyNameList
     },
-    data () {
+    data() {
       return {}
     },
-    methods: {}
+    methods: {},
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('company/fetchPopularCompanies')
+      next(true)
+    }
   }
 </script>
 

@@ -4,7 +4,7 @@
     <div-header :header="'关注度最高公司'"></div-header>
 
     <div class="list-body">
-      <single-company-card v-for="item in 8" :key="item"></single-company-card>
+      <single-company-card v-for="item in popularCompanies" :key="item.companyId" :companyInfo="item"></single-company-card>
     </div>
 
   </div>
@@ -15,6 +15,7 @@
 
   import DivHeader from '../Util/DivHeader.vue'
   import SingleCompanyCard from '../ListItem/SingleCompanyCard.vue'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'company-card-list',
@@ -22,7 +23,12 @@
       DivHeader,
       SingleCompanyCard
     },
-    data () {
+    computed: {
+      ...mapState('company', {
+        popularCompanies: state => state.popularCompanies
+      })
+    },
+    data() {
       return {}
     },
     methods: {}

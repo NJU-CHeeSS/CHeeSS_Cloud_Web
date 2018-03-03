@@ -22,9 +22,7 @@
           </el-option>
         </el-select>
       </el-collapse-item>
-      <el-collapse-item title="工作职能" name="3">
-      </el-collapse-item>
-      <el-collapse-item title="所属行业" name="4">
+      <el-collapse-item title="所属行业" name="3">
       </el-collapse-item>
     </el-collapse>
   </div>
