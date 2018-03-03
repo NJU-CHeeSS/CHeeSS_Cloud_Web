@@ -37,8 +37,9 @@
 </template>
 
 <script>
-  import { Button, Input, Form, FormItem, Message } from 'element-ui'
-  import { router } from '../../main'
+  import {Button, Input, Form, FormItem, Message} from 'element-ui'
+  import {router} from '../../main'
+  import {mapActions, mapState} from 'vuex'
 
   export default {
     name: 'login-form-page',
@@ -47,8 +48,9 @@
       elInput: Input,
       elForm: Form,
       elFormItem: FormItem,
+      Message
     },
-    data () {
+    data() {
       let checkUsername = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('请输入邮箱账号'))
@@ -79,12 +81,38 @@
         }
       }
     },
+    computed: {
+      ...mapState('auth', {
+        user: state => state.user
+      })
+    },
     methods: {
-      goToRegisterPage () {
+      ...mapActions('auth', [
+        'signIn'
+      ]),
+      goToRegisterPage() {
         router.push({name: 'RegisterPage'})
       },
-      submitForm () {
-
+      submitForm(data) {
+        this.$refs[data].validate((valid) => {
+          if (valid) {
+            console.log('sign in !')
+            this.signIn({
+              body: this.LoginForm,
+              onSuccess: (success) => {
+                Message({
+                  message: '欢迎，' + this.user + '！',
+                  type: 'success'
+                })
+              },
+              onError: (error) => {
+                Message.error(error)
+              }
+            })
+          } else {
+            Message.error('请正确填写信息！')
+          }
+        })
       }
     }
   }

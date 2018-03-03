@@ -62,7 +62,7 @@
           <el-cascader
             expand-trigger="hover"
             :options="registerForm.professions"
-            v-model="registerForm.selectOption"
+            v-model="registerForm.profession"
             @change="">
           </el-cascader>
         </el-form-item>
@@ -131,8 +131,9 @@
 </template>
 
 <script>
-  import { Button, Input, Form, FormItem, Radio, InputNumber, Select, Option, Tag, Cascader, Message } from 'element-ui'
-  import { router } from '../../main'
+  import {Button, Input, Form, FormItem, Radio, InputNumber, Select, Option, Tag, Cascader, Message} from 'element-ui'
+  import {router} from '../../main'
+  import {mapActions} from 'vuex'
 
   export default {
     name: 'register-form-page',
@@ -148,7 +149,7 @@
       elTag: Tag,
       elCascader: Cascader
     },
-    data () {
+    data() {
       let checkUsername = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('请输入用户名'))
@@ -204,6 +205,8 @@
           experience: 0,
           city: '北京',
           degree: '本科',
+          skillTags: ['标签一', '标签二', '标签三'],
+          profession: ['zhinan', 'shejiyuanze', 'yizhi'],
           professions: [{
             value: 'zhinan',
             label: '指南',
@@ -399,7 +402,6 @@
               label: '组件交互文档'
             }]
           }],
-          skillTags: ['标签一', '标签二', '标签三'],
         },
         cities: [{
           value: '选项1',
@@ -455,30 +457,70 @@
       }
     },
     methods: {
-      goToLoginPage () {
+      ...mapActions('auth', [
+        'signUp',
+        'editUserInfo'
+      ]),
+      goToLoginPage() {
         router.push({name: 'LoginPage'})
       },
-      submitForm () {
-
-      },
-      handleClose (tag) {
+      handleClose(tag) {
         this.registerForm.skillTags.splice(this.registerForm.skillTags.indexOf(tag), 1)
       },
 
-      showInput () {
+      showInput() {
         this.inputVisible = true
         this.$nextTick(_ => {
           this.$refs.saveTagInput.$refs.input.focus()
         })
       },
 
-      handleInputConfirm () {
+      handleInputConfirm() {
         let inputValue = this.inputValue
         if (inputValue) {
           this.registerForm.skillTags.push(inputValue)
         }
         this.inputVisible = false
         this.inputValue = ''
+      },
+      submitForm(data) {
+        this.$refs[data].validate((valid) => {
+          if (valid) {
+            console.log('sign up !')
+            this.signUp({
+              body: {
+                username: this.registerForm.username,
+                password: this.registerForm.password
+              },
+              onSuccess: (success) => {
+                this.editUserInfo({
+                  userInfo: {
+                    email: this.registerForm.email,
+                    phone: this.registerForm.phone,
+                    gender: this.registerForm.gender,
+                    age: this.registerForm.age,
+                    experience: this.registerForm.experience,
+                    city: this.registerForm.city,
+                    degree: this.registerForm.degree,
+                    profession: this.registerForm.profession,
+                    skillTags: this.registerForm.skillTags
+                  },
+                  onSuccess: (success) => {
+                    Message.success('注册成功！')
+                  },
+                  onError: (error) => {
+                    Message.error(error)
+                  }
+                })
+              },
+              onError: (error) => {
+                Message.error(error)
+              }
+            })
+          } else {
+            Message.error('请正确填写信息！')
+          }
+        })
       }
     }
   }
