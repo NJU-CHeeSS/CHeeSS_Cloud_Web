@@ -4,7 +4,7 @@
       <div class="container">
         <div class="left-wrapper">
           <job-filter></job-filter>
-          <job-list :type="'filter'"></job-list>
+          <job-list :type="'filter'" v-if="jobList!==null" :jobList="jobList"></job-list>
         </div>
         <div class="right-wrapper">
 
@@ -34,6 +34,11 @@
     },
     data() {
       return {}
+    },
+    computed: {
+      ...mapState('job', {
+        jobList: state => state.jobList
+      })
     },
     methods: {},
     beforeRouteEnter(to, from, next) {

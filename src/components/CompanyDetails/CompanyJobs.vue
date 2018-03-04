@@ -3,7 +3,7 @@
   <div class="jobs-wrapper">
 
     <div-header :header="'公司所有职位'"></div-header>
-    <job-list></job-list>
+    <job-list v-if="jobList!==null" :jobList="jobList"></job-list>
 
 
   </div>
@@ -14,6 +14,7 @@
 
   import DivHeader from '../Util/DivHeader.vue'
   import JobList from '../JobList/JobListBody.vue'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'company-jobs',
@@ -21,7 +22,12 @@
       DivHeader,
       JobList
     },
-    data () {
+    computed: {
+      ...mapState('company', {
+        jobList: state => state.companyJobs
+      })
+    },
+    data() {
       return {}
     },
     methods: {}

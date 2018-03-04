@@ -25,13 +25,11 @@
   import CompanyHeader from '../components/CompanyDetails/CompanyHeader.vue'
   import CompanyKeyword from '../components/CompanyDetails/CompanyKeyword.vue'
   import CompanyJobs from '../components/CompanyDetails/CompanyJobs.vue'
-
   import CompanySalaryLevel from '../components/CompanyLevel/CompanySalaryLevel.vue'
   import CompanyRank from '../components/CompanyLevel/CompanyRank.vue'
-
   import CompanyRelatedList from '../components/CompanyRelated/CompanyRelatedList.vue'
-
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
+  import {store} from '../main'
 
   export default {
     name: 'company-details-page',
@@ -50,9 +48,15 @@
         currentShowing: state => state.currentShowing
       })
     },
-    data () {
+    data() {
       return {}
     },
-    methods: {}
+    methods: {},
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('company/fetchCompanyInfo', to.params.companyId)
+      store.dispatch('company/fetchCompanyJobs', to.params.companyId)
+      store.dispatch('company/fetchRelatedCompanies', to.params.companyId)
+      next(true)
+    }
   }
 </script>

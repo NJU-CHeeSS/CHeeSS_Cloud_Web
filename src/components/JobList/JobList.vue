@@ -2,7 +2,7 @@
 
   <div class="job-list-wrapper">
     <job-list-header :type="type"></job-list-header>
-    <job-list-body></job-list-body>
+    <job-list-body v-if="jobList!==null" :jobList="jobList"></job-list-body>
 
   </div>
 
@@ -18,10 +18,10 @@
       JobListHeader,
       JobListBody
     },
-    data () {
+    data() {
       return {}
     },
-    props: ['type'],
+    props: ['type', 'jobList'],
     methods: {}
   }
 </script>

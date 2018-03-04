@@ -9,9 +9,8 @@
         </div>
 
         <div class="company-info">
-          <p>公司名称</p>
-          <span>公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍
-          公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</span>
+          <p v-if="companyInfo !== null">{{companyInfo.name}}</p>
+          <span v-if="companyInfo !== null">{{companyInfo.introduction}}</span>
         </div>
 
         <div class="follow-wrapper">
@@ -36,30 +35,31 @@
 
 <script>
 
-  import { mapMutations, mapState } from 'vuex'
+  import {mapMutations, mapState} from 'vuex'
 
   export default {
     name: 'company-header',
     components: {},
-    data () {
+    data() {
       return {}
     },
     computed: {
       ...mapState('company', {
-        currentShowing: state => state.currentShowing
+        currentShowing: state => state.currentShowing,
+        companyInfo: state => state.companyInfo
       })
     },
     methods: {
       ...mapMutations('company', [
         'saveCurrentShowing'
       ]),
-      goToCompanyDetails () {
+      goToCompanyDetails() {
         this.saveCurrentShowing('companyDetails')
       },
-      goToCompanyLevel () {
+      goToCompanyLevel() {
         this.saveCurrentShowing('companyLevel')
       },
-      goToCompanyRelated () {
+      goToCompanyRelated() {
         this.saveCurrentShowing('companyRelated')
       }
     }

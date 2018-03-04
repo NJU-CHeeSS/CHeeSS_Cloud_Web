@@ -2,7 +2,10 @@ import * as companyApi from '../../api/company'
 
 const state = {
   currentShowing: 'companyDetails',
-  popularCompanies: []
+  popularCompanies: [],
+  companyInfo: null,
+  companyJobs: [],
+  relatedCompanies: []
 }
 
 // actions 可异步
@@ -12,6 +15,24 @@ const actions = {
     companyApi.fetchPopularCompanies(data => {
       commit('savePopularCompanies', data)
     })
+  },
+
+  fetchCompanyInfo({commit}, companyId) {
+    companyApi.fetchCompanyInfo(data => {
+      commit('saveCompanyInfo', data)
+    }, companyId)
+  },
+
+  fetchCompanyJobs({commit}, companyId) {
+    companyApi.fetchCompanyJobs(data => {
+      commit('saveCompanyJobs', data.jobList)
+    }, companyId)
+  },
+
+  fetchRelatedCompanies({commit}, companyId) {
+    companyApi.fetchRelatedCompanies(data => {
+      commit('saveRelatedCompanies', data.companyList)
+    }, companyId)
   }
 }
 
@@ -23,6 +44,18 @@ const mutations = {
 
   'savePopularCompanies'(state, popularCompanies) {
     state.popularCompanies = popularCompanies
+  },
+
+  'saveCompanyInfo'(state, companyInfo) {
+    state.companyInfo = companyInfo
+  },
+
+  'saveCompanyJobs'(state, companyJobs) {
+    state.companyJobs = companyJobs
+  },
+
+  'saveRelatedCompanies'(state, relatedCompanies) {
+    state.relatedCompanies = relatedCompanies
   }
 }
 

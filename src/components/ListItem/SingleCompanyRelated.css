@@ -56,6 +56,10 @@ button {
     .single-company-related-wrapper .info-wrapper span {
       font-size: 14px;
       color: #595959; }
+    .single-company-related-wrapper .info-wrapper .keywords-wrapper {
+      margin-right: 10px; }
+      .single-company-related-wrapper .info-wrapper .keywords-wrapper:last-child {
+        margin-right: 0; }
     .single-company-related-wrapper .info-wrapper button {
       display: inline-block;
       float: right;

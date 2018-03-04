@@ -4,7 +4,7 @@
       <div class="container">
         <div class="left-wrapper">
           <resume-sidebar></resume-sidebar>
-          <job-list :type="'recommend'"></job-list>
+          <job-list :type="'recommend'" v-if="jobList!==null" :jobList="jobList"></job-list>
         </div>
         <div class="right-wrapper">
 
@@ -22,6 +22,7 @@
   import JobList from '../components/JobList/JobList.vue'
   import {store} from '../main'
   import {Message} from 'element-ui'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'job-recommend-page',
@@ -33,6 +34,11 @@
     },
     data() {
       return {}
+    },
+    computed: {
+      ...mapState('job', {
+        jobList: state => state.jobList
+      })
     },
     methods: {},
     beforeRouteEnter(to, from, next) {

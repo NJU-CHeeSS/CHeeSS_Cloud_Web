@@ -7,12 +7,12 @@
     </div>
 
     <div class="info-wrapper">
-      <p>公司名称</p>
+      <p>{{singleCompany.name}}</p>
       <button>关注</button>
       <br/>
-      <span>江苏 南京</span>
+      <span>{{singleCompany.industry}}</span>
       <br/>
-      <span>公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍公司介绍</span>
+      <span class="keywords-wrapper" v-for="item in singleCompany.keywords">{{item}}</span>
     </div>
 
   </div>
@@ -31,6 +31,7 @@
     data () {
       return {}
     },
+    props: ['singleCompany'],
     methods: {
       ...mapMutations('company', [
         'saveCurrentShowing'

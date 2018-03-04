@@ -32,12 +32,13 @@
     },
     computed: {
       ...mapState('job', {
-        jobList: state => state.jobList,
+//        jobList: state => state.jobList,
         filterInfo: state => state.filterInfo,
         filterOrder: state => state.filterOrder,
         currentPage: state => state.currentPage
       })
     },
+    props: ['jobList'],
     methods: {
       ...mapMutations('job', [
         'saveCurrentPage'

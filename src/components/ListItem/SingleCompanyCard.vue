@@ -44,7 +44,7 @@
       ]),
       goToCompanyDetailsPage() {
         this.saveCurrentShowing('companyDetails')
-        router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
+        router.push({name: 'CompanyDetailsPage', params: {companyId: this.companyInfo.companyId}})
       }
 
     }
