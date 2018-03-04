@@ -5,7 +5,8 @@ const state = {
   popularCompanies: [],
   companyInfo: null,
   companyJobs: [],
-  relatedCompanies: []
+  relatedCompanies: [],
+  searchResult: [],
 }
 
 // actions 可异步
@@ -33,6 +34,13 @@ const actions = {
     companyApi.fetchRelatedCompanies(data => {
       commit('saveRelatedCompanies', data.companyList)
     }, companyId)
+  },
+
+  searchCompany({commit}, {searchInfo}) {
+    console.log(searchInfo)
+    companyApi.searchCompany(data => {
+      commit('saveSearchResult', data)
+    }, searchInfo)
   }
 }
 
@@ -56,6 +64,10 @@ const mutations = {
 
   'saveRelatedCompanies'(state, relatedCompanies) {
     state.relatedCompanies = relatedCompanies
+  },
+
+  'saveSearchResult'(state, searchResult) {
+    state.searchResult = searchResult
   }
 }
 

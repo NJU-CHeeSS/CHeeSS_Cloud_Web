@@ -44,3 +44,20 @@ export function fetchRelatedCompanies(callback, companyId) {
       console.log(error)
     })
 }
+
+export function searchCompany(callback, searchInfo) {
+  axios.get('companies/search', {
+    params: {
+      keyword: searchInfo.keyword,
+      size: 48,
+      page: 1
+    }
+  })
+    .then(function (response) {
+      console.log(response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}

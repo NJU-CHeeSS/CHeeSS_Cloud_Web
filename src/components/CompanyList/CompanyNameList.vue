@@ -13,7 +13,7 @@
 
       <div class="company-names-wrapper">
         <el-row :gutter="10">
-          <single-company-name v-for="item in 50" :key="item"></single-company-name>
+          <single-company-name v-for="item in searchResult" :key="item" :name="item"></single-company-name>
 
         </el-row>
       </div>
@@ -26,13 +26,14 @@
 
 <script>
 
-  import { Row } from 'element-ui'
+  import {Row} from 'element-ui'
 
   import DivHeader from '../Util/DivHeader.vue'
   import LetterFilter from '../Util/LetterFilter.vue'
   import SearchInput from '../Util/SearchInput.vue'
   import SingleCompanyCard from '../ListItem/SingleCompanyCard.vue'
   import SingleCompanyName from '../ListItem/SingleCompanyName.vue'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'company-name-list',
@@ -44,14 +45,20 @@
       SingleCompanyCard,
       SingleCompanyName
     },
-    data () {
+    computed: {
+      ...mapState('company', {
+        searchResult: state => state.searchResult
+      })
+    },
+    data() {
       return {
         letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'
           , 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'
           , 'V', 'W', 'X', 'Y', 'Z', '#']
       }
     },
-    methods: {}
+    methods: {
+    }
   }
 </script>
 

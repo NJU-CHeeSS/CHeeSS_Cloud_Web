@@ -29,6 +29,11 @@
     methods: {},
     beforeRouteEnter(to, from, next) {
       store.dispatch('company/fetchPopularCompanies')
+      store.dispatch('company/searchCompany', {
+        searchInfo: {
+          keyword: ''
+        }
+      })
       next(true)
     }
   }

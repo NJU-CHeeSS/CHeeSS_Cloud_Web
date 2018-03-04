@@ -1,11 +1,13 @@
 <template>
   <div class="letter-wrapper">
-    <span>{{ letter }}</span>
+    <span @click="handleSearch">{{ letter }}</span>
   </div>
 
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
+
   export default {
     name: 'letter-filter',
     components: {},
@@ -13,7 +15,19 @@
       return {}
     },
     props: ['letter'],
-    methods: {}
+    methods: {
+      ...mapActions('company', [
+        'searchCompany'
+      ]),
+      handleSearch() {
+        console.log(this.letter)
+        this.searchCompany({
+          searchInfo: {
+            keyword: this.letter
+          }
+        })
+      }
+    }
   }
 </script>
 
