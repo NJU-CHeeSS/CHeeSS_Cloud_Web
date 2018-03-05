@@ -8,8 +8,8 @@
         <company-keyword v-if="currentShowing==='companyDetails'"></company-keyword>
         <company-jobs v-if="currentShowing==='companyDetails'"></company-jobs>
 
-        <company-salary-level v-if="currentShowing==='companyLevel'"></company-salary-level>
-        <company-rank v-if="currentShowing==='companyLevel'"></company-rank>
+        <company-salary-level v-if="currentShowing==='companyLevel' && companySalary !== null" :companySalary="companySalary"></company-salary-level>
+        <company-rank v-if="currentShowing==='companyLevel' && companyRank !== null" :companyRank="companyRank"></company-rank>
 
         <company-related-list v-if="currentShowing==='companyRelated'"></company-related-list>
 
@@ -45,7 +45,9 @@
     },
     computed: {
       ...mapState('company', {
-        currentShowing: state => state.currentShowing
+        currentShowing: state => state.currentShowing,
+        companyRank: state => state.companyRank,
+        companySalary: state => state.companySalary
       })
     },
     data() {
@@ -53,9 +55,15 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
-      store.dispatch('company/fetchCompanyInfo', to.params.companyId)
-      store.dispatch('company/fetchCompanyJobs', to.params.companyId)
-      store.dispatch('company/fetchRelatedCompanies', to.params.companyId)
+      store.dispatch('company/fetchCompanyInfo', {
+        companyId: to.params.companyId,
+        onSuccess: (success) => {
+          store.dispatch('company/fetchCompanyJobs', to.params.companyId)
+          store.dispatch('company/fetchRelatedCompanies', to.params.companyId)
+          store.dispatch('company/fetchCompanyRank')
+          store.dispatch('company/fetchCompanySalary', to.params.companyId)
+        }
+      })
       next(true)
     }
   }

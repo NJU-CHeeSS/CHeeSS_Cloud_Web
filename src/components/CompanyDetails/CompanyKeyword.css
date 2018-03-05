@@ -26,5 +26,9 @@ button {
   width: 100%;
   height: auto;
   background-color: #ffffff; }
+  .keyword-wrapper /deep/ .el-tag {
+    margin-right: 10px; }
+    .keyword-wrapper /deep/ .el-tag:last-child {
+      margin-right: 0; }
 
 /*# sourceMappingURL=CompanyKeyword.css.map */

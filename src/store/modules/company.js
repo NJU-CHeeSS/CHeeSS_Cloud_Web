@@ -7,6 +7,8 @@ const state = {
   companyJobs: [],
   relatedCompanies: [],
   searchResult: [],
+  companyRank: [],
+  companySalary: null,
 }
 
 // actions 可异步
@@ -18,9 +20,12 @@ const actions = {
     })
   },
 
-  fetchCompanyInfo({commit}, companyId) {
+  fetchCompanyInfo({commit}, {companyId, onSuccess}) {
     companyApi.fetchCompanyInfo(data => {
-      commit('saveCompanyInfo', data)
+      if (onSuccess) {
+        commit('saveCompanyInfo', data)
+        onSuccess('')
+      }
     }, companyId)
   },
 
@@ -41,7 +46,21 @@ const actions = {
     companyApi.searchCompany(data => {
       commit('saveSearchResult', data)
     }, searchInfo)
+  },
+
+  fetchCompanyRank({commit, state}) {
+    let industry = state.companyInfo === null ? null : state.companyInfo.industry
+    companyApi.fetchCompanyRank(data => {
+      commit('saveCompanyRank', data)
+    }, industry)
+  },
+
+  fetchCompanySalary({commit}, companyId) {
+    companyApi.fetchCompanySalary(data => {
+      commit('saveCompanySalary', data)
+    }, companyId)
   }
+
 }
 
 // mutations 必须同步
@@ -68,6 +87,14 @@ const mutations = {
 
   'saveSearchResult'(state, searchResult) {
     state.searchResult = searchResult
+  },
+
+  'saveCompanyRank'(state, companyRank) {
+    state.companyRank = companyRank
+  },
+
+  'saveCompanySalary'(state, companySalary) {
+    state.companySalary = companySalary
   }
 }
 
