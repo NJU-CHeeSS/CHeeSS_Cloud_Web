@@ -12,6 +12,7 @@ import CompanyDetailsPage from '@/pages/CompanyDetailsPage'
 import TreatmentPage from '@/pages/TreatmentPage'
 import SkillPage from '@/pages/SkillPage'
 import UserHomePage from '@/pages/UserHomePage'
+import SearchResultPage from '@/pages/SearchResultPage'
 
 Vue.use(Router)
 
@@ -71,6 +72,11 @@ export default new Router({
       path: '/user/home',
       name: 'UserHomePage',
       component: UserHomePage
+    },
+    {
+      path: '/search/:keyword',
+      name: 'SearchResultPage',
+      component: SearchResultPage
     }
   ]
 })

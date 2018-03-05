@@ -44,7 +44,7 @@ const actions = {
   searchCompany({commit}, {searchInfo}) {
     console.log(searchInfo)
     companyApi.searchCompany(data => {
-      commit('saveSearchResult', data)
+      commit('saveSearchResult', data.companyList)
     }, searchInfo)
   },
 

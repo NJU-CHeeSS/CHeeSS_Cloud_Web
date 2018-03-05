@@ -11,7 +11,7 @@
         <company-salary-level v-if="currentShowing==='companyLevel' && companySalary !== null" :companySalary="companySalary"></company-salary-level>
         <company-rank v-if="currentShowing==='companyLevel' && companyRank !== null" :companyRank="companyRank"></company-rank>
 
-        <company-related-list v-if="currentShowing==='companyRelated'"></company-related-list>
+        <company-related-list v-if="currentShowing==='companyRelated' && relatedCompanies !== null" :companyList="relatedCompanies"></company-related-list>
 
       </div>
     </layout>
@@ -47,7 +47,8 @@
       ...mapState('company', {
         currentShowing: state => state.currentShowing,
         companyRank: state => state.companyRank,
-        companySalary: state => state.companySalary
+        companySalary: state => state.companySalary,
+        relatedCompanies: state => state.relatedCompanies
       })
     },
     data() {

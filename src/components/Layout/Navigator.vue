@@ -17,9 +17,10 @@
         <div class="input-wrapper">
           <el-input class="search-input"
                     placeholder=""
-                    suffix-icon="el-icon-search"
-                    v-model="input2"
+                    v-model="keyword"
+                    @keyup.enter.native="handleSearch"
           >
+            <i slot="suffix" class="el-input__icon el-icon-search" @click="handleSearch"></i>
           </el-input>
         </div>
 
@@ -50,12 +51,10 @@
 
 
 <script>
-  import { Input, Button, Dropdown, DropdownMenu, DropdownItem, Message } from 'element-ui'
-  import { router } from '../../main'
-  //  import { mapMutations, mapState, mapActions } from 'vuex'
   import JobCompareModal from '../../components/JobCompareModal/JobCompareModal.vue'
-
-  //  Vue.use(Input)
+  import {Input, Button, Dropdown, DropdownMenu, DropdownItem, Message} from 'element-ui'
+  import {router} from '../../main'
+  import {mapActions, mapMutations, mapState} from 'vuex'
 
   export default {
     name: 'navigator',
@@ -65,38 +64,65 @@
       elDropdown: Dropdown,
       elDropdownMenu: DropdownMenu,
       elDropdownItem: DropdownItem,
+      Message,
       JobCompareModal
     },
-    data () {
+    data() {
       return {
-        input2: ''
+        keyword: ''
       }
     },
-    computed: {},
+    computed: {
+//      ...mapState('search', {
+//        keyword: state => state.keyword
+//      })
+    },
     methods: {
-      goToIndexPage () {
+      ...mapActions('search', [
+        'fetchSearchResult'
+      ]),
+      ...mapMutations('search', [
+        'saveKeyword'
+      ]),
+      goToIndexPage() {
         router.push({name: 'IndexPage'})
       },
-      goToLoginPage () {
+      goToLoginPage() {
         router.push({name: 'LoginPage'})
       },
-      goToRegisterPage () {
+      goToRegisterPage() {
         router.push({name: 'RegisterPage'})
       },
-      goToJobPage () {
+      goToJobPage() {
         router.push({name: 'JobFilterPage'})
       },
-      goToCompanyPage () {
+      goToCompanyPage() {
         router.push({name: 'CompanyDisplayPage'})
       },
-      goToTreatmentPage () {
+      goToTreatmentPage() {
         router.push({name: 'TreatmentPage'})
       },
-      goToSkillPage () {
+      goToSkillPage() {
         router.push({name: 'SkillPage'})
       },
       handleCommand(command) {
         router.push({name: command})
+      },
+      handleSearch() {
+        if (this.keyword.length === 0) {
+          Message.warning('请输入搜索内容！')
+        } else {
+          this.saveKeyword(this.keyword)
+          this.fetchSearchResult({
+            searchInfo: {
+              keyword: this.keyword,
+              page: 1
+            },
+            onSuccess: (success) => {
+              router.push({name: 'SearchResultPage', params: {keyword: this.keyword}})
+            }
+          })
+        }
       }
     }
   }

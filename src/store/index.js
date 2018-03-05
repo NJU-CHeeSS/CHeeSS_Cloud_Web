@@ -7,6 +7,7 @@ import admin from './modules/admin'
 import company from './modules/company'
 import skill from './modules/skill'
 import job from './modules/job'
+import search from './modules/search'
 import treatment from './modules/treatment'
 import createLogger from 'vuex/dist/logger'
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     company,
     skill,
     job,
+    search,
     treatment
   },
   strict: debug,

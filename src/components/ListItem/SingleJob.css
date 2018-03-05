@@ -21,7 +21,7 @@ button {
  */
 .single-job-wrapper {
   padding: 20px;
-  border-top: solid 1px #e8e8e8; }
+  border-bottom: solid 1px #e8e8e8; }
   .single-job-wrapper .job-name {
     padding-bottom: 10px; }
     .single-job-wrapper .job-name p {

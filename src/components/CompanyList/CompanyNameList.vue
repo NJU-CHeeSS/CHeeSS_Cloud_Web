@@ -13,7 +13,7 @@
 
       <div class="company-names-wrapper">
         <el-row :gutter="10">
-          <single-company-name v-for="item in searchResult" :key="item" :name="item"></single-company-name>
+          <single-company-name v-for="item in searchResult" :key="item.companyId" :name="item.name"></single-company-name>
 
         </el-row>
       </div>
