@@ -1,48 +1,86 @@
 <template>
 
-  <div id="skill-chart" :style="{width: '100%', height: '300px'}"></div>
+  <div ref="skillChart" :style="{width: '100%', height: '300px'}"></div>
 
 </template>
 
 <script type="text/babel">
-  // 引入基本模板
-  let echarts = require('echarts/lib/echarts')
-  // 引入柱状图组件
-  require('echarts/lib/chart/bar')
-  // 引入提示框和title组件
-  require('echarts/lib/component/tooltip')
+
+  import {mapState, mapActions} from 'vuex'
+  import {store} from '../../main'
+
+  let echarts = require('echarts/lib/echarts') // 引入基本模板
+  require('echarts/lib/chart/bar') // 引入柱状图组件
+  require('echarts/lib/component/tooltip') // 引入提示框和title组件
   require('echarts/lib/component/title')
 
   export default {
-    name: 'timeChart',
+    name: 'skill-chart',
     components: {},
     props: {},
     data() {
-      return {
-        msg: 'Welcome to Your Vue.js App'
-      }
+      return {}
     },
     mounted() {
-      this.drawLine()
+      this.setEchart()
+    },
+    computed: {
+      ...mapState('skill', {
+        keywords: state => state.keywords
+      }),
+      x: {
+        get: function () {
+          let temp = []
+          console.log(this.keywords)
+          for (let i = 0; i < this.keywords.length; i++) {
+            temp.push(this.keywords[i].keywords)
+          }
+          return temp
+        }
+      },
+      y: {
+        get: function () {
+          let temp = []
+          for (let i = 0; i < this.keywords.length; i++) {
+            temp.push(this.keywords[i].figure)
+          }
+
+          return temp
+        }
+      }
     },
     methods: {
-      drawLine() {
+      setEchart() {
         // 基于准备好的dom，初始化echarts实例
-        let myChart = echarts.init(document.getElementById('skill-chart'))
+        let myChart = echarts.init(this.$refs.skillChart)
         // 绘制图表
         myChart.setOption({
           tooltip: {},
           xAxis: {
-            data: ['计算机', 'python', '大数据', '数据处理', 'Java', 'Hadoop']
+            data: this.x
           },
           yAxis: {},
           series: [{
-            name: '销量',
+            name: '',
             type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
+            data: this.y
           }]
         })
-      }
-    }
+      },
+      ...mapActions('skill', [
+        'fetchSkillInfo'
+      ])
+    },
+    beforeRouterEnter(to, from, next) {
+      store.dispatch('fetchSkillInfo').then(next(true))
+    },
+    created() {
+      // this.fetchSkillInfo()
+      this.setEchart()
+    },
+    watch: {
+      // 如果路由有变化，会再次执行该方法
+      // '$route': 'fetchSkillInfo'
+    },
   }
 </script>
