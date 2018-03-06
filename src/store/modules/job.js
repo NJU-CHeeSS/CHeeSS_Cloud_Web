@@ -11,7 +11,9 @@ const state = {
     property: '不限'
   },
   currentPage: 1,
-  currentJob: {}
+  currentJob: {},
+  relateJobs: [],
+  compareResult: {}
 }
 
 // actions 可异步
@@ -33,6 +35,16 @@ const actions = {
     jobApi.fetchJobInfo(data => {
       commit('saveCurrentJob', data)
     }, jobId)
+  },
+  fetchRelateJobs({commit}, jobId) {
+    jobApi.fetchRelateJobs(data => {
+      commit('saveRelateJobs', data)
+    }, jobId)
+  },
+  fetchCompareResult({commit}, jobIds) {
+    jobApi.fetchCompareResult(data => {
+      commit('saveCompareResult', data)
+    }, jobIds)
   }
 }
 
@@ -55,6 +67,12 @@ const mutations = {
   },
   'saveCurrentJob'(state, currentJob) {
     state.currentJob = currentJob
+  },
+  'saveRelateJobs'(state, relateJobs) {
+    state.relateJobs = relateJobs
+  },
+  'saveCompareResult'(state, compareResult) {
+    state.compareResult = compareResult
   }
 }
 

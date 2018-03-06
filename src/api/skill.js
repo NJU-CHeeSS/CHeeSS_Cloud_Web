@@ -1,8 +1,12 @@
 import axios from 'axios'
 
-export function fetchSkillInfo(callback) {
+export function fetchSkillInfo(callback, searchInfo) {
 
-  axios.get('/jobs/skill')
+  axios.get('/jobs/skill', {
+    // params: {
+    //   jobType: searchInfo.jobType
+    // }
+  })
     .then(function (response) {
       console.log(response.data)
       callback(response.data)

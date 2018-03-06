@@ -3,7 +3,7 @@
     <layout>
       <div class="container">
         <skill-filter></skill-filter>
-        <skill-analyse></skill-analyse>
+        <skill-analyse v-if="keywords.length!==0" :keywords="keywords"></skill-analyse>
       </div>
     </layout>
   </div>
@@ -14,6 +14,8 @@
   import Layout from '../components/Layout/Layout.vue'
   import SkillFilter from '../components/Filter/SkillFilter.vue'
   import SkillAnalyse from '../components/Skill/SkillAnalyse.vue'
+  import {mapState} from 'vuex'
+  import {router, store} from '../main'
 
   export default {
     name: 'skill-page',
@@ -25,6 +27,21 @@
     data() {
       return {}
     },
-    methods: {}
+    computed: {
+      ...mapState('skill', {
+        keywords: state => state.keywords
+      })
+    },
+    methods: {},
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('skill/fetchSkillInfo',
+//        {
+//        searchInfo: {
+//          jobType: ''
+//        }
+//      }
+      )
+      next(true)
+    }
   }
 </script>

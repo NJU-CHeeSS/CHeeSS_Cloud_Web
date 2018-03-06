@@ -35,6 +35,7 @@
       <el-collapse-item title="所属行业" name="4">
         <el-cascader
           expand-trigger="hover"
+          :show-all-levels="false"
           :options="industries"
           v-model="chosenIndustry"
           @change="handleSearch">

@@ -14,7 +14,7 @@
     </div>
 
     <div class="right-wrapper">
-      <span class="salary">{{singleJob.minSalary}} ~ {{singleJob.maxSalary}} / 年</span>
+      <span class="salary">{{singleJob.minSalary}} ~ {{singleJob.maxSalary}} / 月</span>
     </div>
 
 

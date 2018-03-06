@@ -28,3 +28,30 @@ export function fetchJobInfo(callback, jobId) {
       console.log(error)
     })
 }
+
+export function fetchRelateJobs(callback, jobId) {
+  axios.get(`/jobs/${jobId}/relate`)
+    .then(function (response) {
+      console.log('relateJobs', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+export function fetchCompareResult(callback, jobIds) {
+  axios.get('/jobs/compare', {
+    params: {
+      jobId1: jobIds.jobId1,
+      jobId2: jobIds.jobId2
+    }
+  })
+    .then(function (response) {
+      console.log('compareResult', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}

@@ -33,4 +33,11 @@ button {
       color: #bababa;
       font-size: 18px; }
 
+.title-wrapper {
+  color: #595959;
+  font-size: 14px;
+  padding: 20px 0;
+  text-align: center;
+  font-weight: 400; }
+
 /*# sourceMappingURL=JobCompareModal.css.map */

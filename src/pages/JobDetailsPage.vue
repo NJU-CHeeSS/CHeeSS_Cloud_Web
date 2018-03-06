@@ -3,8 +3,7 @@
     <layout>
       <div class="container">
 
-        <job-details :currentJob="currentJob"></job-details>
-
+        <job-details :currentJob="currentJob" :relateJobs="relateJobs"></job-details>
 
       </div>
     </layout>
@@ -29,13 +28,15 @@
     },
     computed: {
       ...mapState('job', {
-        currentJob: state => state.currentJob
+        currentJob: state => state.currentJob,
+        relateJobs: state => state.relateJobs
       })
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
       console.log(to.params.jobId)
       store.dispatch('job/fetchJobInfo', to.params.jobId)
+      store.dispatch('job/fetchRelateJobs', to.params.jobId)
       next(true)
     }
   }

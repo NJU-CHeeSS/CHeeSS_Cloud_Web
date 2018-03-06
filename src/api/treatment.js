@@ -1,8 +1,13 @@
 import axios from 'axios'
 
-export function fetchTreatmentInfo(callback) {
+export function fetchTreatmentInfo(callback, searchInfo) {
 
-  axios.get('/jobs/analyzeTreatment')
+  axios.get('/jobs/analyzeTreatment', {
+    // params: {
+    //   jobType: searchInfo.jobType,
+    //   city: searchInfo.city
+    // }
+  })
     .then(function (response) {
       console.log(response.data)
       callback(response.data)

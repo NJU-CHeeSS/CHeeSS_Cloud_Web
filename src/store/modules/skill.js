@@ -1,8 +1,8 @@
 import * as skillApi from '../../api/skill'
 
 const state = {
-  job: '',
-  keywords: []
+  keywords: [],
+  jobType: ''
 }
 
 // actions

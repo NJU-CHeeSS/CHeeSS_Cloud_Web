@@ -16,7 +16,10 @@
           <p>相关职位推荐</p>
         </div>
 
-        <single-job-recommend v-for="item in 8" :key="item"></single-job-recommend>
+        <single-job-recommend v-for="item in relateJobs"
+                              :key="item.jobId"
+                              :singleJobRecommend="item">
+        </single-job-recommend>
 
       </div>
 
@@ -32,7 +35,7 @@
 
           <div class="section">
             <p class="introduction-head">职位简介</p>
-            <p class="introduction">职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介职位简介</p>
+            <p class="introduction">{{currentJob.information}}</p>
           </div>
 
           <div class="section">
@@ -42,17 +45,11 @@
 
           <div class="section">
             <p class="introduction-head">职位薪资</p>
-            <p class="introduction">{{currentJob.minSalary}} ~ {{currentJob.maxSalary}} / 年</p>
+            <p class="introduction">{{currentJob.minSalary}} ~ {{currentJob.maxSalary}} / 月</p>
           </div>
 
           <div class="section">
             <span class="introduction-head">职位要求</span>
-            <button class="chart-button">查看需求图</button>
-            <el-tree :data="data" :props="defaultProps" @node-click=""></el-tree>
-          </div>
-
-          <div class="section">
-            <span class="introduction-head">职位福利</span>
             <el-tree :data="data" :props="defaultProps" @node-click=""></el-tree>
           </div>
 
@@ -89,7 +86,7 @@
         }, {
           label: '工作经历要求',
           children: [{
-            label: this.currentJob.minExperience + '年～' + this.currentJob.maxExperience + '年'
+            label: this.currentJob.minExperience + '年~' + this.currentJob.maxExperience + '年'
           }]
         }],
         defaultProps: {
@@ -98,7 +95,7 @@
         }
       }
     },
-    props: ['currentJob'],
+    props: ['currentJob', 'relateJobs'],
 //    computed: {
 //      ...mapState('job', {
 //        currentJob: state => state.currentJob

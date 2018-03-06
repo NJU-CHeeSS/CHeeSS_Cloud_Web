@@ -44,7 +44,7 @@
 
     </div>
 
-    <job-compare-modal></job-compare-modal>
+    <job-compare-modal :compareResult="compareResult"></job-compare-modal>
 
   </div>
 </template>
@@ -76,6 +76,9 @@
 //      ...mapState('search', {
 //        keyword: state => state.keyword
 //      })
+      ...mapState('job', {
+        compareResult: state => state.compareResult
+      })
     },
     methods: {
       ...mapActions('search', [

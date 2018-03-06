@@ -2,8 +2,8 @@
 
   <div class="single-job-recommend-wrapper">
 
-    <p class="name">Manager, Manufacturing Engineering (Manager Operations)</p>
-    <p class="address">江苏 常州</p>
+    <p class="name">{{singleJobRecommend.jobName}}</p>
+    <p class="address">{{singleJobRecommend.location}}</p>
     <button class="compare-button" @click="showJobCompareModal">+ 对比</button>
 
   </div>
@@ -13,16 +13,31 @@
 
 <script>
 
-  import { router } from '../../main'
+  import {router} from '../../main'
+  import {mapState, mapActions, mapMutations} from 'vuex'
 
   export default {
     name: 'single-job-recommend',
     components: {},
-    data () {
+    data() {
       return {}
     },
+    props: ['singleJobRecommend'],
+    computed: {
+      ...mapState('job', {
+        currentJob: state => state.currentJob
+      })
+    },
     methods: {
-      showJobCompareModal () {
+      ...mapActions('job', [
+        'fetchCompareResult'
+      ]),
+      showJobCompareModal() {
+        let jobIds = {}
+        jobIds.jobId1 = this.currentJob.jobId
+        jobIds.jobId2 = this.singleJobRecommend.jobId
+
+        this.fetchCompareResult(jobIds)
         this.$modal.show('job-compare-modal')
       }
     }

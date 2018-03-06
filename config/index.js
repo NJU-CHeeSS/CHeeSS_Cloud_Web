@@ -14,6 +14,7 @@ module.exports = {
       // proxy all requests starting with /api to jsonplaceholder
       '/api': {
         target: 'http://40.125.175.34:8090/',
+        // target: 'http://localhost:3000/',
         changeOrigin: true,//true时可用来解决跨域问题
         // pathRewrite: {
         //   '^/api': ''

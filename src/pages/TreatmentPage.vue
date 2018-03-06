@@ -2,8 +2,8 @@
   <div class="body-wrapper">
     <layout>
       <div class="container">
-          <salary-filter></salary-filter>
-          <salary-analyse></salary-analyse>
+        <salary-filter></salary-filter>
+        <salary-analyse></salary-analyse>
       </div>
     </layout>
   </div>
@@ -25,7 +25,7 @@
     data() {
       return {}
     },
-    methods: {}
+    methods: {},
   }
 </script>
 
