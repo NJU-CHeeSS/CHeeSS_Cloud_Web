@@ -1,13 +1,14 @@
 import axios from 'axios'
 
 export function signIn(callback, body) {
-  axios.post('/sign-in',
+  axios.post('/users/sign-in',
     body,
     {
       headers: {'Content-Type': 'application/json'}
     }
   )
     .then(function (response) {
+      console.log('sign-in', body, response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -16,7 +17,7 @@ export function signIn(callback, body) {
 }
 
 export function signUp(callback, body) {
-  axios.post('/sign-up',
+  axios.post('/users/sign-up',
     body,
     {
       headers: {'Content-Type': 'application/json'}
@@ -30,7 +31,7 @@ export function signUp(callback, body) {
 }
 
 export function currentUser(callback, token) {
-  axios.get('',
+  axios.get('/users',
     {
       params: {
         token: token
@@ -45,7 +46,7 @@ export function currentUser(callback, token) {
 }
 
 export function editUserInfo(callback, userInfo) {
-  axios.post('/info',
+  axios.post('/users/info',
     userInfo,
     {
       headers: {'Content-Type': 'application/json'}

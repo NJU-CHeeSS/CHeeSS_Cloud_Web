@@ -10,14 +10,16 @@ const state = {
 const actions = {
   fetchSearchResult({commit}, {searchInfo, onSuccess, onError}) {
     searchApi.fetchJobSearchResult(data => {
+      console.error('搜索条件', searchInfo)
       if (onSuccess) {
-        commit('saveJobSearchResult', data.jobList)
+        commit('saveJobSearchResult', data.result)
         onSuccess('')
       }
     }, searchInfo)
     searchApi.fetchCompanySearchResult(data => {
+      console.error('搜索条件', searchInfo)
       if (onSuccess) {
-        commit('saveCompanySearchResult', data.companyList)
+        commit('saveCompanySearchResult', data.result)
         onSuccess('')
       }
     }, searchInfo)

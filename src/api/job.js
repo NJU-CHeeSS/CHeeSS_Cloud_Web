@@ -18,11 +18,7 @@ export function fetchJobList(callback, searchInfo) {
 }
 
 export function fetchJobInfo(callback, jobId) {
-  axios.get('/jobs', {
-    params: {
-      jobId: jobId
-    }
-  })
+  axios.get(`/jobs/${jobId}`)
     .then(function (response) {
       console.log(response.data)
       callback(response.data)

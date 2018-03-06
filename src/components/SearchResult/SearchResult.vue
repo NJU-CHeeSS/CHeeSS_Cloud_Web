@@ -13,7 +13,7 @@
           <!--<img src="../../assets/img/album.png" width="20"/>-->
           公司
         </span>
-        <company-brief-list v-if="companySearchResult !== null && companySearchResult.length !== 0"
+        <company-brief-list v-if="companySearchResult !== null"
                             :companyList="companySearchResult"></company-brief-list>
         <p v-else class="empty-result">暂无搜索结果，换个关键词试试～</p>
       </el-tab-pane>
@@ -23,7 +23,7 @@
           职位
         </span>
 
-        <job-list-body v-if="jobSearchResult !== null && jobSearchResult.length !== 0"
+        <job-list-body v-if="jobSearchResult !== null"
                        :jobList="jobSearchResult"></job-list-body>
         <!--<p v-if="searchResult.users.length === 0" class="empty-result">暂无搜索结果，换个关键词试试～</p>-->
         <!--<el-row v-else :gutter="25">-->

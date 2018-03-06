@@ -11,12 +11,12 @@
       <el-table-column
         prop="rank"
         label="排名"
-        width="180">
+      >
       </el-table-column>
       <el-table-column
         prop="name"
         label="公司名称"
-        width="180">
+      >
       </el-table-column>
       <el-table-column
         prop="industry"
@@ -53,6 +53,7 @@
           industry: company.industry
         })
       })
+      console.log(table)
       return {
         tableData: table
       }

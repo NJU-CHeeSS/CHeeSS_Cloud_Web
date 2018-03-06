@@ -3,6 +3,7 @@ import axios from 'axios'
 export function fetchPopularCompanies(callback) {
   axios.get('/companies/popular')
     .then(function (response) {
+      console.log('popular', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -11,12 +12,9 @@ export function fetchPopularCompanies(callback) {
 }
 
 export function fetchCompanyInfo(callback, companyId) {
-  axios.get('/companies', {
-    params: {
-      companyId: companyId
-    }
-  })
+  axios.get(`/companies/id/${companyId}`)
     .then(function (response) {
+      console.log('companyInfo', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -25,8 +23,9 @@ export function fetchCompanyInfo(callback, companyId) {
 }
 
 export function fetchCompanyJobs(callback, companyId) {
-  axios.get(`/companies?companyId=${companyId}/jobs`)
+  axios.get(`/companies/${companyId}/jobs`)
     .then(function (response) {
+      console.log('companyJobs', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -35,8 +34,9 @@ export function fetchCompanyJobs(callback, companyId) {
 }
 
 export function fetchRelatedCompanies(callback, companyId) {
-  axios.get(`/companies?companyId=${companyId}/related`)
+  axios.get(`/companies/${companyId}/relate`)
     .then(function (response) {
+      console.log('relatedCompanies', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -53,6 +53,7 @@ export function searchCompany(callback, searchInfo) {
     }
   })
     .then(function (response) {
+      console.log('search', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -61,13 +62,9 @@ export function searchCompany(callback, searchInfo) {
 }
 
 export function fetchCompanyRank(callback, industry) {
-  axios.get('/companies/rank', {
-    params: {
-      industry: industry
-    }
-  })
+  axios.get(`/companies/rank/${industry}`)
     .then(function (response) {
-      console.log(response.data)
+      console.log('companyRank', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -76,9 +73,9 @@ export function fetchCompanyRank(callback, industry) {
 }
 
 export function fetchCompanySalary(callback, companyId) {
-  axios.get(`/companies?companyId=${companyId}/analyse`)
+  axios.get(`/companies/${companyId}/analyse`)
     .then(function (response) {
-      console.log(response.data)
+      console.log('companySalary', response.data)
       callback(response.data)
     })
     .catch(function (error) {
