@@ -79,9 +79,9 @@
       handleChangeOrder() {
         this.saveFilterOrder(this.order)
         let searchInfo = {
-          keyword: this.filterInfo,
           order: this.filterOrder,
           page: this.currentPage,
+          conditionBean: this.filterInfo
         }
         this.fetchJobList({
           searchInfo: searchInfo,

@@ -5,8 +5,10 @@ const state = {
   jobList: [],
   filterOrder: '发布日期',
   filterInfo: {
-    place: '不限',
-    releaseDate: '不限'
+    location: '不限',
+    diploma: '不限',
+    earlyReleaseDate: '不限',
+    property: '不限'
   },
   currentPage: 1,
   currentJob: {}
@@ -15,6 +17,7 @@ const state = {
 // actions 可异步
 const actions = {
   fetchJobList({commit}, {searchInfo, onSuccess, onError}) {
+    console.log('searchInfo', searchInfo)
     jobApi.fetchJobList(data => {
       if (data.message === 'success') {
         if (onSuccess) {

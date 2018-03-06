@@ -3,13 +3,14 @@ import axios from 'axios'
 export function fetchJobList(callback, searchInfo) {
   axios.get('/jobs/search', {
     params: {
-      keyword: searchInfo.order,
-      // order: searchInfo.order,
-      // size: 10,
-      // page: searchInfo.page
+      order: searchInfo.order,
+      size: 10,
+      page: searchInfo.page,
+      conditionBean: searchInfo.conditionBean
     }
   })
     .then(function (response) {
+      console.log('jobList', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -20,7 +21,7 @@ export function fetchJobList(callback, searchInfo) {
 export function fetchJobInfo(callback, jobId) {
   axios.get(`/jobs/${jobId}`)
     .then(function (response) {
-      console.log(response.data)
+      console.log('jobInfo', response.data)
       callback(response.data)
     })
     .catch(function (error) {

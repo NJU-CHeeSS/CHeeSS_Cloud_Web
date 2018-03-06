@@ -49,9 +49,9 @@
       handleCurrentChange(val) {
         this.saveCurrentPage(val)
         let searchInfo = {
-          keyword: this.filterInfo,
           order: this.filterOrder,
           page: this.currentPage,
+          conditionBean: this.filterInfo
         }
         this.fetchJobList({
           searchInfo: searchInfo,

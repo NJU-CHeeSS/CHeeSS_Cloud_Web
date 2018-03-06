@@ -37,16 +37,21 @@
     },
     computed: {
       ...mapState('job', {
-        jobList: state => state.jobList
+        jobList: state => state.jobList,
       })
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
       store.dispatch('job/fetchJobList', {
         searchInfo: {
-          keyword: '不限',
-          order: '不限',
+          order: '发布日期',
           page: 1,
+          conditionBean: {
+            location: '不限',
+            diploma: '不限',
+            earlyReleaseDate: '不限',
+            property: '不限'
+          }
         },
         onSuccess: (success) => {
           Message({
