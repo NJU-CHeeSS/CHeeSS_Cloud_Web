@@ -19,8 +19,8 @@ const actions = {
 
   signIn({dispatch}, {body, onSuccess, onError}) {
     authApi.signIn(data => {
-      if (data.message !== 'Success') {
-        onError(data.result)
+      if (data.result === false) {
+        onError(data.message)
       } else {
         localStorage.setItem('token', data.token)
         console.log(data)

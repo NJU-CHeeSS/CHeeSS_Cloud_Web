@@ -10,7 +10,7 @@ export function fetchJobSearchResult(callback, searchInfo) {
     }
   })
     .then(function (response) {
-      console.log(response.data)
+      console.log('jobSearchResult', response.data)
       callback(response.data)
     })
     .catch(function (error) {
@@ -27,7 +27,7 @@ export function fetchCompanySearchResult(callback, searchInfo) {
     }
   })
     .then(function (response) {
-      console.log(response.data)
+      console.log('companySearchResult', response.data)
       callback(response.data)
     })
     .catch(function (error) {

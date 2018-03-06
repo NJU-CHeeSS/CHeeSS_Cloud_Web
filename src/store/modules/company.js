@@ -31,7 +31,7 @@ const actions = {
 
   fetchCompanyJobs({commit}, companyId) {
     companyApi.fetchCompanyJobs(data => {
-      commit('saveCompanyJobs', data.jobList)
+      commit('saveCompanyJobs', data)
     }, companyId)
   },
 
@@ -50,9 +50,10 @@ const actions = {
 
   fetchCompanyRank({commit, state}) {
     let industry = state.companyInfo === null ? null : state.companyInfo.industry
+    let firstIndustry = industry.split('/')[0]
     companyApi.fetchCompanyRank(data => {
       commit('saveCompanyRank', data)
-    }, industry)
+    }, firstIndustry)
   },
 
   fetchCompanySalary({commit}, companyId) {
