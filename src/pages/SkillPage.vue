@@ -35,12 +35,11 @@
     methods: {},
     beforeRouteEnter(to, from, next) {
       store.dispatch('skill/fetchSkillInfo',
-//        {
-//        searchInfo: {
-//          jobType: ''
-//        }
-//      }
-      )
+        {
+          searchInfo: {
+            jobType: '物流'
+          }
+        })
       next(true)
     }
   }

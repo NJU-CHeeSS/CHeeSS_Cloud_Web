@@ -195,10 +195,10 @@
         'fetchSkillInfo'
       ]),
       handleSearch() {
-        // console.log(this.chosenJobType)
+        console.log(this.chosenJobType[1])
 
         let searchInfo = {
-          jobType: this.jobType,
+          jobType: this.chosenJobType[1],
         }
         this.fetchSkillInfo({
           searchInfo: searchInfo

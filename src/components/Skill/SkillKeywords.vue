@@ -26,21 +26,9 @@
       DivHeader,
       SingleSkillKeyword
     },
+    props: ['keywords'],
     data() {
       return {}
-    },
-    computed: {
-      ...mapState('skill', {
-        keywords: state => state.keywords,
-      })
-    },
-    methods: {
-      ...mapActions('skill', [
-        'fetchSkillInfo'
-      ])
-    },
-    created() {
-      this.fetchSkillInfo()
     }
   }
 </script>

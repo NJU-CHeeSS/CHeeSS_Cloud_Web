@@ -2,8 +2,8 @@
 
   <div class="skill-analyse-wrapper">
 
-    <skill-keywords></skill-keywords>
-    <skill-distribution></skill-distribution>
+    <skill-keywords :keywords="keywords"></skill-keywords>
+    <skill-distribution :keywords="keywords"></skill-distribution>
   </div>
 
 </template>
@@ -18,6 +18,7 @@
       SkillKeywords,
       SkillDistribution
     },
+    props: ['keywords'],
     data() {
       return {}
     },

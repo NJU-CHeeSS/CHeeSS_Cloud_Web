@@ -2,7 +2,7 @@
 
   <div class="skill-wrapper">
     <div-header :header="'技能要求'"></div-header>
-    <skill-chart v-if="keywords.length !== 0" :keywords="keywords"></skill-chart>
+    <bar-chart v-if="keywords.length !== 0" :x="list.x" :y="list.y"></bar-chart>
   </div>
 
 </template>
@@ -10,27 +10,34 @@
 <script>
 
   import DivHeader from '../Util/DivHeader.vue'
-  import SkillChart from '../Chart/skillChart.vue'
-  import {store} from '../../main'
-  import {mapState} from 'vuex'
+  import BarChart from '../Chart/barChart.vue'
 
   export default {
     name: 'skill-distribution',
     components: {
       DivHeader,
-      SkillChart
+      BarChart
     },
+    props: ['keywords'],
     computed: {
-      ...mapState('skill', {
-        keywords: state => state.keywords
-      })
+      list: {
+        get: function () {
+          let x = []
+          let y = []
+          this.keywords.forEach((keywords, index) => {
+            x.push(keywords.keywords)
+            y.push(keywords.figure)
+          })
+
+          let temp = {}
+          temp.x = x
+          temp.y = y
+          return temp
+        }
+      }
     },
     data() {
       return {}
-    },
-    methods: {},
-    beforeRouteEnter(to, from, next) {
-      store.dispatch('fetchSkillInfo').then(next(true))
     }
   }
 </script>

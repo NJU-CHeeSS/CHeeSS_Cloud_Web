@@ -7,11 +7,11 @@ const state = {
 
 // actions
 const actions = {
-  fetchSkillInfo({commit}) {
+  fetchSkillInfo({commit}, {searchInfo}) {
     skillApi.fetchSkillInfo(data => {
       commit('saveSkillInfo', data.keywords)
       console.log(data.keywords)
-    })
+    }, searchInfo)
   }
 }
 
