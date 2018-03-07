@@ -13,7 +13,7 @@ const state = {
   currentPage: 1,
   currentJob: {},
   relateJobs: [],
-  compareResult: {}
+  compareResult: null
 }
 
 // actions 可异步

@@ -19,7 +19,7 @@
     watch: {
       // 如果路由有变化，会再次执行该方法
       '$route': 'setEchart',
-      y(oldY, newY) {
+      average(oldY, newY) {
         this.setEchart()
       }
     },
@@ -42,7 +42,9 @@
           },
           color: ['#4e7ede', '#5689f2', '#8DC6FF'],
           xAxis: {
-            data: this.x
+            data: this.x.map(data => {
+              return [data.slice(0, data.length / 2), '\n', data.slice(data.length / 2)].join('')
+            })
           },
           yAxis: {},
           legend: {

@@ -1,16 +1,16 @@
 import * as treatmentApi from '../../api/treatment'
 
 const state = {
-  treatment: ''
+  treatment: null
 }
 
 // actions
 const actions = {
-  fetchTreatmentInfo({commit}) {
+  fetchTreatmentInfo({commit}, {searchInfo}) {
     treatmentApi.fetchTreatmentInfo(data => {
       commit('saveTreatmentInfo', data)
       console.log(data)
-    })
+    }, searchInfo)
   }
 }
 

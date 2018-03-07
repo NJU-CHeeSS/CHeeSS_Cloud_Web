@@ -46,7 +46,9 @@
           },
           color: ['#4e7ede'],
           xAxis: {
-            data: this.x
+            data: this.x.map(data => {
+              return [data.slice(0, data.length / 2), '\n', data.slice(data.length / 2)].join('')
+            })
           },
           yAxis: {},
           series: [{

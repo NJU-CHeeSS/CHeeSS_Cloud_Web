@@ -12,7 +12,7 @@
         </el-cascader>
       </el-collapse-item>
       <el-collapse-item title="地点" name="2">
-        <el-select v-model="city" placeholder="请选择" @change="handleSearch">
+        <el-select v-model="chosenCity" placeholder="请选择" @change="handleSearch">
           <el-option
             v-for="item in cities"
             :key="item.value"
@@ -41,16 +41,16 @@
     },
     data() {
       return {
-        city: '上海',
+        chosenCity: '上海',
         activePanel: ['1', '2'],
         cities: [{
-          value: '选项1',
+          value: '上海',
           label: '上海'
         }, {
-          value: '选项2',
+          value: '北京',
           label: '北京'
         }, {
-          value: '选项3',
+          value: '南京',
           label: '南京'
         }],
         chosenJobType: ['按职位', '物流'],
@@ -214,11 +214,9 @@
         'fetchTreatmentInfo'
       ]),
       handleSearch() {
-        // console.log(this.chosenJobType)
-
         let searchInfo = {
-          jobType: this.jobType,
-          city: this.city
+          jobType: this.chosenJobType[1],
+          city: this.chosenCity
         }
         this.fetchTreatmentInfo({
           searchInfo: searchInfo
