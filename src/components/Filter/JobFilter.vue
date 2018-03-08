@@ -295,7 +295,7 @@
         let searchInfo = {
           order: this.filterOrder,
           page: this.currentPage,
-          conditionBean: this.filterInfo
+          conditionBean: filterInfo
         }
         this.fetchJobList({
           searchInfo: searchInfo,

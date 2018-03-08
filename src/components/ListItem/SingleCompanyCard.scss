@@ -19,6 +19,9 @@
     p {
       font-size: 14px;
       color: $grey;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 

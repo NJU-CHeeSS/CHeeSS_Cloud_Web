@@ -31,7 +31,10 @@ button {
     padding: 10px; }
     .single-company-card-wrapper .card-header p {
       font-size: 14px;
-      color: #595959; }
+      color: #595959;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
   .single-company-card-wrapper .img-wrapper {
     height: 120px !important;
     width: 100%;

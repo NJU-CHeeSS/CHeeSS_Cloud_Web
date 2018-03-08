@@ -36,7 +36,7 @@ export function fetchCompanyJobs(callback, companyId) {
 export function fetchRelatedCompanies(callback, companyId) {
   axios.get(`/companies/${companyId}/relate`)
     .then(function (response) {
-      console.log('relatedCompanies', response.data)
+      console.error('relatedCompanies', response.data)
       callback(response.data)
     })
     .catch(function (error) {

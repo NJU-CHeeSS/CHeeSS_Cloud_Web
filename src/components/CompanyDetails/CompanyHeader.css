@@ -22,7 +22,7 @@ button {
 .header-wrapper {
   display: inline-block;
   width: 100%;
-  height: 120px;
+  height: auto;
   top: -6px;
   background-color: #ffffff; }
   .header-wrapper .up-wrapper {
@@ -37,14 +37,15 @@ button {
       width: 120px;
       height: 120px; }
   .header-wrapper .company-info {
-    display: inline-block;
-    padding-top: 9px;
-    padding-left: 20px; }
+    padding-top: 9px; }
     .header-wrapper .company-info p {
+      display: inline-block;
+      margin-left: 20px;
       font-size: 24px;
       font-weight: 400;
       color: #595959; }
     .header-wrapper .company-info span {
+      display: inline-block;
       font-size: 12px;
       color: #595959; }
   .header-wrapper .follow-wrapper {
@@ -77,8 +78,7 @@ button {
   .header-wrapper .down-wrapper {
     display: inline-block;
     width: 100%;
-    height: auto;
-    padding-top: 20px; }
+    height: auto; }
     .header-wrapper .down-wrapper .tab-wrapper {
       display: block;
       text-align: left; }
