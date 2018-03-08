@@ -49,7 +49,7 @@
 
 <script>
   import {Button, Table, TableColumn} from 'element-ui'
-  import {mapState} from 'vuex'
+  import {mapState, mapMutations} from 'vuex'
   import MultipleBarChart from '../Chart/multipleBarChart.vue'
 
   export default {
@@ -62,25 +62,25 @@
     },
     props: ['compareResult'],
     data() {
-//      let company1Keywords = []
-//      this.compareResult.company1Keywords.forEach((keywords, index) => {
-//        company1Keywords.push(keywords + ' ')
-//      })
-//
-//      let company2Keywords = []
-//      this.compareResult.company2Keywords.forEach((keywords, index) => {
-//        company2Keywords.push(keywords + ' ')
-//      })
-//
-//      let job1Keywords = []
-//      this.compareResult.job1Keywords.forEach((keywords, index) => {
-//        job1Keywords.push(keywords + ' ')
-//      })
-//
-//      let job2Keywords = []
-//      this.compareResult.job2Keywords.forEach((keywords, index) => {
-//        job2Keywords.push(keywords + ' ')
-//      })
+      let company1Keywords = []
+      this.compareResult.company1Keywords.forEach((keywords, index) => {
+        company1Keywords.push(keywords + ' ')
+      })
+
+      let company2Keywords = []
+      this.compareResult.company2Keywords.forEach((keywords, index) => {
+        company2Keywords.push(keywords + ' ')
+      })
+
+      let job1Keywords = []
+      this.compareResult.job1Keywords.forEach((keywords, index) => {
+        job1Keywords.push(keywords + ' ')
+      })
+
+      let job2Keywords = []
+      this.compareResult.job2Keywords.forEach((keywords, index) => {
+        job2Keywords.push(keywords + ' ')
+      })
 
       return {
         x: [
@@ -107,8 +107,8 @@
           },
           {
             item: '公司关键词',
-            job1: this.compareResult.company1Keywords, // company1Keywords,
-            job2: this.compareResult.company2Keywords // company2Keywords
+            job1: company1Keywords,
+            job2: company2Keywords
           },
           {
             item: '职位性质',
@@ -127,15 +127,19 @@
           },
           {
             item: '职位关键词',
-            job1: this.compareResult.job1Keywords, // job1Keywords,
-            job2: this.compareResult.job2Keywords // job2Keywords
+            job1: job1Keywords,
+            job2: job2Keywords
           }
         ]
       }
     },
     methods: {
+      ...mapMutations('job', [
+        'saveCompareResult'
+      ]),
       closeBox() {
         this.$modal.hide('job-compare-modal')
+        this.saveCompareResult(null)
       }
     }
   }

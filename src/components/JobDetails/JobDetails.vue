@@ -49,8 +49,20 @@
           </div>
 
           <div class="section">
-            <span class="introduction-head">职位要求</span>
-            <el-tree :data="data" :props="defaultProps" @node-click=""></el-tree>
+            <span class="introduction-head">学位要求</span>
+            <p class="introduction">{{currentJob.diploma}}</p>
+          </div>
+
+          <div class="section">
+            <span class="introduction-head">工作经历要求</span>
+            <p class="introduction" v-if="currentJob.minExperience !== currentJob.maxExperience">
+              {{currentJob.minExperience}} ~ {{currentJob.maxExperience}} 年</p>
+            <p class="introduction"
+               v-if="currentJob.minExperience === currentJob.maxExperience && currentJob.maxExperience !== 0">
+              至少 {{currentJob.minExperience}} 年</p>
+            <p class="introduction"
+               v-if="currentJob.minExperience === currentJob.maxExperience && currentJob.maxExperience === 0">
+              无</p>
           </div>
 
         </div>
@@ -77,23 +89,7 @@
       elTree: Tree
     },
     data() {
-      return {
-        data: [{
-          label: '学位要求',
-          children: [{
-            label: this.currentJob.diploma
-          }]
-        }, {
-          label: '工作经历要求',
-          children: [{
-            label: this.currentJob.minExperience + '年~' + this.currentJob.maxExperience + '年'
-          }]
-        }],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
-      }
+      return {}
     },
     props: ['currentJob', 'relateJobs'],
 //    computed: {

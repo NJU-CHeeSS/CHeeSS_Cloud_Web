@@ -29,11 +29,12 @@
     methods: {},
     beforeRouteEnter(to, from, next) {
       store.dispatch('company/fetchPopularCompanies')
-      store.dispatch('company/searchCompany', {
-        searchInfo: {
-          keyword: ''
-        }
-      })
+//      store.dispatch('company/searchCompany', {
+//        searchInfo: {
+//          keyword: '上海',
+//          page: 1
+//        }
+//      })
       next(true)
     }
   }

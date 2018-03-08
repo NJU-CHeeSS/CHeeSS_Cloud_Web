@@ -7,7 +7,7 @@
     </div>
 
     <div class="info-wrapper">
-      <p>{{singleCompany.name}}</p>
+      <p @click="goToCompanyDetails">{{singleCompany.name}}</p>
       <button>关注</button>
       <br/>
       <span>{{singleCompany.industry}}</span>
@@ -22,13 +22,13 @@
 
 <script>
 
-  import { router } from '../../main'
-  import { mapMutations } from 'vuex'
+  import {router} from '../../main'
+  import {mapMutations} from 'vuex'
 
   export default {
     name: 'single-company-related',
     components: {},
-    data () {
+    data() {
       return {}
     },
     props: ['singleCompany'],
@@ -36,9 +36,9 @@
       ...mapMutations('company', [
         'saveCurrentShowing'
       ]),
-      goToCompanyDetails () {
+      goToCompanyDetails() {
         this.saveCurrentShowing('companyDetails')
-        router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
+        router.push({name: 'CompanyDetailsPage', params: {companyId: this.singleCompany.companyId}})
       }
     }
   }

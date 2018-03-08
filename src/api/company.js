@@ -48,8 +48,8 @@ export function searchCompany(callback, searchInfo) {
   axios.get('/companies/search', {
     params: {
       keyword: searchInfo.keyword,
-      size: 48,
-      page: 1
+      size: 10,
+      page: searchInfo.page
     }
   })
     .then(function (response) {

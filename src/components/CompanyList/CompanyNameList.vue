@@ -7,15 +7,18 @@
       <div class="input-wrapper">
         <search-input></search-input>
       </div>
-      <div class="letters-wrapper">
-        <letter-filter v-for="item in letters" :key="item" :letter="item"></letter-filter>
+      <!--<div class="letters-wrapper">-->
+      <!--<letter-filter v-for="item in letters" :key="item" :letter="item"></letter-filter>-->
+      <!--</div>-->
+
+      <div class="company-names-wrapper" v-if="searchResult.length !== 0">
+        <el-row :gutter="10">
+          <single-company-name v-for="item in searchResult" :key="item.companyId"
+                               :name="item.name" :id="item.companyId"></single-company-name>
+        </el-row>
       </div>
 
-      <div class="company-names-wrapper">
-        <el-row :gutter="10">
-          <single-company-name v-for="item in searchResult" :key="item.companyId" :name="item.name"></single-company-name>
-
-        </el-row>
+      <div v-else class="empty-result">还没有搜索结果
       </div>
 
     </div>
@@ -57,8 +60,7 @@
           , 'V', 'W', 'X', 'Y', 'Z', '#']
       }
     },
-    methods: {
-    }
+    methods: {}
   }
 </script>
 

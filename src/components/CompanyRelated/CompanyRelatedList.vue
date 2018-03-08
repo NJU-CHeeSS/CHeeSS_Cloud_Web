@@ -3,7 +3,7 @@
   <div class="related-list-wrapper">
 
     <div-header :header="'相关公司推荐'"></div-header>
-    <single-company-related v-for="item in companyList" :key="item.companyId"
+    <single-company-related v-for="item in relatedCompanies" :key="item.companyId"
                             :singleCompany="item"></single-company-related>
 
   </div>
@@ -22,11 +22,11 @@
       DivHeader,
       SingleCompanyRelated
     },
-//    computed: {
-//      ...mapState('company', {
-//        relatedCompanies: state => state.relatedCompanies
-//      })
-//    },
+    computed: {
+      ...mapState('company', {
+        relatedCompanies: state => state.relatedCompanies
+      })
+    },
     props: ['companyList'],
     data() {
       return {}

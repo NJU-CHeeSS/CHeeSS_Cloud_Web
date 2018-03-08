@@ -20,14 +20,14 @@
     data() {
       return {}
     },
-    props: ['name'],
+    props: ['name', 'id'],
     methods: {
       ...mapMutations('company', [
         'saveCurrentShowing'
       ]),
       goToCompanyDetailsPage() {
         this.saveCurrentShowing('companyDetails')
-        router.push({name: 'CompanyDetailsPage', params: {companyId: 1}})
+        router.push({name: 'CompanyDetailsPage', params: {companyId: this.id}})
       }
     }
   }

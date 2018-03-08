@@ -56,9 +56,11 @@
   }
 
   .empty-result {
-    padding-top: 40px;
+    padding-top: 30px;
     text-align: center;
     color: $grey;
+    font-size: 14px;
+    font-weight: 300;
   }
 
 }

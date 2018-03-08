@@ -40,6 +40,12 @@ button {
       width: 100%;
       border-bottom: solid 1px #e8e8e8; }
     .list-wrapper .list-body .company-names-wrapper {
-      padding-top: 20px; }
+      padding-top: 20px;
+      font-size: 14px; }
+  .list-wrapper .empty-result {
+    padding: 20px 0 0 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #595959; }
 
 /*# sourceMappingURL=CompanyNameList.css.map */

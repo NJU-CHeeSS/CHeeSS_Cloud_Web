@@ -13,13 +13,14 @@
 
 <script>
 
-  import {Input} from 'element-ui'
+  import {Input, Message} from 'element-ui'
   import {mapActions} from 'vuex'
 
   export default {
     name: 'search-input',
     components: {
-      elInput: Input
+      elInput: Input,
+      Message
     },
     data() {
       return {
@@ -32,12 +33,17 @@
         'searchCompany'
       ]),
       handleSearch() {
-        console.log(this.input)
-        this.searchCompany({
-          searchInfo: {
-            keyword: this.input
-          }
-        })
+        if (this.input.length === 0) {
+          Message.warning('请输入搜索内容！')
+        } else {
+          console.log(this.input)
+          this.searchCompany({
+            searchInfo: {
+              keyword: this.input,
+              page: 1
+            }
+          })
+        }
       }
     }
   }

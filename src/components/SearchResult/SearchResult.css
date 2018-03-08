@@ -53,8 +53,10 @@ button {
     .search-result-wrapper .back-button :hover {
       color: #5689f2; }
   .search-result-wrapper .empty-result {
-    padding-top: 40px;
+    padding-top: 30px;
     text-align: center;
-    color: #595959; }
+    color: #595959;
+    font-size: 14px;
+    font-weight: 300; }
 
 /*# sourceMappingURL=SearchResult.css.map */

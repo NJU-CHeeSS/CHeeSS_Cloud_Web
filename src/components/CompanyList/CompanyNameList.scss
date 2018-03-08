@@ -32,10 +32,15 @@
 
     .company-names-wrapper {
       padding-top: 20px;
+      font-size: 14px;
     }
-
 
   }
 
-
+  .empty-result {
+    padding: 20px 0 0 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: $grey;
+  }
 }

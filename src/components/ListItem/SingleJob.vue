@@ -9,7 +9,12 @@
       <span class="place">{{singleJob.location}}</span>
       <br>
       <span
-        class="info">* 学历要求：{{singleJob.diploma}}，工作经验要求：{{singleJob.minExperience}} ~ {{singleJob.maxExperience}} 年</span>
+        class="info">* 学历要求：{{singleJob.diploma}}，</span>
+      <span class="info" v-if="singleJob.minExperience !== singleJob.maxExperience">工作经验要求：{{singleJob.minExperience}} ~ {{singleJob.maxExperience}} 年</span>
+      <span class="info"
+            v-if="singleJob.minExperience === singleJob.maxExperience && singleJob.maxExperience !== 0">工作经验要求：至少 {{singleJob.minExperience}} 年</span>
+      <span class="info"
+            v-if="singleJob.minExperience === singleJob.maxExperience && singleJob.maxExperience === 0">工作经验要求：无</span>
 
     </div>
 
@@ -40,7 +45,7 @@
       ]),
       goToJobDetailsPage() {
         this.saveCurrentJob(this.singleJob)
-        router.push({name: 'JobDetailsPage', params: {jobId: 1}})
+        router.push({name: 'JobDetailsPage', params: {jobId: this.singleJob.jobId}})
       }
     }
   }
