@@ -33,9 +33,7 @@ export function signUp(callback, body) {
 export function currentUser(callback, token) {
   axios.get('/users',
     {
-      params: {
-        token: token
-      }
+      headers: {'Authorization': token}
     })
     .then(function (response) {
       callback(response.data)

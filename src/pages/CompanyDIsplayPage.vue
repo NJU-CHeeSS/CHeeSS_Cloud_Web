@@ -14,6 +14,7 @@
   import Layout from '../components/Layout/Layout.vue'
   import CompanyCardList from '../components/CompanyList/CompanyCardList.vue'
   import CompanyNameList from '../components/CompanyList/CompanyNameList.vue'
+  import {Message} from 'element-ui'
   import {store} from '../main'
 
   export default {
@@ -21,13 +22,21 @@
     components: {
       Layout,
       CompanyCardList,
-      CompanyNameList
+      CompanyNameList,
+      Message
     },
     data() {
       return {}
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
       store.dispatch('company/fetchPopularCompanies')
 //      store.dispatch('company/searchCompany', {
 //        searchInfo: {

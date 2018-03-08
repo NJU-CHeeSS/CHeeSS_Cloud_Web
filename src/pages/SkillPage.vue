@@ -14,6 +14,7 @@
   import Layout from '../components/Layout/Layout.vue'
   import SkillFilter from '../components/Filter/SkillFilter.vue'
   import SkillAnalyse from '../components/Skill/SkillAnalyse.vue'
+  import {Message} from 'element-ui'
   import {mapState} from 'vuex'
   import {router, store} from '../main'
 
@@ -22,7 +23,8 @@
     components: {
       Layout,
       SkillFilter,
-      SkillAnalyse
+      SkillAnalyse,
+      Message
     },
     data() {
       return {}
@@ -34,6 +36,13 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
       store.dispatch('skill/fetchSkillInfo',
         {
           searchInfo: {

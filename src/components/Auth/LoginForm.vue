@@ -6,7 +6,7 @@
 
       <el-form :model="LoginForm" :rules="rules" ref="LoginForm" labelPosition="top">
 
-        <el-form-item label="邮箱账号" prop="username">
+        <el-form-item label="用户名" prop="username">
           <el-input v-model="LoginForm.username"></el-input>
         </el-form-item>
 
@@ -101,9 +101,10 @@
               body: this.LoginForm,
               onSuccess: (success) => {
                 Message({
-                  message: '欢迎，' + this.user + '！',
+                  message: '欢迎，' + success + '！',
                   type: 'success'
                 })
+                router.push({name: 'IndexPage'})
               },
               onError: (error) => {
                 Message.error(error)

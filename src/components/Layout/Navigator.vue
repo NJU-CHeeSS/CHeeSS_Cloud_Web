@@ -27,18 +27,23 @@
 
         <div class="button-wrapper">
 
-          <el-button type="text" @click="goToLoginPage">登录</el-button>
-          <el-button type="text" @click="goToRegisterPage">注册</el-button>
+          <div v-if="user === null">
+            <el-button type="text" @click="goToLoginPage">登录</el-button>
+            <el-button type="text" @click="goToRegisterPage">注册</el-button>
+          </div>
 
-          <el-dropdown placement="bottom-start" @command="handleCommand">
-            <span class="el-dropdown-link">用户<i class="el-icon-caret-bottom el-icon--right"></i>
+          <div v-else>
+            <el-dropdown placement="bottom-start" @command="handleCommand">
+            <span class="el-dropdown-link">{{user.username}}<i class="el-icon-caret-bottom el-icon--right"></i>
             </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="UserHomePage">个人主页</el-dropdown-item>
-              <el-dropdown-item command="AccountPage">修改资料</el-dropdown-item>
-              <el-dropdown-item command="signOut">退出账号</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="UserHomePage">个人主页</el-dropdown-item>
+                <el-dropdown-item command="AccountPage">修改资料</el-dropdown-item>
+                <el-dropdown-item command="signOut">退出账号</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+
         </div>
       </div>
 
@@ -76,6 +81,9 @@
 //      ...mapState('search', {
 //        keyword: state => state.keyword
 //      })
+      ...mapState('auth', {
+        user: state => state.user
+      }),
       ...mapState('job', {
         compareResult: state => state.compareResult
       })

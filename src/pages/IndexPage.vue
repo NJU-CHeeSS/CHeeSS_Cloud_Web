@@ -27,7 +27,8 @@
   import Layout from '../components/Layout/Layout.vue'
   import Banner from '../components/Banner/Banner.vue'
   import IndexCard from '../components/Card/IndexCard.vue'
-  import { Row } from 'element-ui'
+  import {Row, Message} from 'element-ui'
+  import {router, store} from '../main'
 
   export default {
     name: 'index-page',
@@ -35,9 +36,10 @@
       Layout,
       Banner,
       IndexCard,
+      Message,
       elRow: Row,
     },
-    data () {
+    data() {
       let reward = 'reward.jpg'
       return {
         photoNames: ['job.jpg', 'company.jpg', 'reward.jpg', 'skill.jpg'],
@@ -46,9 +48,19 @@
       }
     },
     methods: {
-      goToDetailPage () {
+      goToDetailPage() {
 
       }
+    },
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
+      next(true)
     }
   }
 </script>

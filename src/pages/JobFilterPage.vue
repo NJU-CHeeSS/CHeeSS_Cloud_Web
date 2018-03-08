@@ -42,6 +42,13 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
       store.dispatch('job/fetchJobList', {
         searchInfo: {
           order: '发布日期',

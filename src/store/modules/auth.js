@@ -22,7 +22,7 @@ const actions = {
       if (data.result === false) {
         onError(data.message)
       } else {
-        localStorage.setItem('token', data.token)
+        localStorage.setItem('token', data.result)
         console.log(data)
         dispatch('fetchUser', {onSuccess})
       }
@@ -32,9 +32,9 @@ const actions = {
   fetchUser({commit, state}, {onSuccess, onError}) {
     let token = localStorage.getItem('token')
     authApi.currentUser(data => {
-      console.log(data)
-      commit('saveUser', data.user.user)
-      if (data.message === 'success') {
+      // console.error('fetchUser', data)
+      commit('saveUser', data)
+      if (data !== null && data !== undefined) {
         if (onSuccess) {
           onSuccess(state.user.username)
         }
@@ -44,8 +44,16 @@ const actions = {
     }, token)
   },
 
+  refreshUser({dispatch}, {onSuccess, onError}) {
+    const token = localStorage.getItem('token')
+    if (token !== null) {
+      dispatch('fetchUser', {onSuccess, onError})
+    }
+  },
+
+
   editUserInfo({state}, {userInfo, onSuccess, onError}) {
-    let userId = state.user ? state.user.id : null
+    let userId = state.user ? state.user.userId : null
     userInfo.userId = userId
     authApi.editUserInfo((data => {
       if (data.message === 'success') {
@@ -60,7 +68,11 @@ const actions = {
 }
 
 // mutations 必须同步
-const mutations = {}
+const mutations = {
+  'saveUser'(state, user) {
+    state.user = user
+  }
+}
 
 export default {
   namespaced: true,

@@ -14,6 +14,7 @@
 <script>
   import Layout from '../components/Layout/Layout.vue'
   import JobDetails from '../components/JobDetails/JobDetails.vue'
+  import {Message} from 'element-ui'
   import {store} from '../main'
   import {mapState} from 'vuex'
 
@@ -21,7 +22,8 @@
     name: 'job-details-page',
     components: {
       Layout,
-      JobDetails
+      JobDetails,
+      Message
     },
     data() {
       return {}
@@ -35,6 +37,13 @@
     methods: {},
     beforeRouteEnter(to, from, next) {
       console.log(to.params.jobId)
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
       store.dispatch('job/fetchJobInfo', to.params.jobId)
       store.dispatch('job/fetchRelateJobs', to.params.jobId)
       next(true)

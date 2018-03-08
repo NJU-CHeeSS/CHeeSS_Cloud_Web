@@ -14,16 +14,30 @@
 <script>
   import Layout from '../components/Layout/Layout.vue'
   import UserInfo from '../components/Admin/UserInfo.vue'
+  import {Row, Message} from 'element-ui'
+  import {router, store} from '../main'
 
   export default {
     name: 'user-home-page',
     components: {
       Layout,
-      UserInfo
+      UserInfo,
+      Message
     },
-    data () {
+    data() {
       return {}
     },
-    methods: {}
+    methods: {},
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+          router.push({name: 'IndexPage'})
+        }
+      })
+      next(true)
+    }
   }
 </script>

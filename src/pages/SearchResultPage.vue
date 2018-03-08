@@ -12,6 +12,7 @@
 <script>
   import Layout from '../components/Layout/Layout'
   import SearchResult from '../components/SearchResult/SearchResult'
+  import {Message} from 'element-ui'
   import {router, store} from '../main'
   import {mapMutations, mapState} from 'vuex'
 
@@ -19,7 +20,8 @@
     name: 'search-result-page',
     components: {
       Layout,
-      SearchResult
+      SearchResult,
+      Message
     },
     data() {
       return {}
@@ -32,6 +34,13 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
       store.commit('search/saveKeyword', to.params.keyword)
       store.dispatch('search/fetchSearchResult', {
         searchInfo: {
