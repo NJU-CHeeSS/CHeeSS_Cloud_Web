@@ -62,6 +62,23 @@ export function editUserInfo(callback, userInfo) {
     })
 }
 
+export function modifyPassword(callback, passwordInfo) {
+  axios.post('/users/password',
+    passwordInfo,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': passwordInfo.token
+      }
+    })
+    .then(function (response) {
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
 export function followCompany(callback, companyId) {
   axios.get('/users/unfollow', {
     params: {

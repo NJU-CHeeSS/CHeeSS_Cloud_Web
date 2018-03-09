@@ -213,7 +213,11 @@
       ...mapActions('treatment', [
         'fetchTreatmentInfo'
       ]),
+      ...mapMutations('treatment', [
+        'saveTreatmentInfo'
+      ]),
       handleSearch() {
+        this.saveTreatmentInfo(null)
         let searchInfo = {
           jobType: this.chosenJobType[1],
           city: this.chosenCity

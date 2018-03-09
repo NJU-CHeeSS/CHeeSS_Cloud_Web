@@ -1,30 +1,34 @@
 <template>
 
   <div class="salary-analyse-wrapper">
-    <salary-city-average :average="treatment.cityAverage"
-                         :low="treatment.cityLow"
-                         :high="treatment.cityHigh"></salary-city-average>
-    <salary-country-average :average="treatment.countryAverage"
-                            :low="treatment.countryLow"
-                            :high="treatment.countryHigh"></salary-country-average>
+    <div v-if="treatment!==null">
+      <salary-city-average :average="treatment.cityAverage"
+                           :low="treatment.cityLow"
+                           :high="treatment.cityHigh"></salary-city-average>
+      <salary-country-average :average="treatment.countryAverage"
+                              :low="treatment.countryLow"
+                              :high="treatment.countryHigh"></salary-country-average>
 
-    <salary-distribution :header="'薪资范围分布'"></salary-distribution>
-    <bar-chart :x="distribution.x" :y="distribution.y"></bar-chart>
+      <salary-distribution :header="'薪资范围分布'"></salary-distribution>
+      <bar-chart :x="distribution.x" :y="distribution.y"></bar-chart>
 
-    <salary-distribution :header="'地区薪资分布'"></salary-distribution>
-    <multiple-bar-chart :x="area.x" :average="area.average" :low="area.low" :high="area.high"></multiple-bar-chart>
+      <salary-distribution :header="'地区薪资分布'"></salary-distribution>
+      <multiple-bar-chart :x="area.x" :average="area.average" :low="area.low" :high="area.high"></multiple-bar-chart>
 
-    <salary-distribution :header="'不同企业规模薪资分布'"></salary-distribution>
-    <multiple-bar-chart :x="size.x" :average="size.average" :low="size.low" :high="size.high"></multiple-bar-chart>
+      <salary-distribution :header="'不同企业规模薪资分布'"></salary-distribution>
+      <multiple-bar-chart :x="size.x" :average="size.average" :low="size.low" :high="size.high"></multiple-bar-chart>
 
-    <salary-distribution :header="'不同学历薪资分布'"></salary-distribution>
-    <multiple-bar-chart :x="education.x" :average="education.average" :low="education.low"
-                        :high="education.high"></multiple-bar-chart>
+      <salary-distribution :header="'不同学历薪资分布'"></salary-distribution>
+      <multiple-bar-chart :x="education.x" :average="education.average" :low="education.low"
+                          :high="education.high"></multiple-bar-chart>
 
-    <salary-distribution :header="'不同工作年限薪资分布'"></salary-distribution>
-    <multiple-bar-chart :x="experience.x" :average="experience.average" :low="experience.low"
-                        :high="experience.high"></multiple-bar-chart>
-
+      <salary-distribution :header="'不同工作年限薪资分布'"></salary-distribution>
+      <multiple-bar-chart :x="experience.x" :average="experience.average" :low="experience.low"
+                          :high="experience.high"></multiple-bar-chart>
+    </div>
+    <div v-else :style="{textAlign: 'center', padding: '70px'}">
+      <img src="../../assets/img/loading.gif" width="80"/>
+    </div>
   </div>
 
 </template>
@@ -35,6 +39,7 @@
   import MultipleBarChart from '../Chart/multipleBarChart.vue'
   import SalaryCountryAverage from './SalaryCountryAverage.vue'
   import SalaryDistribution from './SalaryDistribution.vue'
+  import {Loading} from 'element-ui'
   import {mapState, mapActions} from 'vuex'
 
   export default {

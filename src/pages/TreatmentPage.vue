@@ -3,7 +3,7 @@
     <layout>
       <div class="container">
         <salary-filter></salary-filter>
-        <salary-analyse v-if="treatment!==null" :treatment="treatment"></salary-analyse>
+        <salary-analyse :treatment="treatment"></salary-analyse>
       </div>
     </layout>
   </div>

@@ -59,7 +59,6 @@ const actions = {
   editUserInfo({state}, {userInfo, onSuccess, onError}) {
     let token = localStorage.getItem('token')
     userInfo.token = token
-    console.error(userInfo)
     authApi.editUserInfo((data => {
       if (data.result === true) {
         if (onSuccess) {
@@ -78,6 +77,20 @@ const actions = {
     if (onSuccess) {
       onSuccess(username)
     }
+  },
+
+  modifyPassword({commit, rootState}, {passwordInfo, onSuccess, onError}) {
+    let token = localStorage.getItem('token')
+    passwordInfo.token = token
+    authApi.modifyPassword(data => {
+      if (data.result === true) {
+        if (onSuccess) {
+          onSuccess('修改成功！')
+        }
+      } else {
+        onError(data.message)
+      }
+    }, passwordInfo)
   },
 
   followCompany({commit}, {companyId, onSuccess, onError}) {
