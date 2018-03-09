@@ -124,11 +124,11 @@ const actions = {
     }, companyInfo)
   },
 
-  applyJob({commit},{jobInfo, onSuccess, onError}) {
+  applyJob({commit}, {jobInfo, onSuccess, onError}) {
     jobInfo.token = localStorage.getItem('token')
     authApi.applyJob(data => {
-      if (data.message !== 'Success') {
-        onError(data.result)
+      if (data.result !== true) {
+        onError(data.message)
       } else {
         onSuccess(data.result)
       }

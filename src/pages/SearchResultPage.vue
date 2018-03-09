@@ -2,7 +2,7 @@
   <div class="body-wrapper">
     <layout>
       <div class="container">
-        <search-result v-if="companySearchResult || jobSearchResult"></search-result>
+        <search-result></search-result>
       </div>
     </layout>
   </div>

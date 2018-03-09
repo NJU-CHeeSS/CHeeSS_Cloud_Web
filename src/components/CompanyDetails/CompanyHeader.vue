@@ -34,7 +34,7 @@
 
 <script>
 
-  import {router, store} from '../../main.js'
+  import {router} from '../../main.js'
   import {mapMutations, mapState, mapActions} from 'vuex'
   import {Message} from 'element-ui'
 
@@ -47,11 +47,11 @@
     computed: {
       ...mapState('company', {
         currentShowing: state => state.currentShowing,
-        companyInfo: state => state.companyInfo,
-        user: state => state.user
+        companyInfo: state => state.companyInfo
       }),
       ...mapState('auth', {
-        checkFollow: state => state.checkFollow
+        checkFollow: state => state.checkFollow,
+        user: state => state.user
       })
     },
     methods: {
@@ -83,7 +83,6 @@
           let companyInfo = {
             companyId: this.companyInfo.companyId
           }
-          console.log(companyInfo)
           this.followCompany({
             companyInfo: companyInfo,
             onSuccess: (success) => {

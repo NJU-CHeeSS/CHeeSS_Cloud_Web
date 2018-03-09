@@ -2,11 +2,13 @@
   <div>
     <div class="list-wrapper" v-if="followCompanies.length !== 0">
       <div-header :header="'我关注的公司'"></div-header>
-      <div class="company-names-wrapper">
-        <el-row :gutter="10">
-          <single-company-name v-for="item in followCompanies" :key="item.companyId"
-                               :name="item.name" :id="item.companyId"></single-company-name>
-        </el-row>
+      <div class="list-body">
+        <div class="company-names-wrapper">
+          <el-row :gutter="10">
+            <single-company-name v-for="item in followCompanies" :key="item.companyId"
+                                 :name="item.name" :id="item.companyId"></single-company-name>
+          </el-row>
+        </div>
       </div>
     </div>
 
@@ -29,6 +31,9 @@
         </div>
         <div v-if="searchResult !== null && searchResult.length === 0" class="empty-result">
           暂无搜索结果，换个关键词试试～
+        </div>
+        <div v-if="searchResult === null && searchResult !== ['']" :style="{textAlign: 'center'}">
+          <img src="../../assets/img/loading.gif" width="200"/>
         </div>
       </div>
 
