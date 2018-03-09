@@ -48,7 +48,7 @@
 
     </div>
 
-    <job-compare-modal v-if="compareResult !== null" :compareResult="compareResult"></job-compare-modal>
+    <job-compare-modal></job-compare-modal>
 
   </div>
 </template>
