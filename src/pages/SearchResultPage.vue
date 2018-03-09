@@ -34,6 +34,7 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.commit('job/savePageType', 'search')
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
         },
@@ -42,7 +43,15 @@
         }
       })
       store.commit('search/saveKeyword', to.params.keyword)
-      store.dispatch('search/fetchSearchResult', {
+      store.dispatch('search/fetchJobSearchResult', {
+        searchInfo: {
+          keyword: to.params.keyword,
+          page: 1
+        },
+        onSuccess: () => {
+        }
+      })
+      store.dispatch('search/fetchCompanySearchResult', {
         searchInfo: {
           keyword: to.params.keyword,
           page: 1

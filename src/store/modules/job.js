@@ -3,7 +3,7 @@ import * as jobApi from '../../api/job'
 const state = {
   pageType: 'filter',
   jobList: [],
-  totalCount: 0,
+  totalCount: null,
   filterOrder: 'date',
   filterInfo: {
     location: '不限',

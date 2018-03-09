@@ -15,7 +15,7 @@
 
         <div class="list-wrapper">
           <company-brief-list v-if="companySearchResult !== null && companySearchResult.length !== 0"
-                              :companyList="companySearchResult"></company-brief-list>
+                              :companyList="companySearchResult" :totalCount="companyTotalCount"></company-brief-list>
           <div v-if="companySearchResult === null" :style="{textAlign: 'center'}">
             <img src="../../assets/img/loading.gif" width="200"/>
           </div>
@@ -31,7 +31,7 @@
 
         <div class="list-wrapper">
           <job-list-body v-if="jobSearchResult !== null && jobSearchResult.length !== 0"
-                         :jobList="jobSearchResult"></job-list-body>
+                         :jobList="jobSearchResult" :totalCount="jobTotalCount"></job-list-body>
           <div v-if="jobSearchResult === null" :style="{textAlign: 'center'}">
             <img src="../../assets/img/loading.gif" width="200"/>
           </div>
@@ -72,7 +72,9 @@
       ...mapState('search', {
         companySearchResult: state => state.companySearchResult,
         jobSearchResult: state => state.jobSearchResult,
-        keyword: state => state.keyword
+        keyword: state => state.keyword,
+        jobTotalCount: state => state.jobTotalCount,
+        companyTotalCount: state => state.companyTotalCount
       })
     },
     methods: {

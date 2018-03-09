@@ -4,7 +4,7 @@
       <div class="container">
         <div class="left-wrapper">
           <job-filter></job-filter>
-          <job-list :pageType="'filter'" v-if="jobList!==null" :jobList="jobList" :totalCount="totalCount"></job-list>
+          <job-list :pageType="'filter'" v-if="jobList!==null && totalCount !== null" :jobList="jobList" :totalCount="totalCount"></job-list>
         </div>
         <div class="right-wrapper">
 

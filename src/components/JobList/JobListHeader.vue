@@ -83,7 +83,7 @@
             location: this.filterInfo.location,
             diploma: this.filterInfo.diploma,
             earlyReleaseDate: this.filterInfo.earlyReleaseDate,
-            property: this.filterInfo.property[this.filterInfo.property.length - 1]
+            property: this.filterInfo.property
           }
           this.fetchJobList({
             searchInfo: searchInfo,

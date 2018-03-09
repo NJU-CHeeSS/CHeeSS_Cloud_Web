@@ -89,7 +89,8 @@
     },
     methods: {
       ...mapActions('search', [
-        'fetchSearchResult'
+        'fetchJobSearchResult',
+        'fetchCompanySearchResult'
       ]),
       ...mapActions('auth', [
         'signOut'
@@ -146,13 +147,21 @@
           this.saveKeyword(this.keyword)
           this.saveCompanySearchResult(null)
           this.saveJobSearchResult(null)
-          this.fetchSearchResult({
+          this.fetchJobSearchResult({
             searchInfo: {
               keyword: this.keyword,
               page: 1
             },
             onSuccess: (success) => {
               router.push({name: 'SearchResultPage', params: {keyword: this.keyword}})
+              this.fetchCompanySearchResult({
+                searchInfo: {
+                  keyword: this.keyword,
+                  page: 1
+                },
+                onSuccess: (success) => {
+                }
+              })
             }
           })
         }

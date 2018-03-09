@@ -2,7 +2,7 @@
 
   <div class="job-list-wrapper">
     <job-list-header :pageType="pageType" :totalCount="totalCount"></job-list-header>
-    <job-list-body v-if="jobList!==null" :jobList="jobList"></job-list-body>
+    <job-list-body v-if="jobList!==null" :jobList="jobList" :totalCount="totalCount"></job-list-body>
 
   </div>
 

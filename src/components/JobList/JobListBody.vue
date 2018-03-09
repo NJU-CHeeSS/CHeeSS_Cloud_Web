@@ -6,7 +6,7 @@
     <div class="pagination-wrapper">
       <el-pagination
         layout="prev, pager, next"
-        :total="1000"
+        :total=totalPage
         @current-change="handleCurrentChange">
       </el-pagination>
     </div>
@@ -32,7 +32,9 @@
       Message
     },
     data() {
-      return {}
+      return {
+        totalPage: this.totalCount / 10
+      }
     },
     computed: {
       ...mapState('job', {
@@ -41,9 +43,12 @@
         filterOrder: state => state.filterOrder,
         currentPage: state => state.currentPage,
         pageType: state => state.pageType
+      }),
+      ...mapState('search', {
+        keyword: state => state.keyword
       })
     },
-    props: ['jobList'],
+    props: ['jobList', 'totalCount'],
     methods: {
       ...mapMutations('job', [
         'saveCurrentPage'
@@ -52,16 +57,20 @@
         'fetchJobList',
         'fetchRecommendJobList'
       ]),
+      ...mapActions('search', [
+        'fetchJobSearchResult',
+      ]),
       handleCurrentChange(val) {
         this.saveCurrentPage(val)
         if (this.pageType === 'filter') {
+          window.scrollTo(0, 0)
           let searchInfo = {
             order: this.filterOrder,
             page: this.currentPage,
             location: this.filterInfo.location,
             diploma: this.filterInfo.diploma,
             earlyReleaseDate: this.filterInfo.earlyReleaseDate,
-            property: this.filterInfo.property[this.filterInfo.property.length - 1]
+            property: this.filterInfo.property
           }
           this.fetchJobList({
             searchInfo: searchInfo,
@@ -75,7 +84,7 @@
               Message.error(error)
             }
           })
-        } else {
+        } else if (this.pageType === 'recommend') {
           window.scrollTo(0, 0)
           let searchInfo = {
             order: this.filterOrder,
@@ -92,6 +101,19 @@
             },
             onError: (error) => {
               Message.error(error)
+            }
+          })
+        } else {
+          window.scrollTo(0, 0)
+          let searchInfo = {
+            keyword: this.keyword,
+            page: val
+          }
+          this.fetchJobSearchResult({
+            searchInfo: searchInfo,
+            onSuccess: () => {
+            },
+            onError: () => {
             }
           })
         }
