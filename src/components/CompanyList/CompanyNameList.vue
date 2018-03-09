@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="list-wrapper">
+    <div class="list-wrapper" v-if="followCompanies.length !== 0">
       <div-header :header="'我关注的公司'"></div-header>
-      <div class="company-names-wrapper" v-if="followCompanies.length !== 0">
+      <div class="company-names-wrapper">
         <el-row :gutter="10">
           <single-company-name v-for="item in followCompanies" :key="item.companyId"
                                :name="item.name" :id="item.companyId"></single-company-name>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="list-wrapper">
-      <div-header :header="'搜索公司'"></div-header>
+      <div-header :header="'搜索公司列表'"></div-header>
 
       <div class="list-body">
         <div class="input-wrapper">

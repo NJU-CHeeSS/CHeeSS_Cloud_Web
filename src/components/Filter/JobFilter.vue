@@ -97,6 +97,9 @@
           label: '上月'
         }],
         diploma: [{
+          value: '不限',
+          label: '不限'
+        },{
           value: '专科',
           label: '专科'
         }, {

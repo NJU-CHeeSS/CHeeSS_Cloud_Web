@@ -2,6 +2,7 @@ import * as authApi from '../../api/auth'
 
 const state = {
   user: null,
+  checkFollow: false,
   checkApply: false,
   followCompanies: []
 }
@@ -94,7 +95,7 @@ const actions = {
     }, passwordInfo)
   },
 
-  followCompany({companyInfo, onSuccess, onError}) {
+  followCompany({commit}, {companyInfo, onSuccess, onError}) {
     companyInfo.token = localStorage.getItem('token')
     authApi.followCompany(data => {
       if (data.message !== 'Success') {
@@ -105,7 +106,7 @@ const actions = {
     }, companyInfo)
   },
 
-  unfollowCompany({companyInfo, onSuccess, onError}) {
+  unfollowCompany({commit}, {companyInfo, onSuccess, onError}) {
     companyInfo.token = localStorage.getItem('token')
     authApi.unfollowCompany(data => {
       if (data.message !== 'Success') {
@@ -123,7 +124,7 @@ const actions = {
     }, companyInfo)
   },
 
-  applyJob({jobInfo, onSuccess, onError}) {
+  applyJob({commit},{jobInfo, onSuccess, onError}) {
     jobInfo.token = localStorage.getItem('token')
     authApi.applyJob(data => {
       if (data.message !== 'Success') {
@@ -155,7 +156,7 @@ const mutations = {
     state.user = user
   },
   'saveCheckFollow'(state, checkFollow) {
-    state.companyInfo.checkFollow = checkFollow
+    state.checkFollow = checkFollow
   },
   'saveCheckApply'(state, checkApply) {
     state.checkApply = checkApply

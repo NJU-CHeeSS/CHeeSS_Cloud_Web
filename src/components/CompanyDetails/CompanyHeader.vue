@@ -14,7 +14,7 @@
         </div>
 
         <div class="follow-wrapper">
-          <button v-if="checkFollow === true" @click="unfollow">取关</button>
+          <button v-if="checkFollow === true" @click="unfollow">取消关注</button>
           <button v-else @click="follow">关注</button>
         </div>
       </div>
@@ -48,13 +48,18 @@
       ...mapState('company', {
         currentShowing: state => state.currentShowing,
         companyInfo: state => state.companyInfo,
-        checkFollow: state => state.checkFollow,
         user: state => state.user
+      }),
+      ...mapState('auth', {
+        checkFollow: state => state.checkFollow
       })
     },
     methods: {
       ...mapMutations('company', [
-        'saveCurrentShowing'
+        'saveCurrentShowing',
+      ]),
+      ...mapMutations('auth', [
+        'saveCheckFollow',
       ]),
       ...mapActions('auth', [
         'followCompany',
@@ -75,39 +80,41 @@
         if (this.user === null) {
           Message.error('请先登录!')
         } else {
-          let companyInfo = {}
-          companyInfo.companyId = this.companyInfo.companyId
+          let companyInfo = {
+            companyId: this.companyInfo.companyId
+          }
+          console.log(companyInfo)
           this.followCompany({
-            companyInfo: companyInfo
+            companyInfo: companyInfo,
+            onSuccess: (success) => {
+              Message.success('已关注!')
+              this.saveCheckFollow(true)
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
           })
-          this.checkFollow = true
         }
       },
       unfollow() {
         if (this.user === null) {
           Message.error('请先登录!')
         } else {
-          let companyInfo = {}
-          companyInfo.companyId = this.companyInfo.companyId
+          let companyInfo = {
+            companyId: this.companyInfo.companyId
+          }
           this.unfollowCompany({
-            companyInfo: companyInfo
+            companyInfo: companyInfo,
+            onSuccess: (success) => {
+              Message.success('已取消关注!')
+              this.saveCheckFollow(false)
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
           })
-          this.checkFollow = false
         }
       }
-    },
-    beforeRouteEnter(to, from, next) {
-      store.dispatch('auth/refreshUser', {
-        onSuccess: (success) => {
-          let companyInfo = {}
-          companyInfo.companyId = this.companyInfo.companyId
-          this.checkFollowCompany(companyInfo)
-        },
-        onError: (error) => {
-          Message.error(error)
-        }
-      })
-      next(true)
     }
   }
 </script>

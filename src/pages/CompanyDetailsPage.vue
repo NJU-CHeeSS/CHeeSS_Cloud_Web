@@ -82,6 +82,13 @@
           store.dispatch('company/fetchRelatedCompanies', to.params.companyId)
           store.dispatch('company/fetchCompanyRank')
           store.dispatch('company/fetchCompanySalary', to.params.companyId)
+          store.dispatch('auth/refreshUser', {
+            onSuccess: (success) => {
+              store.dispatch('auth/checkFollowCompany', {
+                companyId: to.params.companyId
+              })
+            }
+          })
         }
       })
       next(true)
