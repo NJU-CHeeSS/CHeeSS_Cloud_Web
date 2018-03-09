@@ -63,7 +63,7 @@
     },
     data() {
       return {
-        activePanel: ['1'],
+        activePanel: ['1', '2', '3', '4'],
 
         chosenDate: '不限',
         chosenPlace: '不限',
@@ -71,29 +71,29 @@
         chosenDiploma: '不限',
 
         places: [{
-          value: '选项1',
+          value: '不限',
           label: '不限'
         }, {
-          value: '选项2',
+          value: '北京',
           label: '北京'
         }, {
-          value: '选项3',
+          value: '上海',
           label: '上海'
         }, {
-          value: '选项4',
+          value: '南京',
           label: '南京'
         }],
         releaseDate: [{
-          value: '选项1',
+          value: '不限',
           label: '不限'
         }, {
-          value: '选项2',
+          value: '近24小时',
           label: '近24小时'
         }, {
-          value: '选项3',
+          value: '上周',
           label: '上周'
         }, {
-          value: '选项4',
+          value: '上月',
           label: '上月'
         }],
         diploma: [{
@@ -284,18 +284,13 @@
         'saveFilterInfo'
       ]),
       handleSearch() {
-        console.log(this.chosenPlace)
-        let filterInfo = {
+        let searchInfo = {
+          order: this.filterOrder,
+          page: this.currentPage,
           location: this.chosenPlace,
           diploma: this.chosenDiploma,
           earlyReleaseDate: this.chosenDate,
           property: this.chosenIndustry[this.chosenIndustry.length - 1]
-        }
-        this.saveFilterInfo(filterInfo)
-        let searchInfo = {
-          order: this.filterOrder,
-          page: this.currentPage,
-          conditionBean: filterInfo
         }
         this.fetchJobList({
           searchInfo: searchInfo,

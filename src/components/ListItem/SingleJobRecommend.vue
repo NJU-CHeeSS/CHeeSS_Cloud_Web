@@ -2,7 +2,7 @@
 
   <div class="single-job-recommend-wrapper">
 
-    <p class="name">{{singleJobRecommend.jobName}}</p>
+    <p class="name" @click="goToJobDetailsPage">{{singleJobRecommend.jobName}}</p>
     <p class="address">{{singleJobRecommend.location}}</p>
     <button class="compare-button" @click="showJobCompareModal">+ 对比</button>
 
@@ -29,8 +29,12 @@
       })
     },
     methods: {
+      ...mapMutations('job', [
+        'saveCurrentJob'
+      ]),
       ...mapActions('job', [
-        'fetchCompareResult'
+        'fetchCompareResult',
+        'fetchRelateJobs'
       ]),
       showJobCompareModal() {
         let jobIds = {}
@@ -39,6 +43,11 @@
 
         this.fetchCompareResult(jobIds)
         this.$modal.show('job-compare-modal')
+      },
+      goToJobDetailsPage() {
+        this.fetchRelateJobs(this.singleJobRecommend.jobId)
+        this.saveCurrentJob(this.singleJobRecommend)
+        router.push({name: 'JobDetailsPage', params: {jobId: this.singleJobRecommend.jobId}})
       }
     }
   }

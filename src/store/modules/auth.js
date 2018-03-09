@@ -2,6 +2,7 @@ import * as authApi from '../../api/auth'
 
 const state = {
   user: null,
+  checkFollow: false
 }
 
 // actions 可异步
@@ -75,12 +76,41 @@ const actions = {
       onSuccess(username)
     }
   },
+
+  followCompany({commit}, {companyId, onSuccess, onError}) {
+    authApi.followCompany(data => {
+      if (data.message !== 'Success') {
+        onError(data.result)
+      } else {
+        onSuccess(data.result)
+      }
+    }, companyId)
+  },
+
+  unfollowCompany({commit}, {companyId, onSuccess, onError}) {
+    authApi.unfollowCompany(data => {
+      if (data.message !== 'Success') {
+        onError(data.result)
+      } else {
+        onSuccess(data.result)
+      }
+    }, companyId)
+  },
+
+  checkFollowCompany({commit}, companyId) {
+    authApi.checkFollowCompany(data => {
+      commit('saveCheckFollow', data)
+    }, companyId)
+  }
 }
 
 // mutations 必须同步
 const mutations = {
   'saveUser'(state, user) {
     state.user = user
+  },
+  'saveCheckFollow'(state, checkFollow) {
+    state.checkFollow = checkFollow
   }
 }
 

@@ -58,3 +58,48 @@ export function editUserInfo(callback, userInfo) {
       console.log(error)
     })
 }
+
+export function followCompany(callback, companyId) {
+  axios.get('/users/unfollow', {
+    params: {
+      companyId: companyId
+    }
+  })
+    .then(function (response) {
+      console.log('followCompany', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+export function unfollowCompany(callback, companyId) {
+  axios.get('/users/unfollow', {
+    params: {
+      companyId: companyId
+    }
+  })
+    .then(function (response) {
+      console.log('unfollowCompany', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+export function checkFollowCompany(callback, companyId) {
+  axios.get('/users/checkFollow', {
+    params: {
+      companyId: companyId
+    }
+  })
+    .then(function (response) {
+      console.log('checkFollowCompany', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}

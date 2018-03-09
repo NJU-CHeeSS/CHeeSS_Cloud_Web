@@ -3,7 +3,7 @@
   <div class="single-company-related-wrapper">
 
     <div class="logo-wrapper" @click="goToCompanyDetails">
-      <img src="../../assets/img/companyIcon.png"/>
+      <img src="../../assets/img/icon.png"/>
     </div>
 
     <div class="info-wrapper">
