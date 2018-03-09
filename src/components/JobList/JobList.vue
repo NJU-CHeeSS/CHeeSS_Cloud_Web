@@ -1,7 +1,7 @@
 <template>
 
   <div class="job-list-wrapper">
-    <job-list-header :type="type"></job-list-header>
+    <job-list-header :pageType="pageType"></job-list-header>
     <job-list-body v-if="jobList!==null" :jobList="jobList"></job-list-body>
 
   </div>
@@ -21,7 +21,7 @@
     data() {
       return {}
     },
-    props: ['type', 'jobList'],
+    props: ['pageType', 'jobList'],
     methods: {}
   }
 </script>

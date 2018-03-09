@@ -4,7 +4,7 @@
       <div class="container">
         <div class="left-wrapper">
           <resume-sidebar></resume-sidebar>
-          <job-list :type="'recommend'" v-if="jobList!==null" :jobList="jobList"></job-list>
+          <job-list :pageType="'recommend'" v-if="jobList!==null" :jobList="jobList"></job-list>
         </div>
         <div class="right-wrapper">
 
@@ -45,19 +45,17 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.commit('job/savePageType', 'recommend')
       store.commit('job/saveJobList', [])
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
           store.dispatch('job/fetchRecommendJobList', {
             searchInfo: {
-              order: '不限',
+              order: 'date',
               page: 1,
             },
             onSuccess: (success) => {
-              Message({
-                message: '成功获得招聘信息！',
-                type: 'success'
-              })
+              Message.success(success)
             },
             onError: (error) => {
               Message.error(error)
@@ -69,7 +67,6 @@
           router.push({name: 'LoginPage'})
         }
       })
-      store.commit('job/saveType', 'recommend')
       next(true)
     }
   }

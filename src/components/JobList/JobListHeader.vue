@@ -3,8 +3,8 @@
   <div class="job-list-header-wrapper">
     <p>1,234 个符合条件的职位</p>
     <img src="../../assets/img/right.png" width="25"/>
-    <button v-if="type==='filter'" @click="goToJobRecommendPage">推荐职位</button>
-    <button v-if="type==='recommend'" @click="goToJobFilterPage">筛选职位</button>
+    <button v-if="pageType==='filter'" @click="goToJobRecommendPage">推荐职位</button>
+    <button v-if="pageType==='recommend'" @click="goToJobFilterPage">筛选职位</button>
 
     <div class="right-wrapper">
       <span>排序方式</span>
@@ -56,27 +56,27 @@
         currentPage: state => state.currentPage,
       }),
     },
-    props: ['type'],
+    props: ['pageType'],
     methods: {
       ...mapMutations('job', [
         'saveFilterOrder',
-        'saveType'
+        'savePageType'
       ]),
       ...mapActions('job', [
         'fetchJobList',
         'fetchRecommendJobList'
       ]),
       goToJobRecommendPage() {
-        this.saveType('recommend')
+        this.savePageType('recommend')
         router.push({name: 'JobRecommendPage'})
       },
       goToJobFilterPage() {
-        this.saveType('filter')
+        this.savePageType('filter')
         router.push({name: 'JobFilterPage'})
       },
       handleChangeOrder() {
         this.saveFilterOrder(this.order)
-        if (this.type === 'filter') {
+        if (this.pageType === 'filter') {
           let searchInfo = {
             order: this.filterOrder,
             page: this.currentPage,

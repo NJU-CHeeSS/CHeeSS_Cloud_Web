@@ -4,7 +4,7 @@
       <div class="container">
         <div class="left-wrapper">
           <job-filter></job-filter>
-          <job-list :type="'filter'" v-if="jobList!==null" :jobList="jobList"></job-list>
+          <job-list :pageType="'filter'" v-if="jobList!==null" :jobList="jobList"></job-list>
         </div>
         <div class="right-wrapper">
 
@@ -42,6 +42,7 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.commit('job/savePageType', 'filter')
       store.commit('job/saveJobList', [])
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
@@ -52,24 +53,20 @@
       })
       store.dispatch('job/fetchJobList', {
         searchInfo: {
-          order: '发布日期',
+          order: 'date',
           page: 1,
-          location: '不限',
-          diploma: '不限',
-          earlyReleaseDate: '不限',
-          property: '不限'
+          location: '南京',
+          diploma: '本科',
+          earlyReleaseDate: '上月',
+          property: '主管 | 总监 | 经理'
         },
         onSuccess: (success) => {
-          Message({
-            message: '成功获得招聘信息！',
-            type: 'success'
-          })
+          Message.success(success)
         },
         onError: (error) => {
           Message.error(error)
         }
       })
-      store.commit('job/saveType', 'filter')
       next(true)
     }
   }

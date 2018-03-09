@@ -1,7 +1,7 @@
 import * as jobApi from '../../api/job'
 
 const state = {
-  type: 'filter',
+  pageType: 'filter',
   jobList: [],
   filterOrder: '发布日期',
   filterInfo: {
@@ -21,13 +21,13 @@ const actions = {
   fetchJobList({commit}, {searchInfo, onSuccess, onError}) {
     console.log('searchInfo', searchInfo)
     jobApi.fetchJobList(data => {
-      if (data.message === 'success') {
+      if (data !== null && data !== undefined) {
         if (onSuccess) {
-          commit('saveJobList', data.jobList)
-          onSuccess('')
+          commit('saveJobList', data.result)
+          onSuccess('成功获得招聘信息！')
         }
       } else {
-        onError(data.message)
+        onError('获得招聘信息错误')
       }
     }, searchInfo)
   },
@@ -59,8 +59,8 @@ const actions = {
 
 // mutations 必须同步
 const mutations = {
-  'saveType'(state, type) {
-    state.type = type
+  'savePageType'(state, type) {
+    state.pageType = type
   },
   'saveJobList'(state, jobList) {
     state.jobList = jobList

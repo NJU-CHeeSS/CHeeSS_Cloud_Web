@@ -65,10 +65,10 @@
       return {
         activePanel: ['1', '2', '3', '4'],
 
-        chosenDate: '不限',
-        chosenPlace: '不限',
-        chosenIndustry: ['不限'],
-        chosenDiploma: '不限',
+        chosenDate: '上月',
+        chosenPlace: '南京',
+        chosenIndustry: ['按身份', '主管 | 总监 | 经理'],
+        chosenDiploma: '本科',
 
         places: [{
           value: '不限',
@@ -295,10 +295,7 @@
         this.fetchJobList({
           searchInfo: searchInfo,
           onSuccess: (success) => {
-            Message({
-              message: '成功获得招聘信息！',
-              type: 'success'
-            })
+            Message.success('成功获得招聘信息！')
           },
           onError: (error) => {
             Message.error(error)
