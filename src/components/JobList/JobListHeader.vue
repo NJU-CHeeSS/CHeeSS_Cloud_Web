@@ -1,7 +1,7 @@
 <template>
 
   <div class="job-list-header-wrapper">
-    <p>1,234 个符合条件的职位</p>
+    <p>{{totalCount}} 个符合条件的职位</p>
     <img src="../../assets/img/right.png" width="25"/>
     <button v-if="pageType==='filter'" @click="goToJobRecommendPage">推荐职位</button>
     <button v-if="pageType==='recommend'" @click="goToJobFilterPage">筛选职位</button>
@@ -56,7 +56,7 @@
         currentPage: state => state.currentPage,
       }),
     },
-    props: ['pageType'],
+    props: ['pageType', 'totalCount'],
     methods: {
       ...mapMutations('job', [
         'saveFilterOrder',

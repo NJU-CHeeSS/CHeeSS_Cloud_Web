@@ -4,7 +4,8 @@
       <div class="container">
         <div class="left-wrapper">
           <resume-sidebar></resume-sidebar>
-          <job-list :pageType="'recommend'" v-if="jobList!==null" :jobList="jobList"></job-list>
+          <job-list :pageType="'recommend'" v-if="jobList!==null" :jobList="jobList"
+                    :totalCount="totalCount"></job-list>
         </div>
         <div class="right-wrapper">
 
@@ -37,7 +38,8 @@
     },
     computed: {
       ...mapState('job', {
-        jobList: state => state.jobList
+        jobList: state => state.jobList,
+        totalCount: state => state.totalCount
       }),
       ...mapState('auth', {
         user: state => state.user

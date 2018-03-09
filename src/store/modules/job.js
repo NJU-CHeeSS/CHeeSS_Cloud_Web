@@ -3,6 +3,7 @@ import * as jobApi from '../../api/job'
 const state = {
   pageType: 'filter',
   jobList: [],
+  totalCount: 0,
   filterOrder: 'date',
   filterInfo: {
     location: '不限',
@@ -25,6 +26,7 @@ const actions = {
       if (data !== null && data !== undefined) {
         if (onSuccess) {
           commit('saveJobList', data.result)
+          commit('saveTotalCount', data.totalCount)
           onSuccess('成功获得招聘信息！')
         }
       } else {
@@ -59,6 +61,7 @@ const actions = {
     searchInfo.userId = userId
     jobApi.fetchRecommendJobList(data => {
       commit('saveJobList', data.result)
+      commit('saveTotalCount', data.totalCount)
     }, searchInfo)
   }
 }
@@ -70,6 +73,9 @@ const mutations = {
   },
   'saveJobList'(state, jobList) {
     state.jobList = jobList
+  },
+  'saveTotalCount'(state, totalCount) {
+    state.totalCount = totalCount
   },
   'saveFilterOrder'(state, filterOrder) {
     state.filterOrder = filterOrder
