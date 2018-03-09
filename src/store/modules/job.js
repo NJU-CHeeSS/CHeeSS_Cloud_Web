@@ -13,7 +13,8 @@ const state = {
   currentPage: 1,
   currentJob: {},
   relateJobs: [],
-  compareResult: null
+  compareResult: null,
+  jobApply: 0
 }
 
 // actions 可异步
@@ -45,6 +46,11 @@ const actions = {
     jobApi.fetchCompareResult(data => {
       commit('saveCompareResult', data)
     }, jobIds)
+  },
+  fetchJobApply({commit}, jobId) {
+    jobApi.fetchJobApply(data => {
+      commit('saveJobApply', data.message)
+    }, jobId)
   },
   fetchRecommendJobList({commit, rootState}, {searchInfo, onSuccess, onError}) {
     let userId = rootState.auth.user === null ? null : rootState.auth.user.userId
@@ -82,6 +88,9 @@ const mutations = {
   },
   'saveCompareResult'(state, compareResult) {
     state.compareResult = compareResult
+  },
+  'saveJobApply'(state, jobApply) {
+    state.jobApply = jobApply
   }
 }
 

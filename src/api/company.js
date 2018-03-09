@@ -22,6 +22,21 @@ export function fetchCompanyInfo(callback, companyId) {
     })
 }
 
+export function fetchCompanyInfoByName(callback, companyName) {
+  axios.get('/companies/name', {
+    params: {
+      companyName: companyName
+    }
+  })
+    .then(function (response) {
+      console.log('companyInfo', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
 export function fetchCompanyJobs(callback, companyId) {
   axios.get(`/companies/${companyId}/jobs`)
     .then(function (response) {

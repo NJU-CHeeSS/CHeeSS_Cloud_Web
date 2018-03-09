@@ -17,7 +17,7 @@
       <div class="keywords-wrapper">
         <span v-for="item in companyInfo.keywords" :key="item">{{item}}</span>
       </div>
-      <button v-if="checkFollow === true" @click="unfollow">取关</button>
+      <button v-if="companyInfo.checkFollow === true" @click="unfollow">取关</button>
       <button v-else @click="follow">关注</button>
     </div>
 
@@ -44,7 +44,7 @@
     props: ['companyInfo'],
     computed: {
       ...mapState('company', {
-        checkFollow: state => state.checkFollow
+        user: state => state.user
       })
     },
     methods: {
@@ -58,24 +58,50 @@
         'refreshUser'
       ]),
       goToCompanyDetailsPage() {
-        this.saveCurrentShowing('companyDetails')
         router.push({name: 'CompanyDetailsPage', params: {companyId: this.companyInfo.companyId}})
       },
       unfollow() {
-        this.unfollowCompany(this.companyInfo.companyId)
-        this.checkFollow = false
+        if (this.user === null) {
+          Message.error('请先登录!')
+        } else {
+          let companyInfo = {}
+          companyInfo.companyId = this.companyInfo.companyId
+          this.unfollowCompany({
+            companyInfo: companyInfo,
+            onSuccess: (success) => {
+              Message.success('已取消关注')
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
+          })
+          this.checkFollow = false
+        }
       },
       follow() {
-        this.followCompany(this.companyInfo.companyId)
-        this.checkFollow = true
+        if (this.user === null) {
+          Message.error('请先登录!')
+        } else {
+          let companyInfo = {}
+          companyInfo.companyId = this.companyInfo.companyId
+          this.followCompany({
+            companyInfo: companyInfo,
+            onSuccess: (success) => {
+              Message.success('已关注')
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
+          })
+        }
       }
-    },
-    created() {
-      this.checkFollowCompany(this.companyInfo.companyId)
     },
     beforeRouteEnter(to, from, next) {
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
+          let companyInfo = {}
+          companyInfo.companyId = this.companyInfo.companyId
+          this.checkFollowCompany(companyInfo)
         },
         onError: (error) => {
           Message.error(error)

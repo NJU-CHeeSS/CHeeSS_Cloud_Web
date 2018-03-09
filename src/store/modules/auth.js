@@ -2,7 +2,7 @@ import * as authApi from '../../api/auth'
 
 const state = {
   user: null,
-  checkFollow: false
+  checkApply: false
 }
 
 // actions 可异步
@@ -93,31 +93,52 @@ const actions = {
     }, passwordInfo)
   },
 
-  followCompany({commit}, {companyId, onSuccess, onError}) {
+  followCompany({companyInfo, onSuccess, onError}) {
+    companyInfo.token = localStorage.getItem('token')
     authApi.followCompany(data => {
       if (data.message !== 'Success') {
         onError(data.result)
       } else {
         onSuccess(data.result)
       }
-    }, companyId)
+    }, companyInfo)
   },
 
-  unfollowCompany({commit}, {companyId, onSuccess, onError}) {
+  unfollowCompany({companyInfo, onSuccess, onError}) {
+    companyInfo.token = localStorage.getItem('token')
     authApi.unfollowCompany(data => {
       if (data.message !== 'Success') {
         onError(data.result)
       } else {
         onSuccess(data.result)
       }
-    }, companyId)
+    }, companyInfo)
   },
 
-  checkFollowCompany({commit}, companyId) {
+  checkFollowCompany({commit}, companyInfo) {
+    companyInfo.token = localStorage.getItem('token')
     authApi.checkFollowCompany(data => {
       commit('saveCheckFollow', data)
-    }, companyId)
-  }
+    }, companyInfo)
+  },
+
+  applyJob({jobInfo, onSuccess, onError}) {
+    jobInfo.token = localStorage.getItem('token')
+    authApi.applyJob(data => {
+      if (data.message !== 'Success') {
+        onError(data.result)
+      } else {
+        onSuccess(data.result)
+      }
+    }, jobInfo)
+  },
+
+  checkApplyJob({commit}, jobInfo) {
+    jobInfo.token = localStorage.getItem('token')
+    authApi.checkApplyJob(data => {
+      commit('saveCheckApply', data)
+    }, jobInfo)
+  },
 }
 
 // mutations 必须同步
@@ -126,7 +147,10 @@ const mutations = {
     state.user = user
   },
   'saveCheckFollow'(state, checkFollow) {
-    state.checkFollow = checkFollow
+    state.companyInfo.checkFollow = checkFollow
+  },
+  'saveCheckApply'(state, checkApply) {
+    state.checkApply = checkApply
   }
 }
 

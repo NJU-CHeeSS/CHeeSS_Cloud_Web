@@ -14,7 +14,8 @@
         </div>
 
         <div class="follow-wrapper">
-          <button @click="followCompany">关注</button>
+          <button v-if="checkFollow === true" @click="unfollow">取关</button>
+          <button v-else @click="follow">关注</button>
         </div>
       </div>
 
@@ -27,15 +28,15 @@
         </div>
       </div>
     </div>
-
-
   </div>
 
 </template>
 
 <script>
 
-  import {mapMutations, mapState} from 'vuex'
+  import {router, store} from '../../main.js'
+  import {mapMutations, mapState, mapActions} from 'vuex'
+  import {Message} from 'element-ui'
 
   export default {
     name: 'company-header',
@@ -46,12 +47,20 @@
     computed: {
       ...mapState('company', {
         currentShowing: state => state.currentShowing,
-        companyInfo: state => state.companyInfo
+        companyInfo: state => state.companyInfo,
+        checkFollow: state => state.checkFollow,
+        user: state => state.user
       })
     },
     methods: {
       ...mapMutations('company', [
         'saveCurrentShowing'
+      ]),
+      ...mapActions('auth', [
+        'followCompany',
+        'unfollowCompany',
+        'checkFollowCompany',
+        'refreshUser'
       ]),
       goToCompanyDetails() {
         this.saveCurrentShowing('companyDetails')
@@ -62,9 +71,43 @@
       goToCompanyRelated() {
         this.saveCurrentShowing('companyRelated')
       },
-      followCompany() {
-
+      follow() {
+        if (this.user === null) {
+          Message.error('请先登录!')
+        } else {
+          let companyInfo = {}
+          companyInfo.companyId = this.companyInfo.companyId
+          this.followCompany({
+            companyInfo: companyInfo
+          })
+          this.checkFollow = true
+        }
+      },
+      unfollow() {
+        if (this.user === null) {
+          Message.error('请先登录!')
+        } else {
+          let companyInfo = {}
+          companyInfo.companyId = this.companyInfo.companyId
+          this.unfollowCompany({
+            companyInfo: companyInfo
+          })
+          this.checkFollow = false
+        }
       }
+    },
+    beforeRouteEnter(to, from, next) {
+      store.dispatch('auth/refreshUser', {
+        onSuccess: (success) => {
+          let companyInfo = {}
+          companyInfo.companyId = this.companyInfo.companyId
+          this.checkFollowCompany(companyInfo)
+        },
+        onError: (error) => {
+          Message.error(error)
+        }
+      })
+      next(true)
     }
   }
 </script>
