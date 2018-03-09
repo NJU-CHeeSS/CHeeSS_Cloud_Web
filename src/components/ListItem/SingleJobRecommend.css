@@ -25,7 +25,15 @@ button {
   border-bottom: solid 1px #e8e8e8; }
   .single-job-recommend-wrapper .name {
     color: #595959;
-    font-size: 13px; }
+    font-size: 13px;
+    cursor: pointer; }
+    .single-job-recommend-wrapper .name:hover {
+      color: #5689f2;
+      -webkit-transition: all, 0.3s;
+      -moz-transition: all, 0.3s;
+      -ms-transition: all, 0.3s;
+      -o-transition: all, 0.3s;
+      transition: all, 0.3s; }
   .single-job-recommend-wrapper .address {
     color: #bababa;
     font-size: 12px; }

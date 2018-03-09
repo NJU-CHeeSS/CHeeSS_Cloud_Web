@@ -5,7 +5,7 @@
 
       <div class="up-wrapper">
         <div class="company-icon">
-          <img src="../../assets/img/companyIcon.png"/>
+          <img src="../../assets/img/icon.png"/>
         </div>
 
         <div class="company-info">
@@ -14,7 +14,7 @@
         </div>
 
         <div class="follow-wrapper">
-          <button>关注</button>
+          <button @click="followCompany">关注</button>
         </div>
       </div>
 
@@ -61,6 +61,9 @@
       },
       goToCompanyRelated() {
         this.saveCurrentShowing('companyRelated')
+      },
+      followCompany() {
+
       }
     }
   }

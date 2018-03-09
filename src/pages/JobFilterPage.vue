@@ -53,12 +53,10 @@
         searchInfo: {
           order: '发布日期',
           page: 1,
-          conditionBean: {
-            location: '不限',
-            diploma: '不限',
-            earlyReleaseDate: '不限',
-            property: '不限'
-          }
+          location: '不限',
+          diploma: '不限',
+          earlyReleaseDate: '不限',
+          property: '不限'
         },
         onSuccess: (success) => {
           Message({

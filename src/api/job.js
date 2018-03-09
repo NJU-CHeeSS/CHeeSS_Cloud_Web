@@ -1,12 +1,16 @@
 import axios from 'axios'
 
 export function fetchJobList(callback, searchInfo) {
+  console.error('searchInfo', searchInfo)
   axios.get('/jobs/search', {
     params: {
       order: searchInfo.order,
       size: 10,
       page: searchInfo.page,
-      conditionBean: searchInfo.conditionBean
+      location: searchInfo.location,
+      diploma: searchInfo.diploma,
+      earlyReleaseDate: searchInfo.earlyReleaseDate,
+      property: searchInfo.property
     }
   })
     .then(function (response) {
