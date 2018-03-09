@@ -60,6 +60,21 @@ export function fetchCompareResult(callback, jobIds) {
     })
 }
 
+export function fetchJobApply(callback, jobId) {
+  axios.get('/jobs/apply', {
+    params: {
+      jobId: jobId
+    }
+  })
+    .then(function (response) {
+      console.log('jobApply', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
 export function fetchRecommendJobList(callback, searchInfo) {
   axios.get(`/users/${searchInfo.userId}/jobs`, {
     params: {

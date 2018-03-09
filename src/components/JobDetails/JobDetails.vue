@@ -4,8 +4,8 @@
 
     <div class="job-header">
       <span class="back" @click="backToPreviousPage"> << </span>
-      <img src="../../assets/img/companyIcon.png"/>
-      <span class="company-name">{{currentJob.companyName}}</span>
+      <img src="../../assets/img/icon.png"/>
+      <span class="company-name" @click="goToCompanyDetails">{{currentJob.companyName}}</span>
     </div>
 
     <div class="job-body">
@@ -28,7 +28,7 @@
         <p class="time">发布于 {{currentJob.releaseDate}}</p>
 
         <button class="apply-button" @click="">发送申请</button>
-        <p class="people-num">已有 2,030 人申请</p>
+        <p class="people-num">已有 {{jobApply}} 人申请</p>
 
 
         <div class="section-wrapper">
@@ -80,7 +80,7 @@
   import {Tree} from 'element-ui'
   import SingleJobRecommend from '../ListItem/SingleJobRecommend.vue'
   import {router} from '../../main'
-  import {mapState} from 'vuex'
+  import {mapState, mapActions} from 'vuex'
 
   export default {
     name: 'job-details',
@@ -91,15 +91,26 @@
     data() {
       return {}
     },
-    props: ['currentJob', 'relateJobs'],
-//    computed: {
-//      ...mapState('job', {
-//        currentJob: state => state.currentJob
-//      })
-//    },
+    props: ['currentJob', 'relateJobs', 'jobApply'],
+    computed: {
+      ...mapState('company', {
+        companyInfo: state => state.companyInfo
+      })
+    },
     methods: {
+      ...mapActions('company', [
+        'fetchCompanyInfoByName'
+      ]),
       backToPreviousPage() {
         router.go(-1)
+      },
+      goToCompanyDetails() {
+        this.fetchCompanyInfoByName({
+          companyName: this.currentJob.companyName,
+          onSuccess: (success) => {
+            router.push({name: 'CompanyDetailsPage', params: {companyId: this.companyInfo.companyId}})
+          }
+        })
       }
     }
   }

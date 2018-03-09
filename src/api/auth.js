@@ -79,10 +79,13 @@ export function modifyPassword(callback, passwordInfo) {
     })
 }
 
-export function followCompany(callback, companyId) {
-  axios.get('/users/unfollow', {
+export function followCompany(callback, companyInfo) {
+  axios.get('/users/follow', {
     params: {
-      companyId: companyId
+      companyId: companyInfo.companyId
+    },
+    headers: {
+      'Authorization': companyInfo.token
     }
   })
     .then(function (response) {
@@ -94,10 +97,13 @@ export function followCompany(callback, companyId) {
     })
 }
 
-export function unfollowCompany(callback, companyId) {
+export function unfollowCompany(callback, companyInfo) {
   axios.get('/users/unfollow', {
     params: {
-      companyId: companyId
+      companyId: companyInfo.companyId
+    },
+    headers: {
+      'Authorization': companyInfo.token
     }
   })
     .then(function (response) {
@@ -109,14 +115,53 @@ export function unfollowCompany(callback, companyId) {
     })
 }
 
-export function checkFollowCompany(callback, companyId) {
+export function checkFollowCompany(callback, companyInfo) {
   axios.get('/users/checkFollow', {
     params: {
-      companyId: companyId
+      companyId: companyInfo.companyId
+    },
+    headers: {
+      'Authorization': companyInfo.token
     }
   })
     .then(function (response) {
       console.log('checkFollowCompany', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+export function applyJob(callback, jobInfo) {
+  axios.get('/users/apply', {
+    params: {
+      jobId: jobInfo.jobId
+    },
+    headers: {
+      'Authorization': jobInfo.token
+    }
+  })
+    .then(function (response) {
+      console.log('applyJob', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}
+
+export function checkApplyJob(callback, jobInfo) {
+  axios.get('/users/checkApply', {
+    params: {
+      jobId: jobInfo.jobId
+    },
+    headers: {
+      'Authorization': jobInfo.token
+    }
+  })
+    .then(function (response) {
+      console.log('checkApplyJob', response.data)
       callback(response.data)
     })
     .catch(function (error) {

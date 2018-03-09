@@ -29,6 +29,15 @@ const actions = {
     }, companyId)
   },
 
+  fetchCompanyInfoByName({commit}, {companyName, onSuccess}) {
+    companyApi.fetchCompanyInfoByName(data => {
+      if (onSuccess) {
+        commit('saveCompanyInfo', data)
+        onSuccess('')
+      }
+    }, companyName)
+  },
+
   fetchCompanyJobs({commit}, companyId) {
     companyApi.fetchCompanyJobs(data => {
       commit('saveCompanyJobs', data)

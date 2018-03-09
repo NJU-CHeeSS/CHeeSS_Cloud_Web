@@ -34,6 +34,13 @@
       font-weight: 400;
       color: $grey;
       vertical-align: middle;
+      cursor: pointer;
+      @include transition(all, 0.3s);
+
+      &:hover {
+        @include transition(all, 0.3s);
+        color: $main-color;
+      }
     }
 
     img {
@@ -150,7 +157,6 @@
       /deep/ .el-tree {
         margin-top: 5px;
       }
-
 
     }
 
