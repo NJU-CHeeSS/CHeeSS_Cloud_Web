@@ -13,7 +13,7 @@
           v-for="item in options"
           :key="item.value"
           :label="item.label"
-          :value="item.label">
+          :value="item.value">
         </el-option>
       </el-select>
 
@@ -37,16 +37,13 @@
     data() {
       return {
         options: [{
-          value: '选项1',
+          value: 'date',
           label: '发布日期'
         }, {
-          value: '选项2',
+          value: 'hot',
           label: '热度'
         }, {
-          value: '选项3',
-          label: '距离'
-        }, {
-          value: '选项4',
+          value: 'low_money',
           label: '薪资'
         }],
         order: '发布日期'
@@ -56,7 +53,7 @@
       ...mapState('job', {
         filterOrder: state => state.filterOrder,
         filterInfo: state => state.filterInfo,
-        currentPage: state => state.currentPage
+        currentPage: state => state.currentPage,
       }),
     },
     props: ['type'],
@@ -66,7 +63,8 @@
         'saveType'
       ]),
       ...mapActions('job', [
-        'fetchJobList'
+        'fetchJobList',
+        'fetchRecommendJobList'
       ]),
       goToJobRecommendPage() {
         this.saveType('recommend')
@@ -78,23 +76,45 @@
       },
       handleChangeOrder() {
         this.saveFilterOrder(this.order)
-        let searchInfo = {
-          order: this.filterOrder,
-          page: this.currentPage,
-          conditionBean: this.filterInfo
-        }
-        this.fetchJobList({
-          searchInfo: searchInfo,
-          onSuccess: (success) => {
-            Message({
-              message: '成功获得招聘信息！',
-              type: 'success'
-            })
-          },
-          onError: (error) => {
-            Message.error(error)
+        if (this.type === 'filter') {
+          let searchInfo = {
+            order: this.filterOrder,
+            page: this.currentPage,
+            location: this.filterInfo.location,
+            diploma: this.filterInfo.diploma,
+            earlyReleaseDate: this.filterInfo.earlyReleaseDate,
+            property: this.filterInfo.property[this.filterInfo.property.length - 1]
           }
-        })
+          this.fetchJobList({
+            searchInfo: searchInfo,
+            onSuccess: (success) => {
+              Message({
+                message: '成功获得招聘信息！',
+                type: 'success'
+              })
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
+          })
+        } else {
+          let searchInfo = {
+            order: this.filterOrder,
+            page: this.currentPage,
+          }
+          this.fetchRecommendJobList({
+            searchInfo: searchInfo,
+            onSuccess: (success) => {
+              Message({
+                message: '成功获得招聘信息！',
+                type: 'success'
+              })
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
+          })
+        }
       }
     }
   }

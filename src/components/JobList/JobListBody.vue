@@ -51,7 +51,10 @@
         let searchInfo = {
           order: this.filterOrder,
           page: this.currentPage,
-          conditionBean: this.filterInfo
+          location: this.filterInfo.location,
+          diploma: this.filterInfo.diploma,
+          earlyReleaseDate: this.filterInfo.earlyReleaseDate,
+          property: this.filterInfo.property[this.filterInfo.property.length - 1]
         }
         this.fetchJobList({
           searchInfo: searchInfo,

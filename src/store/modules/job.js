@@ -45,6 +45,15 @@ const actions = {
     jobApi.fetchCompareResult(data => {
       commit('saveCompareResult', data)
     }, jobIds)
+  },
+  fetchRecommendJobList({commit, rootState}, {searchInfo, onSuccess, onError}) {
+    let userId = rootState.auth.user === null ? null : rootState.auth.user.userId
+    let token = localStorage.getItem('token')
+    searchInfo.token = token
+    searchInfo.userId = userId
+    jobApi.fetchRecommendJobList(data => {
+      commit('saveJobList', data.result)
+    }, searchInfo)
   }
 }
 

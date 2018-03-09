@@ -49,7 +49,10 @@ export function editUserInfo(callback, userInfo) {
   axios.post('/users/info',
     userInfo,
     {
-      headers: {'Content-Type': 'application/json'}
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': userInfo.token
+      }
     })
     .then(function (response) {
       callback(response.data)

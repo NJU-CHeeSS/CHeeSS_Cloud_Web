@@ -42,6 +42,7 @@
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.commit('job/saveJobList', [])
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
         },

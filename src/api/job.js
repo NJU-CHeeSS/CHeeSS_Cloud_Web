@@ -59,3 +59,21 @@ export function fetchCompareResult(callback, jobIds) {
       console.log(error)
     })
 }
+
+export function fetchRecommendJobList(callback, searchInfo) {
+  axios.get(`/users/${searchInfo.userId}/jobs`, {
+    params: {
+      order: searchInfo.order,
+      size: 10,
+      page: searchInfo.page
+    },
+    headers: {'Authorization': searchInfo.token}
+  })
+    .then(function (response) {
+      console.log('recommendJobList', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}

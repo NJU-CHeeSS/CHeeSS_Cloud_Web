@@ -57,6 +57,9 @@ const actions = {
 
 
   editUserInfo({state}, {userInfo, onSuccess, onError}) {
+    let token = localStorage.getItem('token')
+    userInfo.token = token
+    console.error(userInfo)
     authApi.editUserInfo((data => {
       if (data.result === true) {
         if (onSuccess) {

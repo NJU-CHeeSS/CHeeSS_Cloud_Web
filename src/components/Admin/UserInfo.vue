@@ -8,11 +8,11 @@
       <div class="left-form-wrapper">
 
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="UserInfo.username"></el-input>
+          <el-input :disabled="true" v-model="UserInfo.username"></el-input>
         </el-form-item>
 
         <el-form-item label="邮箱账号" prop="email">
-          <el-input :disabled="true" v-model="UserInfo.email"></el-input>
+          <el-input v-model="UserInfo.email"></el-input>
         </el-form-item>
 
         <el-form-item label="手机号" prop="phone">
@@ -48,7 +48,7 @@
           <el-cascader
             expand-trigger="hover"
             :options="UserInfo.professions"
-            v-model="UserInfo.selectOption"
+            v-model="UserInfo.profession"
             @change="">
           </el-cascader>
         </el-form-item>
@@ -90,10 +90,11 @@
           </el-input>
           <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 新增</el-button>
 
-          <div class="sign-in-button-wrapper">
-            <el-button type="text" @click="submitForm('UserInfo')">修改</el-button>
-          </div>
         </el-form-item>
+
+        <div class="sign-in-button-wrapper">
+          <el-button type="text" @click="submitForm('UserInfo')">修改</el-button>
+        </div>
       </div>
 
 
@@ -146,10 +147,11 @@
           phone: this.user.telephone,
           age: this.user.age,
           city: this.user.city,
-          gender: '男',
-          degree: '本科',
-          experience: 0,
-          skillTags: ['标签一', '标签二', '标签三'],
+          gender: this.user.sex === 1 ? '男' : '女',
+          degree: this.user.diploma,
+          experience: this.user.experience,
+          profession: this.user.major.split(','),
+          skillTags: this.user.skill.split(','),
           professions: [{
             value: '哲学',
             label: '哲学',
@@ -413,14 +415,8 @@
           value: '选项2',
           label: '上海'
         }, {
-          value: '选项3',
-          label: '广州'
-        }, {
           value: '选项4',
           label: '南京'
-        }, {
-          value: '选项5',
-          label: '西安'
         }],
         degrees: [
           {
@@ -487,11 +483,11 @@
                 experience: this.UserInfo.experience,
                 city: this.UserInfo.city,
                 diploma: this.UserInfo.degree,
-                major: this.UserInfo.profession[this.UserInfo.profession.length - 1],
+                major: this.UserInfo.profession.join(','),
                 skill: this.UserInfo.skillTags.join(',')
               },
               onSuccess: (success) => {
-                Message.success('注册成功！')
+                Message.success('修改成功！')
               },
               onError: (error) => {
                 Message.error(error)

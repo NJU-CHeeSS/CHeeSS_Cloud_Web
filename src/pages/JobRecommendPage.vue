@@ -20,7 +20,7 @@
   import Layout from '../components/Layout/Layout.vue'
   import ResumeSidebar from '../components/Resume/ResumeSidebar.vue'
   import JobList from '../components/JobList/JobList.vue'
-  import {store} from '../main'
+  import {store, router} from '../main'
   import {Message} from 'element-ui'
   import {mapState} from 'vuex'
 
@@ -38,31 +38,35 @@
     computed: {
       ...mapState('job', {
         jobList: state => state.jobList
+      }),
+      ...mapState('auth', {
+        user: state => state.user
       })
     },
     methods: {},
     beforeRouteEnter(to, from, next) {
+      store.commit('job/saveJobList', [])
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
-        },
-        onError: (error) => {
-          Message.error(error)
-        }
-      })
-      store.dispatch('job/fetchJobList', {
-        searchInfo: {
-          keyword: '不限',
-          order: '不限',
-          page: 1,
-        },
-        onSuccess: (success) => {
-          Message({
-            message: '成功获得招聘信息！',
-            type: 'success'
+          store.dispatch('job/fetchRecommendJobList', {
+            searchInfo: {
+              order: '不限',
+              page: 1,
+            },
+            onSuccess: (success) => {
+              Message({
+                message: '成功获得招聘信息！',
+                type: 'success'
+              })
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
           })
         },
         onError: (error) => {
           Message.error(error)
+          router.push({name: 'LoginPage'})
         }
       })
       store.commit('job/saveType', 'recommend')
