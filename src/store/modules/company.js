@@ -38,7 +38,7 @@ const actions = {
   fetchRelatedCompanies({commit}, companyId) {
     console.log('fetchRelatedCompanies!')
     companyApi.fetchRelatedCompanies(data => {
-      commit('saveRelatedCompanies', data.companyList)
+      commit('saveRelatedCompanies', data)
     }, companyId)
   },
 

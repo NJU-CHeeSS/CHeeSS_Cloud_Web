@@ -3,7 +3,7 @@
     <layout>
       <div class="container">
 
-        <user-info></user-info>
+        <user-info v-if="user !== null" :user="user"></user-info>
 
       </div>
     </layout>
@@ -16,6 +16,7 @@
   import UserInfo from '../components/Admin/UserInfo.vue'
   import {Row, Message} from 'element-ui'
   import {router, store} from '../main'
+  import {mapState} from 'vuex'
 
   export default {
     name: 'user-home-page',
@@ -26,6 +27,11 @@
     },
     data() {
       return {}
+    },
+    computed: {
+      ...mapState('auth', {
+        user: state => state.user
+      })
     },
     methods: {},
     beforeRouteEnter(to, from, next) {

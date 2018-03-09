@@ -9,10 +9,13 @@ const actions = {
 
   signUp({commit}, {body, onSuccess, onError}) {
     authApi.signUp(data => {
-      if (data.message !== 'Success') {
-        onError(data.result)
+      if (data.result === false) {
+        onError(data.message)
       } else {
-        onSuccess(data.result)
+        if (onSuccess) {
+          console.log('success sign up !')
+          onSuccess(data.result)
+        }
       }
     }, body)
   },
@@ -53,10 +56,8 @@ const actions = {
 
 
   editUserInfo({state}, {userInfo, onSuccess, onError}) {
-    let userId = state.user ? state.user.userId : null
-    userInfo.userId = userId
     authApi.editUserInfo((data => {
-      if (data.message === 'success') {
+      if (data.result === true) {
         if (onSuccess) {
           onSuccess('修改成功！')
         }
@@ -64,6 +65,15 @@ const actions = {
         onError(data.message)
       }
     }), userInfo)
+  },
+
+  signOut({commit}, {onSuccess}) {
+    const username = state.user.username
+    localStorage.setItem('token', null)
+    commit('saveUser', null)
+    if (onSuccess) {
+      onSuccess(username)
+    }
   },
 }
 

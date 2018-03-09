@@ -8,10 +8,13 @@
         <company-keyword v-if="currentShowing==='companyDetails'"></company-keyword>
         <company-jobs v-if="currentShowing==='companyDetails'"></company-jobs>
 
-        <company-salary-level v-if="currentShowing==='companyLevel' && companySalary !== null" :companySalary="companySalary"></company-salary-level>
-        <company-rank v-if="currentShowing==='companyLevel' && companyRank !== null" :companyRank="companyRank"></company-rank>
+        <company-salary-level v-if="currentShowing==='companyLevel' && companySalary !== null"
+                              :companySalary="companySalary"></company-salary-level>
+        <company-rank v-if="currentShowing==='companyLevel' && companyRank !== null"
+                      :companyRank="companyRank"></company-rank>
 
-        <company-related-list v-if="currentShowing==='companyRelated' && relatedCompanies !== null" :companyList="relatedCompanies"></company-related-list>
+        <company-related-list v-if="currentShowing==='companyRelated' && relatedCompanies !== null"
+                              :companyList="relatedCompanies"></company-related-list>
 
       </div>
     </layout>
@@ -55,6 +58,23 @@
       return {}
     },
     methods: {},
+    beforeRouteUpdate(to, from, next) {
+      console.error(to.params.companyId, from.params.companyId)
+      store.commit('company/saveCompanyInfo', null)
+      store.commit('company/saveCompanyJobs', [])
+      store.commit('company/saveRelatedCompanies', [])
+      store.commit('company/saveCompanySalary', null)
+      store.dispatch('company/fetchCompanyInfo', {
+        companyId: to.params.companyId,
+        onSuccess: (success) => {
+          store.dispatch('company/fetchCompanyJobs', to.params.companyId)
+          store.dispatch('company/fetchRelatedCompanies', to.params.companyId)
+          store.dispatch('company/fetchCompanyRank')
+          store.dispatch('company/fetchCompanySalary', to.params.companyId)
+        }
+      })
+      next(true)
+    },
     beforeRouteEnter(to, from, next) {
       store.dispatch('company/fetchCompanyInfo', {
         companyId: to.params.companyId,

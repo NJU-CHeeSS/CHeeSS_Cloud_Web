@@ -53,6 +53,27 @@
       }
     }
 
+    .sign-in-button-wrapper {
+      display: block;
+      float: right;
+      //margin-right: 20%;
+      text-align: center;
+      /deep/ .el-button {
+        padding: 8px 20px;
+        background-color: $main-color;
+        border-radius: 100px;
+        letter-spacing: 6px;
+        text-indent: 6px;
+        color: $white-color;
+        @include transition(all, 0.5s);
+
+        &:hover {
+          @include transition(all, 0.5s);
+          background-color: $sub-color;
+        }
+      }
+    }
+
   }
 
   h1 {

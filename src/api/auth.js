@@ -17,6 +17,7 @@ export function signIn(callback, body) {
 }
 
 export function signUp(callback, body) {
+  console.log('sign up body: ', body)
   axios.post('/users/sign-up',
     body,
     {
@@ -44,6 +45,7 @@ export function currentUser(callback, token) {
 }
 
 export function editUserInfo(callback, userInfo) {
+  console.log('userInfo: ', userInfo)
   axios.post('/users/info',
     userInfo,
     {

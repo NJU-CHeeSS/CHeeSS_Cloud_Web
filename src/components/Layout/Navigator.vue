@@ -92,6 +92,9 @@
       ...mapActions('search', [
         'fetchSearchResult'
       ]),
+      ...mapActions('auth', [
+        'signOut'
+      ]),
       ...mapMutations('search', [
         'saveKeyword'
       ]),
@@ -117,7 +120,23 @@
         router.push({name: 'SkillPage'})
       },
       handleCommand(command) {
-        router.push({name: command})
+        if (command !== 'signOut') {
+          if (command === 'UserHomePage') {
+            router.push({name: 'UserHomePage', params: {userId: this.user.userId}})
+          } else {
+            router.push({name: command})
+          }
+          router.push({name: command})
+        } else {
+          this.signOut({
+            onSuccess: (username) => {
+              Message({
+                message: 'Goodbye, ' + username + '!',
+                type: 'success'
+              })
+            }
+          })
+        }
       },
       handleSearch() {
         if (this.keyword.length === 0) {

@@ -104,7 +104,7 @@
                   message: '欢迎，' + success + '！',
                   type: 'success'
                 })
-                router.push({name: 'IndexPage'})
+                router.push({name: 'UserHomePage'})
               },
               onError: (error) => {
                 Message.error(error)
