@@ -6,7 +6,7 @@ const state = {
   companyInfo: null,
   companyJobs: [],
   relatedCompanies: [],
-  searchResult: [],
+  searchResult: [''],
   companyRank: [],
   companySalary: null,
 }

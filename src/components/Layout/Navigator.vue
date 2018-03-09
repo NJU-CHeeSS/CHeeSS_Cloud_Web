@@ -95,7 +95,9 @@
         'signOut'
       ]),
       ...mapMutations('search', [
-        'saveKeyword'
+        'saveKeyword',
+        'saveCompanySearchResult',
+        'saveJobSearchResult'
       ]),
       goToIndexPage() {
         router.push({name: 'IndexPage'})
@@ -142,6 +144,8 @@
           Message.warning('请输入搜索内容！')
         } else {
           this.saveKeyword(this.keyword)
+          this.saveCompanySearchResult(null)
+          this.saveJobSearchResult(null)
           this.fetchSearchResult({
             searchInfo: {
               keyword: this.keyword,

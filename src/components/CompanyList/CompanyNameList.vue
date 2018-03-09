@@ -1,30 +1,44 @@
 <template>
-
-  <div class="list-wrapper">
-    <div-header :header="'公司列表'"></div-header>
-
-    <div class="list-body">
-      <div class="input-wrapper">
-        <search-input></search-input>
+  <div>
+    <div class="list-wrapper" v-if="followCompanies.length !== 0">
+      <div-header :header="'我关注的公司'"></div-header>
+      <div class="list-body">
+        <div class="company-names-wrapper">
+          <el-row :gutter="10">
+            <single-company-name v-for="item in followCompanies" :key="item.companyId"
+                                 :name="item.name" :id="item.companyId"></single-company-name>
+          </el-row>
+        </div>
       </div>
-      <!--<div class="letters-wrapper">-->
-      <!--<letter-filter v-for="item in letters" :key="item" :letter="item"></letter-filter>-->
-      <!--</div>-->
+    </div>
 
-      <div class="company-names-wrapper" v-if="searchResult.length !== 0">
-        <el-row :gutter="10">
-          <single-company-name v-for="item in searchResult" :key="item.companyId"
-                               :name="item.name" :id="item.companyId"></single-company-name>
-        </el-row>
-      </div>
+    <div class="list-wrapper">
+      <div-header :header="'搜索公司列表'"></div-header>
 
-      <div v-else class="empty-result">还没有搜索结果
+      <div class="list-body">
+        <div class="input-wrapper">
+          <search-input></search-input>
+        </div>
+        <!--<div class="letters-wrapper">-->
+        <!--<letter-filter v-for="item in letters" :key="item" :letter="item"></letter-filter>-->
+        <!--</div>-->
+
+        <div class="company-names-wrapper" v-if="searchResult !== null && searchResult.length !== 0">
+          <el-row :gutter="10">
+            <single-company-name v-for="item in searchResult" :key="item.companyId"
+                                 :name="item.name" :id="item.companyId"></single-company-name>
+          </el-row>
+        </div>
+        <div v-if="searchResult !== null && searchResult.length === 0" class="empty-result">
+          暂无搜索结果，换个关键词试试～
+        </div>
+        <div v-if="searchResult === null && searchResult !== ['']" :style="{textAlign: 'center'}">
+          <img src="../../assets/img/loading.gif" width="200"/>
+        </div>
       </div>
 
     </div>
-
   </div>
-
 </template>
 
 <script>
@@ -50,7 +64,10 @@
     },
     computed: {
       ...mapState('company', {
-        searchResult: state => state.searchResult
+        searchResult: state => state.searchResult,
+      }),
+      ...mapState('auth', {
+        followCompanies: state => state.followCompanies
       })
     },
     data() {

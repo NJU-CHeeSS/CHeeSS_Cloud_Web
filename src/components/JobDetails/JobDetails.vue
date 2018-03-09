@@ -27,7 +27,7 @@
         <h2>{{currentJob.jobName}}</h2>
         <p class="time">发布于 {{currentJob.releaseDate}}</p>
 
-        <button class="apply-button" @click="">发送申请</button>
+        <button class="apply-button" @click="apply">发送申请</button>
         <p class="people-num">已有 {{jobApply}} 人申请</p>
 
 
@@ -77,16 +77,15 @@
 </template>
 
 <script>
-  import {Tree} from 'element-ui'
   import SingleJobRecommend from '../ListItem/SingleJobRecommend.vue'
   import {router} from '../../main'
   import {mapState, mapActions} from 'vuex'
+  import {Message} from 'element-ui'
 
   export default {
     name: 'job-details',
     components: {
-      SingleJobRecommend,
-      elTree: Tree
+      SingleJobRecommend
     },
     data() {
       return {}
@@ -95,9 +94,15 @@
     computed: {
       ...mapState('company', {
         companyInfo: state => state.companyInfo
+      }),
+      ...mapState('auth', {
+        user: state => state.user
       })
     },
     methods: {
+      ...mapActions('auth', [
+        'applyJob'
+      ]),
       ...mapActions('company', [
         'fetchCompanyInfoByName'
       ]),
@@ -111,6 +116,24 @@
             router.push({name: 'CompanyDetailsPage', params: {companyId: this.companyInfo.companyId}})
           }
         })
+      },
+      apply() {
+        if (this.user === null) {
+          Message.error('请先登录!')
+        } else {
+          let jobInfo = {
+            jobId: this.currentJob.jobId
+          }
+          this.applyJob({
+            jobInfo: jobInfo,
+            onSuccess: (success) => {
+              Message.success('已发送申请!')
+            },
+            onError: (error) => {
+              Message.warning(error)
+            }
+          })
+        }
       }
     }
   }

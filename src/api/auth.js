@@ -168,3 +168,18 @@ export function checkApplyJob(callback, jobInfo) {
       console.log(error)
     })
 }
+
+export function fetchFollowCompanies(callback, token) {
+  axios.get('/users/companies', {
+    headers: {
+      'Authorization': token
+    }
+  })
+    .then(function (response) {
+      console.log('fetchFollowCompanies', response.data)
+      callback(response.data)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+}

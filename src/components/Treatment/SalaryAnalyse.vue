@@ -1,7 +1,7 @@
 <template>
 
   <div class="salary-analyse-wrapper">
-    <div v-if="treatment!==null">
+    <div v-if="treatment !== null">
       <salary-city-average :average="treatment.cityAverage"
                            :low="treatment.cityLow"
                            :high="treatment.cityHigh"></salary-city-average>
@@ -26,7 +26,8 @@
       <multiple-bar-chart :x="experience.x" :average="experience.average" :low="experience.low"
                           :high="experience.high"></multiple-bar-chart>
     </div>
-    <div v-else :style="{textAlign: 'center', padding: '30px'}">
+
+    <div v-else :style="{textAlign: 'center', padding: '31px'}">
       <img src="../../assets/img/loading.gif" width="200"/>
     </div>
   </div>

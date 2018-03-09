@@ -10,26 +10,34 @@
     <el-tabs>
       <el-tab-pane>
         <span slot="label">
-          <!--<img src="../../assets/img/album.png" width="20"/>-->
           公司
         </span>
-        <company-brief-list v-if="companySearchResult.length !== 0"
-                            :companyList="companySearchResult"></company-brief-list>
-        <p v-else class="empty-result">暂无搜索结果，换个关键词试试～</p>
+
+        <div class="list-wrapper">
+          <company-brief-list v-if="companySearchResult !== null && companySearchResult.length !== 0"
+                              :companyList="companySearchResult"></company-brief-list>
+          <div v-if="companySearchResult === null" :style="{textAlign: 'center'}">
+            <img src="../../assets/img/loading.gif" width="200"/>
+          </div>
+          <p v-if="companySearchResult !== null && companySearchResult.length === 0" class="empty-result">
+            暂无搜索结果，换个关键词试试～</p>
+        </div>
+
       </el-tab-pane>
       <el-tab-pane>
         <span slot="label">
-          <!--<img src="../../assets/img/users.png" width="18"/>-->
           职位
         </span>
 
-        <job-list-body v-if="jobSearchResult.length !== 0"
-                       :jobList="jobSearchResult"></job-list-body>
-        <p v-else class="empty-result">暂无搜索结果，换个关键词试试～</p>
-        <!--<el-row v-else :gutter="25">-->
-        <!--<user-icon v-for="item in searchResult.users"-->
-        <!--:users="item"></user-icon>-->
-        <!--</el-row>-->
+        <div class="list-wrapper">
+          <job-list-body v-if="jobSearchResult !== null && jobSearchResult.length !== 0"
+                         :jobList="jobSearchResult"></job-list-body>
+          <div v-if="jobSearchResult === null" :style="{textAlign: 'center'}">
+            <img src="../../assets/img/loading.gif" width="200"/>
+          </div>
+          <p v-if="jobSearchResult !== null && jobSearchResult.length === 0" class="empty-result">暂无搜索结果，换个关键词试试～</p>
+        </div>
+
       </el-tab-pane>
     </el-tabs>
 

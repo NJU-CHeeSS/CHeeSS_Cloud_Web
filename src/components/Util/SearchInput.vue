@@ -14,7 +14,7 @@
 <script>
 
   import {Input, Message} from 'element-ui'
-  import {mapActions} from 'vuex'
+  import {mapActions, mapMutations} from 'vuex'
 
   export default {
     name: 'search-input',
@@ -32,11 +32,14 @@
       ...mapActions('company', [
         'searchCompany'
       ]),
+      ...mapMutations('company', [
+        'saveSearchResult'
+      ]),
       handleSearch() {
         if (this.input.length === 0) {
           Message.warning('请输入搜索内容！')
         } else {
-          console.log(this.input)
+          this.saveSearchResult(null)
           this.searchCompany({
             searchInfo: {
               keyword: this.input,

@@ -40,6 +40,7 @@
       console.log(to.params.jobId)
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
+          store.dispatch('job/fetchJobApply', to.params.jobId)
         },
         onError: (error) => {
           Message.error(error)
@@ -47,7 +48,6 @@
       })
       store.dispatch('job/fetchJobInfo', to.params.jobId)
       store.dispatch('job/fetchRelateJobs', to.params.jobId)
-      store.dispatch('job/fetchJobApply', to.params.jobId)
       next(true)
     }
   }

@@ -8,7 +8,7 @@
 
     <div class="info-wrapper">
       <p @click="goToCompanyDetails">{{singleCompany.name}}</p>
-      <button>关注</button>
+      <button @click="goToCompanyDetails">查看</button>
       <br/>
       <span>{{singleCompany.industry}}</span>
       <br/>

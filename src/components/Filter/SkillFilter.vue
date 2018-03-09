@@ -194,7 +194,11 @@
       ...mapActions('skill', [
         'fetchSkillInfo'
       ]),
+      ...mapMutations('skill', [
+        'saveSkillInfo'
+      ]),
       handleSearch() {
+        this.saveSkillInfo(null)
         let searchInfo = {
           jobType: this.chosenJobType[1],
         }

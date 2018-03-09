@@ -53,7 +53,7 @@
     data() {
       let checkUsername = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('请输入邮箱账号'))
+          return callback(new Error('请输入用户名'))
         } else {
           callback()
         }

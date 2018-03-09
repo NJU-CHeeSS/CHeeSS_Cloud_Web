@@ -2,7 +2,7 @@
 
   <div class="skill-wrapper">
     <div-header :header="'技能要求'"></div-header>
-    <bar-chart v-if="keywords.length !== 0" :x="list.x" :y="list.y"></bar-chart>
+    <bar-chart v-if="keywords !== null" :x="list.x" :y="list.y"></bar-chart>
   </div>
 
 </template>

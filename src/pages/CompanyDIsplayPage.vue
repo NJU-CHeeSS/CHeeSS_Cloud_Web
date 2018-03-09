@@ -32,18 +32,13 @@
     beforeRouteEnter(to, from, next) {
       store.dispatch('auth/refreshUser', {
         onSuccess: (success) => {
+          store.dispatch('auth/fetchFollowCompanies')
         },
         onError: (error) => {
           Message.error(error)
         }
       })
       store.dispatch('company/fetchPopularCompanies')
-//      store.dispatch('company/searchCompany', {
-//        searchInfo: {
-//          keyword: '上海',
-//          page: 1
-//        }
-//      })
       next(true)
     }
   }
