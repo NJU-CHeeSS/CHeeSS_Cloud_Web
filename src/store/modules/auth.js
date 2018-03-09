@@ -2,7 +2,8 @@ import * as authApi from '../../api/auth'
 
 const state = {
   user: null,
-  checkApply: false
+  checkApply: false,
+  followCompanies: []
 }
 
 // actions 可异步
@@ -139,6 +140,13 @@ const actions = {
       commit('saveCheckApply', data)
     }, jobInfo)
   },
+
+  fetchFollowCompanies({commit}, token) {
+    token = localStorage.getItem('token')
+    authApi.fetchFollowCompanies(data => {
+      commit('saveFollowCompanies', data)
+    }, token)
+  }
 }
 
 // mutations 必须同步
@@ -151,7 +159,10 @@ const mutations = {
   },
   'saveCheckApply'(state, checkApply) {
     state.checkApply = checkApply
-  }
+  },
+  'saveFollowCompanies'(state, followCompanies) {
+    state.followCompanies = followCompanies
+  },
 }
 
 export default {
