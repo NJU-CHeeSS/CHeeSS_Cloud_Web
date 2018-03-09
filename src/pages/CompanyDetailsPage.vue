@@ -59,7 +59,6 @@
     },
     methods: {},
     beforeRouteUpdate(to, from, next) {
-      console.error(to.params.companyId, from.params.companyId)
       store.commit('company/saveCompanyInfo', null)
       store.commit('company/saveCompanyJobs', [])
       store.commit('company/saveRelatedCompanies', [])

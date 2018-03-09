@@ -55,10 +55,10 @@
         searchInfo: {
           order: 'date',
           page: 1,
-          location: '南京',
-          diploma: '本科',
-          earlyReleaseDate: '上月',
-          property: '主管 | 总监 | 经理'
+          location: '不限',
+          diploma: '不限',
+          earlyReleaseDate: '不限',
+          property: '不限'
         },
         onSuccess: (success) => {
           Message.success(success)

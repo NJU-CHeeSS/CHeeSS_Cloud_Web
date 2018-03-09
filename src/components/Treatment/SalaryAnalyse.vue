@@ -26,8 +26,8 @@
       <multiple-bar-chart :x="experience.x" :average="experience.average" :low="experience.low"
                           :high="experience.high"></multiple-bar-chart>
     </div>
-    <div v-else :style="{textAlign: 'center', padding: '70px'}">
-      <img src="../../assets/img/loading.gif" width="80"/>
+    <div v-else :style="{textAlign: 'center', padding: '30px'}">
+      <img src="../../assets/img/loading.gif" width="200"/>
     </div>
   </div>
 

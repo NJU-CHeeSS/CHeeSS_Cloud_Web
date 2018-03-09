@@ -3,7 +3,7 @@ import * as jobApi from '../../api/job'
 const state = {
   pageType: 'filter',
   jobList: [],
-  filterOrder: '发布日期',
+  filterOrder: 'date',
   filterInfo: {
     location: '不限',
     diploma: '不限',

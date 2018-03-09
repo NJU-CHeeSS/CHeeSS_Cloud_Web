@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div v-if="jobList.length !== 0">
     <single-job v-for="item in jobList" :key="item.jobId" :singleJob="item"></single-job>
 
     <div class="pagination-wrapper">
@@ -11,6 +11,10 @@
       </el-pagination>
     </div>
 
+  </div>
+
+  <div v-else :style="{textAlign: 'center'}">
+    <p>暂无搜索结果！</p>
   </div>
 </template>
 
@@ -35,7 +39,8 @@
 //        jobList: state => state.jobList,
         filterInfo: state => state.filterInfo,
         filterOrder: state => state.filterOrder,
-        currentPage: state => state.currentPage
+        currentPage: state => state.currentPage,
+        pageType: state => state.pageType
       })
     },
     props: ['jobList'],
@@ -44,30 +49,52 @@
         'saveCurrentPage'
       ]),
       ...mapActions('job', [
-        'fetchJobList'
+        'fetchJobList',
+        'fetchRecommendJobList'
       ]),
       handleCurrentChange(val) {
         this.saveCurrentPage(val)
-        let searchInfo = {
-          order: this.filterOrder,
-          page: this.currentPage,
-          location: this.filterInfo.location,
-          diploma: this.filterInfo.diploma,
-          earlyReleaseDate: this.filterInfo.earlyReleaseDate,
-          property: this.filterInfo.property[this.filterInfo.property.length - 1]
-        }
-        this.fetchJobList({
-          searchInfo: searchInfo,
-          onSuccess: (success) => {
-            Message({
-              message: '成功获得招聘信息！',
-              type: 'success'
-            })
-          },
-          onError: (error) => {
-            Message.error(error)
+        if (this.pageType === 'filter') {
+          let searchInfo = {
+            order: this.filterOrder,
+            page: this.currentPage,
+            location: this.filterInfo.location,
+            diploma: this.filterInfo.diploma,
+            earlyReleaseDate: this.filterInfo.earlyReleaseDate,
+            property: this.filterInfo.property[this.filterInfo.property.length - 1]
           }
-        })
+          this.fetchJobList({
+            searchInfo: searchInfo,
+            onSuccess: (success) => {
+              Message({
+                message: success,
+                type: 'success'
+              })
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
+          })
+        } else {
+          window.scrollTo(0, 0)
+          let searchInfo = {
+            order: this.filterOrder,
+            page: this.currentPage,
+          }
+          this.fetchRecommendJobList({
+            searchInfo: searchInfo,
+            onSuccess: (success) => {
+              Message({
+                message: success,
+                type: 'success'
+              })
+              document.documentElement.scrollTop = 0
+            },
+            onError: (error) => {
+              Message.error(error)
+            }
+          })
+        }
       }
     }
   }

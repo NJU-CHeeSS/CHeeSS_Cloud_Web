@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export function fetchJobList(callback, searchInfo) {
-  console.error('searchInfo', searchInfo)
+  // console.error('searchInfo', searchInfo)
   axios.get('/jobs/search', {
     params: {
       order: searchInfo.order,
