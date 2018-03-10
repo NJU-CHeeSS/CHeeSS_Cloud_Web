@@ -3,7 +3,7 @@ import axios from 'axios'
 var root = process.env.API_HOST
 
 export function signIn(callback, body) {
-  axios.post(root + '/users/sign-in',
+  axios.post('/users/sign-in',
     body,
     {
       headers: {'Content-Type': 'application/json'}
