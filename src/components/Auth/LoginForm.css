@@ -24,13 +24,13 @@ button {
   margin-top: 80px;
   padding: 30px;
   width: 100%;
-  height: auto;
-  background-color: #ffffff; }
+  height: auto; }
   .auth-wrapper .left-form-wrapper {
     display: inline-block;
-    padding: 30px;
+    padding: 60px;
     width: 60%;
-    height: auto; }
+    height: auto;
+    background-color: #ffffff; }
     .auth-wrapper .left-form-wrapper h1 {
       color: #4e7ede;
       font-weight: 400;
@@ -68,5 +68,12 @@ button {
     .auth-wrapper .left-form-wrapper /deep/ .el-form--label-top .el-form-item__label {
       padding: 0;
       height: 35px; }
+  .auth-wrapper .right-form-wrapper {
+    display: inline-block;
+    top: -20px;
+    left: -5px;
+    width: 39%;
+    height: 600px;
+    vertical-align: top; }
 
 /*# sourceMappingURL=LoginForm.css.map */

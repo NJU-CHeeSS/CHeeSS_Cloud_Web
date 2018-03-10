@@ -1,11 +1,11 @@
 <template>
   <div class="auth-wrapper">
 
-    <h1>注&nbsp;&nbsp;册</h1>
+    <div class="left-form-wrapper">
+      <h1>注&nbsp;&nbsp;册</h1>
 
+      <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
 
-    <el-form :model="registerForm" :rules="rules" ref="registerForm" labelPosition="top">
-      <div class="left-form-wrapper">
         <el-form-item label="用户名" prop="username">
           <el-input v-model="registerForm.username"></el-input>
         </el-form-item>
@@ -25,78 +25,6 @@
         <el-form-item label="确认密码" prop="confirmPassword">
           <el-input type="password" v-model="registerForm.confirmPassword" auto-complete="off"></el-input>
         </el-form-item>
-      </div>
-
-      <div class="right-wrapper">
-
-        <!--<el-form-item label="性别" prop="gender">-->
-        <!--<el-radio v-model="registerForm.gender" label="男">男</el-radio>-->
-        <!--<el-radio v-model="registerForm.gender" label="女">女</el-radio>-->
-        <!--</el-form-item>-->
-
-        <!--<el-form-item label="年龄（1至70岁之间）" prop="age">-->
-        <!--<el-input-number v-model="registerForm.age" @change="" :min="1" :max="70"-->
-        <!--label="年龄"></el-input-number>-->
-        <!--</el-form-item>-->
-
-        <!--<el-form-item label="城市" prop="options">-->
-        <!--<el-select v-model="registerForm.city" placeholder="请选择">-->
-        <!--<el-option-->
-        <!--v-for="item in cities"-->
-        <!--:key="item.value"-->
-        <!--:label="item.label"-->
-        <!--:value="item.value">-->
-        <!--</el-option>-->
-        <!--</el-select>-->
-        <!--</el-form-item>-->
-
-        <!--<el-form-item class="profession-selection" label="专业" prop="options">-->
-        <!--<el-cascader-->
-        <!--expand-trigger="hover"-->
-        <!--:options="registerForm.professions"-->
-        <!--v-model="registerForm.profession"-->
-        <!--@change="">-->
-        <!--</el-cascader>-->
-        <!--</el-form-item>-->
-
-        <!--<el-form-item label="学历" prop="options">-->
-        <!--<el-select v-model="registerForm.degree" placeholder="请选择">-->
-        <!--<el-option-->
-        <!--v-for="item in degrees"-->
-        <!--:key="item.value"-->
-        <!--:label="item.label"-->
-        <!--:value="item.value">-->
-        <!--</el-option>-->
-        <!--</el-select>-->
-        <!--</el-form-item>-->
-
-        <!--<el-form-item label="工作经验（年）" prop="age">-->
-        <!--<el-input-number v-model="registerForm.experience" @change="" :min="0" :max="50" :step="0.5"-->
-        <!--label="经验"></el-input-number>-->
-        <!--</el-form-item>-->
-
-        <!--<el-form-item label="技能" prop="age" class="tags-wrapper">-->
-        <!--<el-tag-->
-        <!--:key="tag"-->
-        <!--v-for="tag in registerForm.skillTags"-->
-        <!--closable-->
-        <!--:disable-transitions="false"-->
-        <!--@close="handleClose(tag)">-->
-        <!--{{tag}}-->
-        <!--</el-tag>-->
-        <!--<el-input-->
-        <!--class="input-new-tag"-->
-        <!--v-if="inputVisible"-->
-        <!--v-model="inputValue"-->
-        <!--ref="saveTagInput"-->
-        <!--size="small"-->
-        <!--@keyup.enter.native="handleInputConfirm"-->
-        <!--@blur="handleInputConfirm"-->
-        <!--&gt;-->
-        <!--</el-input>-->
-        <!--<el-button v-else class="button-new-tag" size="small" @click="showInput">+ 新增</el-button>-->
-
-        <!--</el-form-item>-->
 
         <el-form-item>
           <div class="go-sign-in">
@@ -113,9 +41,15 @@
           </div>
           <!--<el-button @click="resetForm('signInForm')">重置</el-button>-->
         </el-form-item>
-      </div>
+      </el-form>
 
-    </el-form>
+
+    </div>
+
+
+    <div class="right-wrapper">
+      <img src="../../assets/img/login2.jpeg" height="100%"/>
+    </div>
 
 
   </div>

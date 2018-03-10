@@ -8,13 +8,14 @@
   padding: 30px;
   width: 100%;
   height: auto;
-  background-color: $white-color;
+  //background-color: $white-color;
 
   .left-form-wrapper {
     display: inline-block;
-    padding: 30px;
+    padding: 60px;
     width: 60%;
     height: auto;
+    background-color: $white-color;
 
     h1 {
       color: $main-color;
@@ -59,5 +60,14 @@
       padding: 0;
       height: 35px;
     }
+  }
+
+  .right-form-wrapper {
+    display: inline-block;
+    top: -20px;
+    left: -5px;
+    width: 39%;
+    height: 600px;
+    vertical-align: top;
   }
 }

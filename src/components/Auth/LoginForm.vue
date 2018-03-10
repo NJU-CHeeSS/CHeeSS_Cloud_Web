@@ -33,6 +33,10 @@
 
     </div>
 
+    <div class="right-form-wrapper">
+      <img src="../../assets/img/login3.jpeg" height="100%"/>
+    </div>
+
   </div>
 </template>
 

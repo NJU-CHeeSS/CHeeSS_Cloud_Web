@@ -22,42 +22,32 @@ button {
 .auth-wrapper {
   display: inline-block;
   margin-top: 80px;
-  padding: 60px;
+  padding: 30px;
   width: 100%;
-  height: auto;
-  background-color: #ffffff; }
+  height: auto; }
   .auth-wrapper h1 {
     color: #4e7ede;
     font-weight: 400;
     font-size: 22px; }
+  .auth-wrapper form {
+    margin-top: 50px; }
   .auth-wrapper .left-form-wrapper {
     display: inline-block;
+    padding: 60px;
     width: 60%;
-    height: auto; }
+    height: auto;
+    background-color: #ffffff; }
   .auth-wrapper .right-wrapper {
     display: inline-block;
+    top: -20px;
+    left: -5px;
     width: 39%;
+    height: 625px;
     vertical-align: top; }
-    .auth-wrapper .right-wrapper .tags-wrapper /deep/ .el-input {
-      display: inline-block;
-      width: 80px; }
-    .auth-wrapper .right-wrapper .tags-wrapper /deep/ .el-tag {
-      margin-right: 10px;
-      border-radius: 100px; }
-    .auth-wrapper .right-wrapper .tags-wrapper button {
-      border: solid 1px #CFE4FD;
-      border-radius: 100px;
-      padding: 0 10px;
-      height: 30px;
-      line-height: 30px;
-      font-size: 12px; }
-    .auth-wrapper .right-wrapper .profession-selection /deep/ .el-input--suffix .el-input__inner {
-      width: 200px; }
-    .auth-wrapper .right-wrapper .profession-selection /deep/ .el-input__suffix {
-      right: -35px; }
   .auth-wrapper .sign-in-button-wrapper {
     display: block;
     float: right;
+    margin-right: 20%;
     text-align: center; }
     .auth-wrapper .sign-in-button-wrapper /deep/ .el-button {
       padding: 8px 20px;
@@ -78,8 +68,6 @@ button {
         -o-transition: all, 0.5s;
         transition: all, 0.5s;
         background-color: #5689f2; }
-  .auth-wrapper form {
-    margin-top: 50px; }
   .auth-wrapper /deep/ .el-input {
     width: 80%; }
   .auth-wrapper /deep/ .el-form-item {
