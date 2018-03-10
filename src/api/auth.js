@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+var root = process.env.API_HOST
+
 export function signIn(callback, body) {
-  axios.post('/users/sign-in',
+  axios.post(root + '/users/sign-in',
     body,
     {
       headers: {'Content-Type': 'application/json'}
@@ -17,8 +19,7 @@ export function signIn(callback, body) {
 }
 
 export function signUp(callback, body) {
-  console.log('sign up body: ', body)
-  axios.post('/users/sign-up',
+  axios.post(root + '/users/sign-up',
     body,
     {
       headers: {'Content-Type': 'application/json'}
@@ -32,21 +33,17 @@ export function signUp(callback, body) {
 }
 
 export function currentUser(callback, token) {
-  axios.get('/users',
+  axios.get(root + '/users',
     {
       headers: {'Authorization': token}
     })
     .then(function (response) {
       callback(response.data)
     })
-    .catch(function (error) {
-      console.log(error)
-    })
 }
 
 export function editUserInfo(callback, userInfo) {
-  console.log('userInfo: ', userInfo)
-  axios.post('/users/info',
+  axios.post(root + '/users/info',
     userInfo,
     {
       headers: {
@@ -63,7 +60,7 @@ export function editUserInfo(callback, userInfo) {
 }
 
 export function modifyPassword(callback, passwordInfo) {
-  axios.post('/users/password',
+  axios.post(root + '/users/password',
     passwordInfo,
     {
       headers: {
@@ -80,7 +77,7 @@ export function modifyPassword(callback, passwordInfo) {
 }
 
 export function followCompany(callback, companyInfo) {
-  axios.get('/users/follow', {
+  axios.get(root + '/users/follow', {
     params: {
       companyId: companyInfo.companyId
     },
@@ -98,7 +95,7 @@ export function followCompany(callback, companyInfo) {
 }
 
 export function unfollowCompany(callback, companyInfo) {
-  axios.get('/users/unfollow', {
+  axios.get(root + '/users/unfollow', {
     params: {
       companyId: companyInfo.companyId
     },
@@ -116,7 +113,7 @@ export function unfollowCompany(callback, companyInfo) {
 }
 
 export function checkFollowCompany(callback, companyInfo) {
-  axios.get('/users/checkFollow', {
+  axios.get(root + '/users/checkFollow', {
     params: {
       companyId: companyInfo.companyId
     },
@@ -134,7 +131,7 @@ export function checkFollowCompany(callback, companyInfo) {
 }
 
 export function applyJob(callback, jobInfo) {
-  axios.get('/users/apply', {
+  axios.get(root + '/users/apply', {
     params: {
       jobId: jobInfo.jobId
     },
@@ -152,7 +149,7 @@ export function applyJob(callback, jobInfo) {
 }
 
 export function checkApplyJob(callback, jobInfo) {
-  axios.get('/users/checkApply', {
+  axios.get(root + '/users/checkApply', {
     params: {
       jobId: jobInfo.jobId
     },
@@ -170,7 +167,7 @@ export function checkApplyJob(callback, jobInfo) {
 }
 
 export function fetchFollowCompanies(callback, token) {
-  axios.get('/users/companies', {
+  axios.get(root + '/users/companies', {
     headers: {
       'Authorization': token
     }

@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+var root = process.env.API_HOST
+
 export function fetchTreatmentInfo(callback, searchInfo) {
 
-  axios.get('/jobs/analyzeTreatment', {
+  axios.get(root + '/jobs/analyzeTreatment', {
     params: {
       jobType: searchInfo.jobType,
       city: searchInfo.city

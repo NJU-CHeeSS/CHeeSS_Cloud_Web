@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+var root = process.env.API_HOST
+
 export function fetchJobList(callback, searchInfo) {
   // console.error('searchInfo', searchInfo)
-  axios.get('/jobs/search', {
+  axios.get(root + '/jobs/search', {
     params: {
       order: searchInfo.order,
       size: 10,
@@ -23,7 +25,7 @@ export function fetchJobList(callback, searchInfo) {
 }
 
 export function fetchJobInfo(callback, jobId) {
-  axios.get(`/jobs/${jobId}`)
+  axios.get(root + `/jobs/${jobId}`)
     .then(function (response) {
       console.log('jobInfo', response.data)
       callback(response.data)
@@ -34,7 +36,7 @@ export function fetchJobInfo(callback, jobId) {
 }
 
 export function fetchRelateJobs(callback, jobId) {
-  axios.get(`/jobs/${jobId}/relate`)
+  axios.get(root + `/jobs/${jobId}/relate`)
     .then(function (response) {
       console.log('relateJobs', response.data)
       callback(response.data)
@@ -45,7 +47,7 @@ export function fetchRelateJobs(callback, jobId) {
 }
 
 export function fetchCompareResult(callback, jobIds) {
-  axios.get('/jobs/compare', {
+  axios.get(root + '/jobs/compare', {
     params: {
       jobId1: jobIds.jobId1,
       jobId2: jobIds.jobId2
@@ -61,7 +63,7 @@ export function fetchCompareResult(callback, jobIds) {
 }
 
 export function fetchJobApply(callback, jobId) {
-  axios.get('/jobs/apply', {
+  axios.get(root + '/jobs/apply', {
     params: {
       jobId: jobId
     }
@@ -76,7 +78,7 @@ export function fetchJobApply(callback, jobId) {
 }
 
 export function fetchRecommendJobList(callback, searchInfo) {
-  axios.get(`/users/${searchInfo.userId}/jobs`, {
+  axios.get(root + `/users/${searchInfo.userId}/jobs`, {
     params: {
       order: searchInfo.order,
       size: 10,
