@@ -128,6 +128,7 @@
             jobInfo: jobInfo,
             onSuccess: (success) => {
               Message.success('已发送申请!')
+              this.jobApply++
             },
             onError: (error) => {
               Message.warning(error)
