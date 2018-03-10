@@ -33,12 +33,14 @@
         'searchCompany'
       ]),
       ...mapMutations('company', [
-        'saveSearchResult'
+        'saveSearchResult',
+        'saveSearchKeyword'
       ]),
       handleSearch() {
         if (this.input.length === 0) {
           Message.warning('请输入搜索内容！')
         } else {
+          this.saveSearchKeyword(this.input)
           this.saveSearchResult(null)
           this.searchCompany({
             searchInfo: {
