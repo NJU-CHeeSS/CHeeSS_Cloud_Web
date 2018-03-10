@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+var root = process.env.API_HOST
+
 export function fetchJobSearchResult(callback, searchInfo) {
-  axios.get('/jobs', {
+  axios.get(root + '/jobs', {
     params: {
       keyword: searchInfo.keyword,
       order: '',
@@ -19,7 +21,7 @@ export function fetchJobSearchResult(callback, searchInfo) {
 }
 
 export function fetchCompanySearchResult(callback, searchInfo) {
-  axios.get('/companies/search', {
+  axios.get(root + '/companies/search', {
     params: {
       keyword: searchInfo.keyword,
       page: searchInfo.page,
