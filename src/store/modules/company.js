@@ -9,6 +9,8 @@ const state = {
   searchResult: [''],
   companyRank: [],
   companySalary: null,
+  searchKeyword: null,
+  totalCount: null
 }
 
 // actions 可异步
@@ -54,6 +56,7 @@ const actions = {
   searchCompany({commit}, {searchInfo}) {
     console.log(searchInfo)
     companyApi.searchCompany(data => {
+      commit('saveTotalCount', data.totalCount)
       commit('saveSearchResult', data.result)
     }, searchInfo)
   },
@@ -106,6 +109,14 @@ const mutations = {
 
   'saveCompanySalary'(state, companySalary) {
     state.companySalary = companySalary
+  },
+
+  'saveSearchKeyword'(state, searchKeyword) {
+    state.searchKeyword = searchKeyword
+  },
+
+  'saveTotalCount'(state, totalCount) {
+    state.totalCount = totalCount
   }
 }
 
