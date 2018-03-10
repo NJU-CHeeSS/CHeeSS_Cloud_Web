@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+var root = process.env.API_HOST
+
 export function fetchSkillInfo(callback, searchInfo) {
 
-  axios.get('/jobs/skill', {
+  axios.get(root + '/jobs/skill', {
     params: {
       jobType: searchInfo.jobType
     }
