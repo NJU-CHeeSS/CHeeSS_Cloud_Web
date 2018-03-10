@@ -1,12 +1,12 @@
 <template>
   <div class="banner-wrapper">
     <div class="img-wrapper" :style="{ backgroundImage: 'url(' + bannerUrl + ')' }">
-      <el-input class="search-input"
-                placeholder=""
-                suffix-icon="el-icon-search"
-                v-model="input"
-      >
-      </el-input>
+      <!--<el-input class="search-input"-->
+                <!--placeholder=""-->
+                <!--suffix-icon="el-icon-search"-->
+                <!--v-model="input"-->
+      <!--&gt;-->
+      <!--</el-input>-->
     </div>
   </div>
 
