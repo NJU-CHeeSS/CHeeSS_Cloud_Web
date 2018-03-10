@@ -99,7 +99,7 @@
         diploma: [{
           value: '不限',
           label: '不限'
-        },{
+        }, {
           value: '大专',
           label: '大专'
         }, {
@@ -287,6 +287,13 @@
         'saveFilterInfo'
       ]),
       handleSearch() {
+        let filterInfo = {
+          location: this.chosenPlace,
+          diploma: this.chosenDiploma,
+          earlyReleaseDate: this.chosenDate,
+          property: this.chosenIndustry[this.chosenIndustry.length - 1]
+        }
+        this.saveFilterInfo(filterInfo)
         let searchInfo = {
           order: this.filterOrder,
           page: this.currentPage,

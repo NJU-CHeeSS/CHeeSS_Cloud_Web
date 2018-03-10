@@ -143,15 +143,15 @@
         UserInfo: {
           password: '',
           username: this.user.username,
-          email: this.user.email,
+          email: this.user.email ? '' : this.user.email,
           phone: this.user.telephone,
           age: this.user.age,
           city: this.user.city,
           gender: this.user.sex === 1 ? '男' : '女',
           degree: this.user.diploma,
           experience: this.user.experience,
-          profession: this.user.major.split(','),
-          skillTags: this.user.skill.split(','),
+          profession: this.user.major === null ? [] : this.user.major.split(','),
+          skillTags: this.user.skill === null ? [] : this.user.skill.split(','),
           professions: [{
             value: '哲学',
             label: '哲学',
@@ -409,27 +409,27 @@
           }]
         },
         cities: [{
-          value: '选项1',
+          value: '北京',
           label: '北京'
         }, {
-          value: '选项2',
+          value: '上海',
           label: '上海'
         }, {
-          value: '选项4',
+          value: '南京',
           label: '南京'
         }],
         degrees: [
           {
-            value: '选项1',
+            value: '专科',
             label: '专科'
           }, {
-            value: '选项2',
+            value: '本科',
             label: '本科'
           }, {
-            value: '选项3',
+            value: '硕士',
             label: '硕士'
           }, {
-            value: '选项4',
+            value: '博士',
             label: '博士'
           }
         ],

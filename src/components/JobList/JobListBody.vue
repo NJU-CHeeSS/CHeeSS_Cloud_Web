@@ -6,7 +6,7 @@
     <div class="pagination-wrapper">
       <el-pagination
         layout="prev, pager, next"
-        :total=totalPage
+        :total=totalCount/10
         @current-change="handleCurrentChange">
       </el-pagination>
     </div>
