@@ -98,7 +98,7 @@
         'saveSearchResult'
       ]),
       handleCurrentChange(val) {
-        this.saveSearchResult(null)
+//        this.saveSearchResult(null)
         this.searchCompany({
           searchInfo: {
             keyword: this.searchKeyword,

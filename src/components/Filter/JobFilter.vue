@@ -100,8 +100,8 @@
           value: '不限',
           label: '不限'
         },{
-          value: '专科',
-          label: '专科'
+          value: '大专',
+          label: '大专'
         }, {
           value: '本科',
           label: '本科'
