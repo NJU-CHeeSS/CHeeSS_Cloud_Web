@@ -3,7 +3,7 @@ import axios from 'axios'
 var root = process.env.API_HOST
 
 export function fetchPopularCompanies(callback) {
-  axios.get(root + '/companies/popular')
+  axios.get('/companies/popular')
     .then(function (response) {
       console.log('popular', response.data)
       callback(response.data)
@@ -14,7 +14,7 @@ export function fetchPopularCompanies(callback) {
 }
 
 export function fetchCompanyInfo(callback, companyId) {
-  axios.get(root + `/companies/id/${companyId}`)
+  axios.get(`/companies/id/${companyId}`)
     .then(function (response) {
       console.log('companyInfo', response.data)
       callback(response.data)
@@ -25,7 +25,7 @@ export function fetchCompanyInfo(callback, companyId) {
 }
 
 export function fetchCompanyInfoByName(callback, companyName) {
-  axios.get(root + '/companies/name', {
+  axios.get('/companies/name', {
     params: {
       companyName: companyName
     }
@@ -40,7 +40,7 @@ export function fetchCompanyInfoByName(callback, companyName) {
 }
 
 export function fetchCompanyJobs(callback, companyId) {
-  axios.get(root + `/companies/${companyId}/jobs`)
+  axios.get(`/companies/${companyId}/jobs`)
     .then(function (response) {
       console.log('companyJobs', response.data)
       callback(response.data)
@@ -62,7 +62,7 @@ export function fetchRelatedCompanies(callback, companyId) {
 }
 
 export function searchCompany(callback, searchInfo) {
-  axios.get(root + '/companies/search', {
+  axios.get('/companies/search', {
     params: {
       keyword: searchInfo.keyword,
       size: 10,
@@ -79,7 +79,7 @@ export function searchCompany(callback, searchInfo) {
 }
 
 export function fetchCompanyRank(callback, industry) {
-  axios.get(root + `/companies/rank/${industry}`)
+  axios.get(`/companies/rank/${industry}`)
     .then(function (response) {
       console.log('companyRank', response.data)
       callback(response.data)
@@ -90,7 +90,7 @@ export function fetchCompanyRank(callback, industry) {
 }
 
 export function fetchCompanySalary(callback, companyId) {
-  axios.get(root + `/companies/${companyId}/analyse`)
+  axios.get(`/companies/${companyId}/analyse`)
     .then(function (response) {
       console.log('companySalary', response.data)
       callback(response.data)

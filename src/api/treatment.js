@@ -4,7 +4,7 @@ var root = process.env.API_HOST
 
 export function fetchTreatmentInfo(callback, searchInfo) {
 
-  axios.get(root + '/jobs/analyzeTreatment', {
+  axios.get('/jobs/analyzeTreatment', {
     params: {
       jobType: searchInfo.jobType,
       city: searchInfo.city

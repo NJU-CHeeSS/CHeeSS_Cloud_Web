@@ -4,7 +4,7 @@ var root = process.env.API_HOST
 
 export function fetchSkillInfo(callback, searchInfo) {
 
-  axios.get(root + '/jobs/skill', {
+  axios.get('/jobs/skill', {
     params: {
       jobType: searchInfo.jobType
     }

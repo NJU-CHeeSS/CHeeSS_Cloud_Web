@@ -24,6 +24,7 @@ const actions = {
   },
 
   signIn({dispatch}, {body, onSuccess, onError}) {
+    console.log(body)
     authApi.signIn(data => {
       if (data.result === false) {
         onError(data.message)
